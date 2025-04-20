@@ -98,4 +98,82 @@
     .info-box {
       background: rgba(255, 255, 255, 0.03);
       border: 2px solid rgba(255, 255, 255, 0.05);
-... (79 líneas restantes)
+      padding: 1.8rem;
+      border-radius: 16px;
+      margin-bottom: 2rem;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.08);
+      animation: floatBox 4s ease-in-out infinite alternate;
+      transition: transform 0.3s ease;
+    }
+
+    .info-box:hover {
+      transform: scale(1.015);
+      box-shadow: 0 0 30px rgba(255, 255, 255, 0.12);
+    }
+
+    @keyframes floatBox {
+      from { transform: translateY(0); }
+      to { transform: translateY(-5px); }
+    }
+
+    .info-box h2 {
+      color: #ffee58;
+    }
+
+    .info-box ul li {
+      margin-bottom: 1rem;
+      font-size: 1.05rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .info-box ul li i {
+      color: #ffd700;
+      min-width: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>🧿 El Tótem Perdido</h1>
+    <p>Un artefacto prohibido que los aldeanos nunca quisieron que encontraras...</p>
+  </header>
+
+  <main>
+    <!-- ¿Qué es esto? -->
+    <div class="info-box">
+      <h2><i class="fas fa-question-circle"></i> ¿Qué es esto?</h2>
+      <p>Un addon místico para Minecraft Bedrock que agrega el <span class="glow">Tótem Perdido</span>, un objeto ancestral capaz de devolverte la vida... pero con consecuencias extrañas. ¿Estás listo para el poder?</p>
+    </div>
+
+    <!-- Características -->
+    <div class="info-box">
+      <h2><i class="fas fa-bolt"></i> Características:</h2>
+      <ul>
+        <li><i class="fas fa-heartbeat"></i> Salvación automática al morir.</li>
+        <li><i class="fas fa-running"></i> Efectos únicos: velocidad, invisibilidad, visión nocturna.</li>
+        <li><i class="fas fa-wand-magic-sparkles"></i> Animación personalizada y sonido mágico.</li>
+        <li><i class="fas fa-dragon"></i> Disponible en survival si derrotas al <b>Vigilante del Umbral</b>.</li>
+      </ul>
+    </div>
+
+    <!-- Comando -->
+    <h2><i class="fas fa-terminal"></i> ¿Cómo obtenerlo?</h2>
+    <p>Usa este comando para obtenerlo directamente:</p>
+    <pre>/give @s totem:lost_totem</pre>
+
+    <!-- Descargar -->
+    <h2><i class="fas fa-download"></i> Descargar ahora</h2>
+    <a class="download-btn" href="https://tusitio.com/download/totem.mcaddon" target="_blank">
+      <i class="fas fa-magic"></i> DESCARGAR ADDON
+    </a>
+  </main>
+
+  <footer>
+    <p>Addon creado por TuNombre - Minecraft Bedrock Edition © 2025</p>
+  </footer>
+
+</body>
+</html>
