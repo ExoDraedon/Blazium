@@ -14,62 +14,67 @@
 
     body {
       font-family: 'Rubik', sans-serif;
-      background: linear-gradient(270deg, #0f2027, #203a43, #2c5364);
-      background-size: 600% 600%;
-      animation: bgAnimation 20s ease infinite;
-      color: #fff;
+      background: linear-gradient(135deg, #111, #222, #333);
+      background-size: 400% 400%;
+      animation: bgSlide 30s ease infinite;
+      color: #ddd;
       min-height: 100vh;
-      overflow-x: hidden;
-      position: relative;
     }
 
-    @keyframes bgAnimation {
+    @keyframes bgSlide {
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
     }
 
     header {
-      background-color: rgba(0, 0, 0, 0.6);
-      text-align: center;
-      padding: 3rem 1rem;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+      padding: 2rem;
+      text-align: left;
     }
 
     header h1 {
-      font-size: 3rem;
-      color: #ffd700;
-      text-shadow: 0 0 10px #000;
+      font-size: 2.5rem;
+      color: #f1f1f1;
     }
 
     header p {
-      margin-top: 0.5rem;
-      font-size: 1.2rem;
-      color: #eee;
+      font-size: 1.1rem;
+      color: #aaa;
+    }
+
+    .main-title {
+      text-align: center;
+      font-size: 4rem;
+      margin-top: 2rem;
+      margin-bottom: 2rem;
+      color: #fff;
+      letter-spacing: 2px;
+      text-shadow: 0 0 10px #000;
     }
 
     main {
       max-width: 800px;
-      margin: 3rem auto;
+      margin: 0 auto;
       padding: 2rem;
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 1rem;
-      backdrop-filter: blur(6px);
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+      background: rgba(255, 255, 255, 0.02);
+      border-left: 4px solid #444;
+      border-radius: 0 1rem 1rem 0;
+      backdrop-filter: blur(5px);
     }
 
     h2 {
-      color: #ffcc00;
+      color: #ccc;
       margin-top: 1.5rem;
     }
 
     p {
-      line-height: 1.6;
       margin-top: 0.5rem;
+      line-height: 1.6;
     }
 
     pre {
-      background-color: rgba(0, 0, 0, 0.3);
+      background-color: #111;
+      color: #0f0;
       padding: 1rem;
       border-radius: 0.5rem;
       margin-top: 1rem;
@@ -80,91 +85,51 @@
       display: inline-block;
       margin-top: 1.5rem;
       padding: 1rem 2rem;
-      background-color: #00c853;
+      background-color: #444;
       color: #fff;
       text-decoration: none;
       border-radius: 1rem;
-      font-weight: bold;
-      box-shadow: 0 0 15px #00e676;
       transition: 0.3s ease;
+      border: 1px solid #666;
     }
 
     .download:hover {
-      background-color: #00e676;
+      background-color: #555;
       transform: scale(1.05);
     }
 
     footer {
       text-align: center;
       padding: 2rem;
-      color: #ccc;
+      color: #666;
       font-size: 0.9rem;
-    }
-
-    /* Partículas (decoración sutil) */
-    .particles {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      z-index: 0;
-      pointer-events: none;
-    }
-
-    .particles span {
-      position: absolute;
-      display: block;
-      width: 4px;
-      height: 4px;
-      background: rgba(255, 255, 255, 0.3);
-      animation: float 10s linear infinite;
-      border-radius: 50%;
-    }
-
-    @keyframes float {
-      0% {
-        transform: translateY(0) scale(1);
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(-1000px) scale(0.5);
-        opacity: 0;
-      }
     }
   </style>
 </head>
 <body>
-  <div class="particles">
-    <!-- puedes duplicar o triplicar estas para más partículas -->
-    <span style="left: 10%; animation-delay: 0s;"></span>
-    <span style="left: 25%; animation-delay: 2s;"></span>
-    <span style="left: 40%; animation-delay: 4s;"></span>
-    <span style="left: 60%; animation-delay: 1s;"></span>
-    <span style="left: 75%; animation-delay: 3s;"></span>
-    <span style="left: 90%; animation-delay: 5s;"></span>
-  </div>
 
   <header>
     <h1>Java Custom Animation</h1>
-    <p>¡Añade la animación de Java a tu Bedrock!</p>
+    <p>Addon inspirado en la animación de Java para Minecraft Bedrock.</p>
   </header>
 
+  <div class="main-title">Blazium Addons</div>
+
   <main>
-    <h2>Minecraft Java animation en Bedrock?</h2>
-    <p>Este addon reemplaza o añade la animación del tótem de Minecraft Java en Bedrock, haciendo que tu experiencia sea más inmersiva y fiel al estilo clásico que todos amamos.</p>
+    <h2>🎮 ¿Qué hace este addon?</h2>
+    <p>Este addon reemplaza o añade la animación del tótem de Minecraft Java a Minecraft Bedrock, creando una experiencia visual más impactante y fluida.</p>
 
     <h2>⚒ ¿Cómo obtenerlo?</h2>
-    <p>Puedes conseguir el tótem en survival, o craftear el nuevo con animación. También puedes obtenerlo desde creativo:</p>
-
+    <p>Puedes obtener el tótem con animación directamente desde el modo creativo o craftearlo si juegas en supervivencia:</p>
     <pre>/give @s totem_of_undying</pre>
 
     <h2>📦 Descargar</h2>
-    <a class="download" href="https://tusitio.com/download/totem.mcaddon" target="_blank">✨ Descargar Addon ✨</a>
+    <a class="download" href="https://tusitio.com/download/totem.mcaddon" target="_blank">Descargar Addon</a>
   </main>
 
   <footer>
-    <p>Addon creado por Sir|Exo - Minecraft Bedrock Edition © 2025</p>
+    <p>Addon creado por Sir|Exo - © 2025</p>
   </footer>
+
 </body>
 </html>
