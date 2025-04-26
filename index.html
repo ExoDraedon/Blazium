@@ -1,303 +1,68 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Blazium Addons</title>
-  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap" rel="stylesheet">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dev-Log Metalizado</title>
+    <!-- (El mismo estilo CSS del anterior código) -->
+    <style>
+        /* Mantener el mismo CSS anterior y agregar: */
+        .create-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: #00ff88;
+            color: #0a0a0a;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            margin-bottom: 2rem;
+        }
 
-    body {
-      font-family: 'Rubik', sans-serif;
-      background: linear-gradient(135deg, #111, #222, #333);
-      background-size: 400% 400%;
-      animation: bgSlide 30s ease infinite;
-      color: #ddd;
-      min-height: 100vh;
-    }
-
-    @keyframes bgSlide {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
-    header {
-      padding: 2rem;
-      text-align: left;
-    }
-
-    header h1 {
-      font-size: 2.5rem;
-      color: #f1f1f1;
-    }
-
-    header p {
-      font-size: 1.1rem;
-      color: #aaa;
-    }
-
-    .main-title {
-      text-align: center;
-      font-size: 4rem;
-      margin-top: 2rem;
-      margin-bottom: 2rem;
-      color: #fff;
-      letter-spacing: 2px;
-      text-shadow: 0 0 10px #000;
-    }
-
-    .tab-container {
-      max-width: 800px;
-      margin: 0 auto;
-    }
-
-    .tabs {
-      display: flex;
-      justify-content: space-around;
-      margin-bottom: -1px;
-    }
-
-    .tab-btn {
-      padding: 1rem 2rem;
-      background: rgba(0,0,0,0.3);
-      border: none;
-      border-top-left-radius: 0.5rem;
-      border-top-right-radius: 0.5rem;
-      color: #ccc;
-      font-family: 'Rubik', sans-serif;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      border: 1px solid transparent;
-    }
-
-    .tab-btn:hover {
-      background: rgba(255,255,255,0.05);
-      color: #fff;
-    }
-
-    .tab-btn.active {
-      background: rgba(255,255,255,0.1);
-      color: #fff;
-      border: 1px solid #666;
-      border-bottom: 1px solid rgba(255,255,255,0.1);
-    }
-
-    .tab-content {
-      display: none;
-      padding: 2rem;
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid #666;
-      border-radius: 0 0.5rem 0.5rem 0.5rem;
-      backdrop-filter: blur(5px);
-    }
-
-    .tab-content.active {
-      display: block;
-      animation: fadeIn 0.5s ease;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    h2 {
-      color: #ccc;
-      margin-top: 1.5rem;
-    }
-
-    p {
-      margin-top: 0.5rem;
-      line-height: 1.6;
-    }
-
-    pre {
-      background-color: #111;
-      color: #0f0;
-      padding: 1rem;
-      border-radius: 0.5rem;
-      margin-top: 1rem;
-      overflow-x: auto;
-    }
-
-    .download {
-      display: inline-block;
-      margin-top: 1.5rem;
-      padding: 1rem 2rem;
-      background-color: #444;
-      color: #fff;
-      text-decoration: none;
-      border-radius: 1rem;
-      transition: 0.3s ease;
-      border: 1px solid #666;
-    }
-
-    .download:hover {
-      background-color: #555;
-      transform: scale(1.05);
-    }
-
-    .download-section {
-      margin-top: 2rem;
-      padding-top: 2rem;
-      border-top: 1px solid #444;
-    }
-
-    footer {
-      text-align: center;
-      padding: 2rem;
-      color: #666;
-      font-size: 0.9rem;
-    }
-
-    .feature-list {
-      margin-left: 1.5rem;
-      margin-top: 1rem;
-    }
-
-    .feature-list li {
-      margin-bottom: 0.5rem;
-    }
-  </style>
+        .create-button:hover {
+            box-shadow: 0 0 20px #00ff88;
+            transform: scale(1.05);
+        }
+    </style>
 </head>
 <body>
-
-  <header>
-    <h1>Blazium Addons</h1>
-    <p>Paquete de addons para Minecraft Bedrock con contenido único</p>
-  </header>
-
-  <div class="main-title">BLAZIUM ADDONS</div>
-
-  <div class="tab-container">
-    <div class="tabs">
-      <button class="tab-btn active" onclick="openTab('totem')">Tótem de Java</button>
-      <button class="tab-btn" onclick="openTab('devorador')">Devorador de Dioses</button>
-      <button class="tab-btn" onclick="openTab('ruleta')">Ruleta Dedsafio 3</button>
+    <div class="container">
+        <header class="header">
+            <h1>Dev-Log</h1>
+            <a href="create.html" class="create-button">Nueva Entrada</a>
+        </header>
+        
+        <div id="entries-container">
+            <!-- Las entradas se cargarán dinámicamente con JavaScript -->
+        </div>
     </div>
 
-    <!-- Tótem de Java -->
-    <div id="totem" class="tab-content active">
-      <h2>🎮 Tótem de Java Animado</h2>
-      <p>Este addon reemplaza la animación del tótem de la inmortalidad en Minecraft Bedrock por la versión más fluida y visualmente impactante de Minecraft Java.</p>
-      
-      <h2>✨ Características</h2>
-      <ul class="feature-list">
-        <li>Animación idéntica a la versión de Java</li>
-        <li>Efectos de partículas mejorados</li>
-        <li>Compatibilidad con todos los dispositivos Bedrock</li>
-        <li>Funciona tanto en survival como en creative</li>
-      </ul>
-
-      <h2>⚒ ¿Cómo obtenerlo?</h2>
-      <p>Puedes obtener el tótem con animación directamente desde el modo creativo o craftearlo si juegas en supervivencia:</p>
-      <pre>/give @s totem_of_undying</pre>
-
-      <div class="download-section">
-        <h2>📦 Descargar</h2>
-        <a class="download" href="https://tusitio.com/download/totem.mcaddon" target="_blank">Descargar Tótem Animado</a>
-      </div>
-    </div>
-
-    <!-- Devorador de Dioses -->
-    <div id="devorador" class="tab-content">
-      <h2>👹 Devorador de Dioses</h2>
-      <p>Un poderoso y temible jefe inspirado en la mitología lovecraftiana, con habilidades devastadoras y un diseño aterrador.</p>
-      
-      <h2>✨ Características</h2>
-      <ul class="feature-list">
-        <li>Jefe final con 3 fases de batalla</li>
-        <li>Ataques únicos: tentáculos, explosiones cósmicas y maldiciones</li>
-        <li>Sistema de salud segmentado</li>
-        <li>Música de batalla épica</li>
-        <li>Recompensas exclusivas al derrotarlo</li>
-      </ul>
-
-      <h2>⚔️ ¿Cómo invocarlo?</h2>
-      <p>El Devorador de Dioses puede ser invocado en cualquier dimensión usando el Altar de la Perdición:</p>
-      <pre>/summon blazium:deity_devourer</pre>
-
-      <h2>🏆 Recompensas</h2>
-      <p>Al derrotarlo obtendrás:</p>
-      <ul class="feature-list">
-        <li>Fragmento cósmico (para craftear armadura)</li>
-        <li>Ojo del Devorador (objeto místico)</li>
-        <li>Experiencia mejorada</li>
-      </ul>
-
-      <div class="download-section">
-        <h2>📦 Descargar</h2>
-        <a class="download" href="https://tusitio.com/download/devorador.mcaddon" target="_blank">Descargar Devorador</a>
-      </div>
-    </div>
-
-    <!-- Ruleta Dedsafio 3 -->
-    <div id="ruleta" class="tab-content">
-      <h2>🎲 Ruleta del Dedsafio 3</h2>
-      <p>Revive la emoción del mítico Dedsafio con esta ruleta que incluye todos los desafíos de la temporada 3, ahora en Minecraft!</p>
-      
-      <h2>✨ Características</h2>
-      <ul class="feature-list">
-        <li>24 desafíos diferentes</li>
-        <li>Sistema de puntuación automático</li>
-        <li>Tabla de posiciones</li>
-        <li>Efectos de sonido originales</li>
-        <li>Personalizable (añade tus propios desafíos)</li>
-      </ul>
-
-      <h2>🎯 Desafíos incluidos</h2>
-      <p>Algunos de los desafíos que incluye la ruleta:</p>
-      <ul class="feature-list">
-        <li>Misión imposible (no recibir daño)</li>
-        <li>El ascensor (construir hacia arriba)</li>
-        <li>El parkour (completar un recorrido)</li>
-        <li>El cazador (eliminar mobs específicos)</li>
-        <li>El coleccionista (conseguir items raros)</li>
-      </ul>
-
-      <h2>⚙️ ¿Cómo usarla?</h2>
-      <p>Coloca la ruleta en el mundo y haz click derecho para girarla:</p>
-      <pre>/give @s blazium:ruleta_dedsafio</pre>
-
-      <div class="download-section">
-        <h2>📦 Descargar</h2>
-        <a class="download" href="https://tusitio.com/download/ruleta.mcaddon" target="_blank">Descargar Ruleta</a>
-      </div>
-    </div>
-  </div>
-
-  <footer>
-    <p>Addons creados por Sir|Exo - © 2025 - Todos los derechos reservados</p>
-  </footer>
-
-  <script>
-    function openTab(tabId) {
-      // Oculta todos los contenidos de pestañas
-      const tabContents = document.getElementsByClassName('tab-content');
-      for (let i = 0; i < tabContents.length; i++) {
-        tabContents[i].classList.remove('active');
-      }
-
-      // Desactiva todos los botones de pestañas
-      const tabButtons = document.getElementsByClassName('tab-btn');
-      for (let i = 0; i < tabButtons.length; i++) {
-        tabButtons[i].classList.remove('active');
-      }
-
-      // Muestra la pestaña seleccionada
-      document.getElementById(tabId).classList.add('active');
-      
-      // Activa el botón seleccionado
-      event.currentTarget.classList.add('active');
-    }
-  </script>
-
+    <script>
+        // Cargar entradas desde Local Storage
+        function loadEntries() {
+            const entries = JSON.parse(localStorage.getItem('devlogEntries')) || [];
+            const container = document.getElementById('entries-container');
+            
+            entries.forEach(entry => {
+                const entryHTML = `
+                    <div class="devlog-entry">
+                        <div class="entry-date">${entry.date}</div>
+                        <h2 class="entry-title">${entry.title}</h2>
+                        <div class="entry-content">
+                            ${entry.content}
+                            ${entry.image ? `<img src="${entry.image}" style="max-width: 100%; margin-top: 1rem;">` : ''}
+                            <div style="margin-top: 1rem;">
+                                ${entry.tags.map(tag => `<span class="entry-tag">${tag}</span>`).join('')}
+                            </div>
+                        </div>
+                    </div>
+                `;
+                container.insertAdjacentHTML('afterbegin', entryHTML);
+            });
+        }
+        
+        loadEntries();
+    </script>
 </body>
 </html>
