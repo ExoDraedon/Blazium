@@ -37,7 +37,7 @@
       object-fit: cover;
       z-index: -1;
       opacity: 0;
-      transition: opacity 2s ease-in-out;
+      transition: opacity 5s ease-in-out;
       pointer-events: none;
     }
 
@@ -278,7 +278,7 @@
     loginInput.addEventListener('keydown', function(e) {
       if (e.key === 'Enter') {
         const clave = this.value.trim();
-        if (clave === 'abracadabra') {
+        if (clave === 'blazium') {
           loginScreen.style.transition = 'opacity 1s ease-out, transform 1s ease-out';
           loginScreen.style.opacity = 0;
           loginScreen.style.transform = 'translateY(-40px)';
