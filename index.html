@@ -10,7 +10,6 @@
       src: url('deltarune.ttf') format('truetype');
     }
 
-    /* Reset y body centrado */
     html, body {
       margin: 0;
       padding: 0;
@@ -30,7 +29,6 @@
       z-index: 0;
     }
 
-    /* Video de fondo */
     #bgVideo {
       position: fixed;
       top: 0;
@@ -41,25 +39,46 @@
       z-index: -1;
     }
 
-    /* Contenedor centrado */
+    /* Contenedor principal */
     .container {
-      display: flex;
+      display: none; /* oculto al inicio */
       flex-direction: column;
       align-items: center;
       gap: 30px;
       text-align: center;
       padding: 20px;
       z-index: 1;
-      width: 320px; /* ancho fijo para que no se estire demasiado */
+      width: 320px;
+    }
+
+    /* Contenedor de acceso */
+    #loginScreen {
+      display: flex; /* visible al inicio */
+      flex-direction: column;
+      align-items: center;
+      gap: 25px;
+      text-align: center;
+      padding: 20px;
+      z-index: 2;
+      background-color: rgba(0,0,0,0.8);
+      border-radius: 10px;
+      width: 320px;
+      box-shadow: 0 0 15px white;
+    }
+
+    h1, #loginScreen h2 {
+      margin: 0;
+      user-select: none;
     }
 
     h1 {
       font-size: 2.5em;
-      margin: 0;
-      opacity: 0;
-      transform: translateY(40px);
       animation: subir 1s ease-out forwards;
-      user-select: none;
+    }
+
+    #loginScreen h2 {
+      font-size: 1.8em;
+      color: #ccc;
     }
 
     input {
@@ -71,9 +90,6 @@
       border: 2px solid white;
       border-radius: 5px;
       outline: none;
-      opacity: 0;
-      animation: aparecer 1s ease-out forwards;
-      animation-delay: 1s;
       font-family: 'DeltaruneFont', monospace;
     }
 
@@ -87,12 +103,6 @@
         opacity: 1;
       }
     }
-
-    @keyframes aparecer {
-      to {
-        opacity: 1;
-      }
-    }
   </style>
 </head>
 <body>
@@ -102,13 +112,41 @@
     Tu navegador no soporta video.
   </video>
 
-  <div class="container">
+  <!-- Pantalla de login -->
+  <div id="loginScreen">
+    <h2>Ingresa la clave</h2>
+    <input type="password" id="loginInput" placeholder="Clave secreta" autocomplete="off" />
+  </div>
+
+  <!-- Contenido principal (oculto al inicio) -->
+  <div class="container" id="mainContent">
     <h1>BLAZIUM CODE BREAKER</h1>
     <input type="text" id="codigo" placeholder="INGRESA EL CODIGO" autocomplete="off" />
   </div>
 
   <script>
-    document.getElementById('codigo').addEventListener('keydown', function(e) {
+    const loginScreen = document.getElementById('loginScreen');
+    const mainContent = document.getElementById('mainContent');
+    const loginInput = document.getElementById('loginInput');
+    const codigoInput = document.getElementById('codigo');
+
+    loginInput.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') {
+        const clave = this.value.trim();
+
+        if (clave === 'abracadabra') {  // Cambia aquí tu clave secreta
+          loginScreen.style.display = 'none';
+          mainContent.style.display = 'flex';
+          codigoInput.focus();
+        } else {
+          alert('Clave incorrecta');
+          this.value = '';
+        }
+      }
+    });
+
+    // Lógica para el código dentro del codebreaker
+    codigoInput.addEventListener('keydown', function(e) {
       if (e.key === 'Enter') {
         const valor = this.value.trim().toLowerCase();
 
