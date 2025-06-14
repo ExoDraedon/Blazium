@@ -227,7 +227,7 @@ input {
     }
   });
 
-  // Animación para acertijo
+  
   function animarNumeros() {
     animacionNumeros.innerHTML = '';
     const numeros = ['1', '7', '2', '0', '2', '5'];
@@ -279,6 +279,16 @@ Suma 5: 50 + 150 = 200`;
       } else {
         alert("Ese destino no existe...");
       }
+    }
+  });
+// Musica de fondo test 1
+   <audio id="bgMusic" src="breaker.mp3" autoplay loop muted></audio>
+
+  document.body.addEventListener('click', () => {
+    const bgMusic = document.getElementById('bgMusic');
+    if (bgMusic.muted) {
+      bgMusic.muted = false;
+      bgMusic.play();
     }
   });
 </script>
