@@ -3,11 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <title>Elige tu destino</title>
+
   <style>
+    /* Cargar la fuente local */
+    @font-face {
+      font-family: 'DeltaruneFont';
+      src: url('deltarune.ttf') format('truetype');
+    }
+
     body {
       background-color: black;
       color: white;
-      font-family: 'Courier New', monospace;
+      font-family: 'DeltaruneFont', monospace;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -34,6 +41,7 @@
       opacity: 0;
       animation: aparecer 1s ease-out forwards;
       animation-delay: 1s;
+      font-family: 'DeltaruneFont', monospace;
     }
 
     @keyframes subir {
