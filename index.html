@@ -38,7 +38,7 @@
       object-fit: cover;
       z-index: -1;
       opacity: 0;
-      transition: opacity 2s ease-in;
+      transition: opacity 2s ease-in-out;
       pointer-events: none;
     }
 
@@ -166,7 +166,6 @@
       border-radius: 8px;
       box-shadow: 0 0 10px #39ff14;
     }
-
   </style>
 </head>
 <body>
@@ -189,128 +188,146 @@
 
   <!-- Imagen GIF para el Easter Egg -->
   <img id="easterEggGif" src="easter-egg.gif" alt="Easter Egg" />
-   <!-- Aquí agregamos el audio -->
+
+  <!-- Aquí agregamos el audio -->
   <audio id="bgMusic" src="breaker.mp3" autoplay loop muted></audio>
 
- <script>
-  const loginScreen = document.getElementById('loginScreen');
-  const mainContent = document.getElementById('mainContent');
-  const loginInput = document.getElementById('loginInput');
-  const codigoInput = document.getElementById('codigo');
-  const bgVideo = document.getElementById('bgVideo');
-  const animacionNumeros = document.getElementById('animacionNumeros');
-  const easterEggGif = document.getElementById('easterEggGif');
+  <script>
+    const loginScreen = document.getElementById('loginScreen');
+    const mainContent = document.getElementById('mainContent');
+    const loginInput = document.getElementById('loginInput');
+    const codigoInput = document.getElementById('codigo');
+    const bgVideo = document.getElementById('bgVideo');
+    const animacionNumeros = document.getElementById('animacionNumeros');
+    const easterEggGif = document.getElementById('easterEggGif');
+    const bgMusic = document.getElementById('bgMusic');
 
-  const redirecciones = {
-    "tenna": "https://deltarune.com",
-    "sir": "https://tusitio.com/sir.png",
-    "exo": "https://tusitio.com/exo.png",
-    "nameless": "https://tusitio.com/nameless.png",
-    "2025": "https://tusitio.com/2025.png",
-    "estonoesuncodigo": "https://tusitio.com/estonoesuncodigo.png",
-    "weird": "https://deltarune.com",
-    "chafasafio6en2025": "https://tusitio.com/chafa.png",
-    "exomech": "https://deltarune.com",
-    "ralsei": "https://deltarune.com",
-    "quiz": "https://deltarune.com",
-    "neo": "https://deltarune.com",
-    "tvtime!!!!": "https://tusitio.com/tvtime.png",
-    "hardmode": "https://tusitio.com/hardmode.png",
-    "plantera": "https://tusitio.com/plantera.png",
-    "revill": "https://tusitio.com/revill.png"
-  };
+    const redirecciones = {
+      "tenna": "https://deltarune.com",
+      "sir": "https://tusitio.com/sir.png",
+      "exo": "https://tusitio.com/exo.png",
+      "nameless": "https://tusitio.com/nameless.png",
+      "2025": "https://tusitio.com/2025.png",
+      "estonoesuncodigo": "https://tusitio.com/estonoesuncodigo.png",
+      "weird": "https://deltarune.com",
+      "chafasafio6en2025": "https://tusitio.com/chafa.png",
+      "exomech": "https://deltarune.com",
+      "ralsei": "https://deltarune.com",
+      "quiz": "https://deltarune.com",
+      "neo": "https://deltarune.com",
+      "tvtime!!!!": "https://tusitio.com/tvtime.png",
+      "hardmode": "https://tusitio.com/hardmode.png",
+      "plantera": "https://tusitio.com/plantera.png",
+      "revill": "https://tusitio.com/revill.png"
+    };
 
-  loginInput.addEventListener('keydown', function(e) {
-    if (e.key === 'Enter') {
-      const clave = this.value.trim();
-      if (clave === 'abracadabra') {
-        loginScreen.style.transition = 'opacity 1s ease-out, transform 1s ease-out';
-        loginScreen.style.opacity = 0;
-        loginScreen.style.transform = 'translateY(-40px)';
-        setTimeout(() => {
-          loginScreen.style.display = 'none';
-          bgVideo.style.opacity = 1;
-        }, 1000);
-        setTimeout(() => {
-          mainContent.style.display = 'flex';
-          requestAnimationFrame(() => {
-            mainContent.style.opacity = 1;
-            mainContent.style.transform = 'translateY(0)';
-            codigoInput.focus();
-          });
-        }, 3000);
-      } else {
-        alert('Clave incorrecta');
-        this.value = '';
-      }
-    }
-  });
-
-  // Animación para acertijo
-  function animarNumeros() {
-    animacionNumeros.innerHTML = '';
-    const numeros = ['1', '7', '2', '0', '2', '5'];
-    const container = document.createElement('div');
-    container.classList.add('numeros-container');
-    animacionNumeros.appendChild(container);
-
-    const intervalo = 400;
-
-    numeros.forEach((num, index) => {
-      setTimeout(() => {
-        const span = document.createElement('span');
-        span.textContent = num;
-        span.classList.add('numero');
-        span.style.animation = 'subir 0.5s ease forwards';
-        container.appendChild(span);
-
-        if (index === numeros.length - 1) {
+    loginInput.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') {
+        const clave = this.value.trim();
+        if (clave === 'abracadabra') {
+          loginScreen.style.transition = 'opacity 1s ease-out, transform 1s ease-out';
+          loginScreen.style.opacity = 0;
+          loginScreen.style.transform = 'translateY(-40px)';
           setTimeout(() => {
-            mostrarSumas();
-          }, 700);
+            loginScreen.style.display = 'none';
+            bgVideo.style.opacity = 1;
+          }, 1000);
+          setTimeout(() => {
+            mainContent.style.display = 'flex';
+            requestAnimationFrame(() => {
+              mainContent.style.opacity = 1;
+              mainContent.style.transform = 'translateY(0)';
+              codigoInput.focus();
+            });
+          }, 3000);
+        } else {
+          alert('Clave incorrecta');
+          this.value = '';
         }
-      }, index * intervalo);
+      }
     });
-  }
 
-  function mostrarSumas() {
-    const sumasTexto = 
+    // Animación para acertijo
+    function animarNumeros() {
+      animacionNumeros.innerHTML = '';
+      const numeros = ['1', '7', '2', '0', '2', '5'];
+      const container = document.createElement('div');
+      container.classList.add('numeros-container');
+      animacionNumeros.appendChild(container);
+
+      const intervalo = 400;
+
+      numeros.forEach((num, index) => {
+        setTimeout(() => {
+          const span = document.createElement('span');
+          span.textContent = num;
+          span.classList.add('numero');
+          span.style.animation = 'subir 0.5s ease forwards';
+          container.appendChild(span);
+
+          if (index === numeros.length - 1) {
+            setTimeout(() => {
+              mostrarSumas();
+            }, 700);
+          }
+        }, index * intervalo);
+      });
+    }
+
+    function mostrarSumas() {
+      const sumasTexto = 
 `Suma 1: 100 + 100 = 200
 Suma 2: 150 + 50 = 200
 Suma 3: 250 - 50 = 200
 Suma 4: 400 - 200 = 200
 Suma 5: 50 + 150 = 200`;
 
-    const divSumas = document.createElement('div');
-    divSumas.className = 'sumas';
-    divSumas.textContent = sumasTexto;
-    animacionNumeros.appendChild(divSumas);
-  }
-
-  // Función para mostrar el GIF easter egg
-  function mostrarEasterEggGif() {
-    easterEggGif.style.display = 'block';
-    setTimeout(() => {
-      easterEggGif.style.display = 'none';
-    }, 5000); // dura 5 segundos visible
-  }
-
-  codigoInput.addEventListener('keydown', function(e) {
-    if (e.key === 'Enter') {
-      const valor = this.value.trim().toLowerCase();
-
-      if (["1/7/2025", "01/07/2025", "1-7-2025", "01-07-2025"].includes(valor)) {
-        animarNumeros(); // Solo animación
-      } else if (valor === "1221") {
-        mostrarEasterEggGif();  // Muestra el GIF
-      } else if (redirecciones[valor]) {
-        window.location.href = redirecciones[valor];
-      } else {
-        alert("Ese destino no existe...");
-      }
+      const divSumas = document.createElement('div');
+      divSumas.className = 'sumas';
+      divSumas.textContent = sumasTexto;
+      animacionNumeros.appendChild(divSumas);
     }
-  });
-   
+
+    // Función para mostrar el GIF easter egg
+    function mostrarEasterEggGif() {
+      easterEggGif.style.display = 'block';
+      setTimeout(() => {
+        easterEggGif.style.display = 'none';
+      }, 5000); // dura 5 segundos visible
+    }
+
+    // Función para cambiar el video de fondo con transición suave
+    function cambiarVideoFondo(nuevoSrc) {
+      bgVideo.style.opacity = 0; // desvanecer
+      setTimeout(() => {
+        bgVideo.src = nuevoSrc;
+        bgVideo.load();
+        bgVideo.oncanplay = () => {
+          bgVideo.play();
+          bgVideo.style.opacity = 1; // aparecer
+        };
+      }, 2000); // duración igual a la transición de CSS
+    }
+
+    codigoInput.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') {
+        const valor = this.value.trim().toLowerCase();
+
+        if (["1/7/2025", "01/07/2025", "1-7-2025", "01-07-2025"].includes(valor)) {
+          animarNumeros(); // Solo animación
+        } else if (valor === "1221") {
+          mostrarEasterEggGif();  // Muestra el GIF
+        } else if (valor === "balatro") {
+          cambiarVideoFondo('balatro.mp4');  // Cambia el video de fondo con transición
+        } else if (redirecciones[valor]) {
+          window.location.href = redirecciones[valor];
+        } else {
+          alert("Ese destino no existe...");
+        }
+        this.value = '';
+      }
+    });
+
     // Activar música en el primer clic del usuario
     document.body.addEventListener('click', () => {
       if (bgMusic.muted) {
@@ -318,6 +335,6 @@ Suma 5: 50 + 150 = 200`;
         bgMusic.play();
       }
     });
-</script>
+  </script>
 </body>
 </html>
