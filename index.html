@@ -183,16 +183,15 @@
 #imagenLunark {
   display: none;
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 40vw;
-  height: 40vh;
-  object-fit: cover;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px; /* Puedes ajustar el tamaño aquí */
+  height: auto;
   opacity: 1;
-  transition: opacity 10s ease;
+  transition: opacity 1s ease;
   z-index: 9999;
 }
-
 
     #imagenLunark.fade {
       opacity: 0;
