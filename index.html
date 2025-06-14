@@ -42,9 +42,8 @@
       pointer-events: none;
     }
 
-    /* Contenedor principal */
     .container {
-      display: none; /* oculto al inicio */
+      display: none;
       flex-direction: column;
       align-items: center;
       gap: 30px;
@@ -55,11 +54,11 @@
       opacity: 0;
       transform: translateY(40px);
       transition: opacity 1s ease-out, transform 1s ease-out;
+      position: relative;
     }
 
-    /* Contenedor de acceso */
     #loginScreen {
-      display: flex; /* visible al inicio */
+      display: flex;
       flex-direction: column;
       align-items: center;
       gap: 25px;
@@ -82,6 +81,7 @@
 
     h1 {
       font-size: 2.5em;
+      position: relative;
     }
 
     #loginScreen h2 {
@@ -111,6 +111,41 @@
         opacity: 1;
       }
     }
+
+    /* Animacion para cada numero */
+    .numero {
+      opacity: 0;
+      transform: translateY(20px);
+      animation-fill-mode: forwards;
+      font-size: 1.4em;
+      font-weight: bold;
+      margin: 5px 0;
+    }
+
+    .sumas {
+      margin-top: 15px;
+      font-size: 1.1em;
+      font-weight: normal;
+      line-height: 1.4em;
+      white-space: pre-line;
+      user-select: none;
+      color: #ddd;
+    }
+
+    /* Contenedor para números encima del título */
+    #animacionNumeros {
+      position: absolute;
+      top: -120px;
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+      width: 320px;
+      pointer-events: none;
+      user-select: none;
+      color: #39ff14; /* verde neón */
+      font-family: 'Courier New', monospace;
+      z-index: 10;
+    }
   </style>
 </head>
 <body>
@@ -120,15 +155,16 @@
     Tu navegador no soporta video.
   </video>
 
-  <!-- Pantalla de login -->
   <div id="loginScreen">
     <h2>Ingresa la clave</h2>
     <input type="password" id="loginInput" placeholder="Clave secreta" autocomplete="off" />
   </div>
 
-  <!-- Contenido principal (oculto al inicio) -->
   <div class="container" id="mainContent">
-    <h1>BLAZIUM CODE BREAKER</h1>
+    <h1>
+      BLAZIUM CODE BREAKER
+      <div id="animacionNumeros"></div>
+    </h1>
     <input type="text" id="codigo" placeholder="INGRESA EL CODIGO" autocomplete="off" />
   </div>
 
@@ -138,27 +174,24 @@
     const loginInput = document.getElementById('loginInput');
     const codigoInput = document.getElementById('codigo');
     const bgVideo = document.getElementById('bgVideo');
+    const animacionNumeros = document.getElementById('animacionNumeros');
 
     loginInput.addEventListener('keydown', function(e) {
       if (e.key === 'Enter') {
         const clave = this.value.trim();
 
-        if (clave === 'abracadabra') {  // Cambia aquí tu clave secreta
-          // Animación de salida para login
+        if (clave === 'abracadabra') {
           loginScreen.style.transition = 'opacity 1s ease-out, transform 1s ease-out';
           loginScreen.style.opacity = 0;
           loginScreen.style.transform = 'translateY(-40px)';
 
-          // Mostrar y hacer fade-in al video de fondo
           setTimeout(() => {
             loginScreen.style.display = 'none';
             bgVideo.style.opacity = 1;
           }, 1000);
 
-          // Mostrar el contenido principal después de 2 segundos del video visible
           setTimeout(() => {
             mainContent.style.display = 'flex';
-            // Trigger animación entrada
             requestAnimationFrame(() => {
               mainContent.style.opacity = 1;
               mainContent.style.transform = 'translateY(0)';
@@ -173,19 +206,51 @@
       }
     });
 
-    // Lógica para el código dentro del codebreaker
+    // Función para animar números uno por uno
+    function animarNumeros() {
+      animacionNumeros.innerHTML = ''; // limpiar
+      const numeros = ['1', '7', '2', '0', '2', '5']; // dígitos de la fecha 1/7/2025
+      const interval = 500; // ms entre cada aparición
+
+      numeros.forEach((num, index) => {
+        setTimeout(() => {
+          const span = document.createElement('div');
+          span.textContent = num;
+          span.classList.add('numero');
+          span.style.animation = 'subir 0.5s ease forwards';
+          animacionNumeros.appendChild(span);
+        }, index * interval);
+      });
+
+      // Después de que todos los números aparezcan, mostrar las sumas
+      setTimeout(() => {
+        const sumasTexto = 
+`Suma 1: 100 + 100 = 200
+Suma 2: 150 + 50 = 200
+Suma 3: 250 - 50 = 200
+Suma 4: 400 - 200 = 200
+Suma 5: 50 + 150 = 200`;
+
+        const divSumas = document.createElement('div');
+        divSumas.className = 'sumas';
+        divSumas.textContent = sumasTexto;
+        animacionNumeros.appendChild(divSumas);
+      }, numeros.length * interval + 300);
+    }
+
     codigoInput.addEventListener('keydown', function(e) {
       if (e.key === 'Enter') {
         const valor = this.value.trim().toLowerCase();
 
         if (valor === "hola") {
-          window.location.href = "https://deltarune.com"; // Cambia por tu enlace real
+          window.location.href = "https://deltarune.com";
+        } else if (valor === "1/7/2025" || valor === "01/07/2025" || valor === "1-7-2025" || valor === "01-07-2025") {
+          animarNumeros();
         } else {
           alert("Ese destino no existe...");
         }
       }
     });
   </script>
-
 </body>
 </html>
