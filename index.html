@@ -1,106 +1,74 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Scroll Infinito - Chafasafio 6</title>
+  <meta charset="UTF-8">
+  <title>Elige tu destino</title>
   <style>
     body {
-      margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #000000;
+      background-color: black;
       color: white;
-      line-height: 2;
-      padding: 40px 20px;
-      box-sizing: border-box;
+      font-family: 'Courier New', monospace;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
     }
 
-    .text-block {
-      max-width: 700px;
-      margin: 0 auto 100px auto;
-      font-size: 1.2em;
-      opacity: 0.9;
-    }
-
-    h2 {
-      color: #ff4d4d;
+    h1 {
       font-size: 2em;
-      margin-bottom: 0.5em;
+      opacity: 0;
+      transform: translateY(40px);
+      animation: subir 1s ease-out forwards;
     }
 
-    footer {
-      text-align: center;
-      margin-top: 100px;
-      color: #555;
-      font-size: 0.9em;
+    input {
+      margin-top: 30px;
+      padding: 10px;
+      font-size: 1.2em;
+      background-color: black;
+      color: white;
+      border: 2px solid white;
+      outline: none;
+      opacity: 0;
+      animation: aparecer 1s ease-out forwards;
+      animation-delay: 1s;
+    }
+
+    @keyframes subir {
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    @keyframes aparecer {
+      to {
+        opacity: 1;
+      }
     }
   </style>
 </head>
 <body>
 
-  <!-- Bloques de texto -->
-  <div class="text-block">
-    <h2>Bienvenido al Chafasafio 6</h2>
-    <p>
-      Este es un evento épico en el mundo de Minecraft Bedrock donde los jugadores se enfrentan a desafíos únicos.
-    </p>
-  </div>
+  <h1>Elige el destino</h1>
+  <input type="text" id="codigo" placeholder="Escribe el código">
 
-  <div class="text-block">
-    <h2>Reglas del juego</h2>
-    <p>
-      Cada jugador debe construir algo increíble sin usar bloques de colores claros. La creatividad es la clave.
-    </p>
-  </div>
+  <script>
+    document.getElementById('codigo').addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') {
+        const valor = this.value.trim().toLowerCase();
 
-  <div class="text-block">
-    <h2>Modo supervivencia extremo</h2>
-    <p>
-      Sin acceso a recursos ilimitados, tendrás que pensar bien cómo usar cada material y planear tus construcciones estratégicamente.
-    </p>
-  </div>
-
-  <div class="text-block">
-    <h2>Hora de explorar</h2>
-    <p>
-      El mapa está lleno de biomas ocultos, estructuras secretas y tesoros por descubrir. ¿Te atreves a aventurarte?
-    </p>
-  </div>
-
-  <div class="text-block">
-    <h2>Competencia final</h2>
-    <p>
-      Los mejores creadores serán evaluados por un jurado especializado. ¡Gana experiencia, premios y gloria!
-    </p>
-  </div>
-
-  <div class="text-block">
-    <h2>Fecha del evento</h2>
-    <p>
-      El Chafasafio 6 tendrá lugar el próximo 15 de mayo de 2025. Prepárate desde ya y no te quedes fuera.
-    </p>
-  </div>
-
-  <div class="text-block">
-    <h2>Inscripción</h2>
-    <p>
-      Para participar, solo necesitas tener una cuenta de Minecraft Bedrock Edition y estar listo para crear.
-    </p>
-  </div>
-
-  <div class="text-block">
-    <h2>Redes sociales</h2>
-    <p>
-      Síguenos en nuestras redes para más información: @ChafasafioOficial en Twitter, Instagram y Discord.
-    </p>
-  </div>
-
-  <!-- Repite bloques para simular scroll infinito -->
-  <!-- Puedes duplicar los divs de arriba o usar JS si quieres generarlos dinámicamente -->
-
-  <footer>
-    &copy; 2025 Chafasafio 6 | Todos los derechos reservados.
-  </footer>
+        // Agrega aquí los códigos válidos
+        if (valor === "nameless") {
+          window.location.href = "https://www.mediafire.com/view/example"; // Cambia por tu enlace real
+        } else {
+          alert("Ese destino no existe...");
+        }
+      }
+    });
+  </script>
 
 </body>
 </html>
