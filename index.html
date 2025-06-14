@@ -112,7 +112,6 @@
       }
     }
 
-    /* Animacion para cada numero en horizontal */
     .numeros-container {
       display: flex;
       gap: 8px;
@@ -127,7 +126,7 @@
       font-size: 1.2em;
       font-family: 'DeltaruneFont', monospace;
       font-weight: bold;
-      color: #39ff14; /* verde neón */
+      color: #39ff14;
     }
 
     .sumas {
@@ -143,7 +142,6 @@
       text-align: center;
     }
 
-    /* Contenedor para números encima del título */
     #animacionNumeros {
       position: absolute;
       top: -120px;
@@ -170,9 +168,7 @@
   </div>
 
   <div class="container" id="mainContent">
-    <h1>
-      BLAZIUM CODE BREAKER
-    </h1>
+    <h1>BLAZIUM CODE BREAKER</h1>
     <input type="text" id="codigo" placeholder="INGRESA EL CODIGO" autocomplete="off" />
     <div id="animacionNumeros"></div>
   </div>
@@ -215,16 +211,14 @@
       }
     });
 
-    // Función para animar números en horizontal y con redirección al "200"
     function animarNumeros() {
-      animacionNumeros.innerHTML = ''; // limpiar
-
-      const numeros = ['1', '7', '2', '0', '2', '5']; // dígitos de la fecha 1/7/2025
+      animacionNumeros.innerHTML = '';
+      const numeros = ['1', '7', '2', '0', '2', '5'];
       const container = document.createElement('div');
       container.classList.add('numeros-container');
       animacionNumeros.appendChild(container);
 
-      const intervalo = 400; // ms entre aparición de cada número
+      const intervalo = 400;
 
       numeros.forEach((num, index) => {
         setTimeout(() => {
@@ -234,11 +228,10 @@
           span.style.animation = 'subir 0.5s ease forwards';
           container.appendChild(span);
 
-          // Al aparecer el último dígito, mostramos el "200" animado y hacemos redirección
           if (index === numeros.length - 1) {
             setTimeout(() => {
               mostrarSumaYRedirigir();
-            }, 700); // un poco después de que aparezca el último número
+            }, 700);
           }
         }, index * intervalo);
       });
@@ -257,7 +250,6 @@ Suma 5: 50 + 150 = 200`;
       divSumas.textContent = sumasTexto;
       animacionNumeros.appendChild(divSumas);
 
-      // Esperar 3 segundos y luego redirigir
       setTimeout(() => {
         window.location.href = "https://deltarune.com";
       }, 3000);
@@ -267,10 +259,30 @@ Suma 5: 50 + 150 = 200`;
       if (e.key === 'Enter') {
         const valor = this.value.trim().toLowerCase();
 
-        if (valor === "hola") {
-          window.location.href = "https://deltarune.com";
-        } else if (valor === "1/7/2025" || valor === "01/07/2025" || valor === "1-7-2025" || valor === "01-07-2025") {
+        if (valor === "1/7/2025" || valor === "01/07/2025" || valor === "1-7-2025" || valor === "01-07-2025") {
           animarNumeros();
+        } else if (valor === "tenna") {
+          window.location.href = "https://youtube.com/tenna";
+        } else if (valor === "sir") {
+          window.location.href = "https://youtube.com/sir";
+        } else if (valor === "exo") {
+          window.location.href = "https://youtube.com/exo";
+        } else if (valor === "nameless") {
+          window.location.href = "https://youtube.com/nameless";
+        } else if (valor === "2025") {
+          window.location.href = "https://youtube.com/2025";
+        } else if (valor === "estonoesuncodigo") {
+          window.location.href = "https://youtube.com/estonoesuncodigo";
+        } else if (valor === "chafasafio6en2025") {
+          window.location.href = "https://youtube.com/chafasafio6en2025";
+        } else if (valor === "tvtime!!!!") {
+          window.location.href = "https://youtube.com/tvtime";
+        } else if (valor === "hardmode") {
+          window.location.href = "https://youtube.com/hardmode";
+        } else if (valor === "plantera") {
+          window.location.href = "https://youtube.com/plantera";
+        } else if (valor === "revill") {
+          window.location.href = "https://youtube.com/revill";
         } else {
           alert("Ese destino no existe...");
         }
