@@ -276,16 +276,33 @@ Suma 5: 50 + 150 = 200`;
       if (e.key === 'Enter') {
         const valor = this.value.trim().toLowerCase();
 
-        if (["1/7/2025", "01/07/2025", "1-7-2025", "01-07-2025"].includes(valor)) {
-          animarNumeros(); // Solo animación
-        } else if (redirecciones[valor]) {
-          window.location.href = redirecciones[valor];
-        } else {
-          alert("Ese destino no existe...");
-        }
-      }
-    });
+    if (["1/7/2025", "01/07/2025", "1-7-2025", "01-07-2025"].includes(valor)) {
+      animarNumeros(); // Solo animación
+    } else if (valor === "1221") {
+      mostrarEasterEggGif();
+    } else if (redirecciones[valor]) {
+      window.location.href = redirecciones[valor];
+    } else {
+      alert("Ese destino no existe...");
+    }
+  }
+});
 
+function mostrarEasterEggGif() {
+  // Crear imagen GIF
+  const gif = document.createElement('img');
+  gif.src = 'dance.gif';  // Cambia por la ruta correcta de tu gif
+  gif.style.position = 'fixed';
+  gif.style.bottom = '20px';
+  gif.style.right = '20px';
+  gif.style.width = '150px';
+  gif.style.height = 'auto';
+  gif.style.zIndex = '1000';
+  gif.style.border = '2px solid white';
+  gif.style.borderRadius = '8px';
+  gif.style.boxShadow = '0 0 15px white';
+
+  document.body.appendChild(gif);
     // Activar música en el primer clic del usuario
     document.body.addEventListener('click', () => {
       if (bgMusic.muted) {
