@@ -310,6 +310,14 @@ Suma 5: 50 + 150 = 200`;
       }
     }
   });
+   
+    // Activar música en el primer clic del usuario
+    document.body.addEventListener('click', () => {
+      if (bgMusic.muted) {
+        bgMusic.muted = false;
+        bgMusic.play();
+      }
+    });
 </script>
 </body>
 </html>
