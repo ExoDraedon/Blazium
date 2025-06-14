@@ -37,6 +37,9 @@
       height: 100vh;
       object-fit: cover;
       z-index: -1;
+      opacity: 0;
+      transition: opacity 2s ease-in;
+      pointer-events: none;
     }
 
     /* Contenedor principal */
@@ -49,6 +52,9 @@
       padding: 20px;
       z-index: 1;
       width: 320px;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 1s ease-out, transform 1s ease-out;
     }
 
     /* Contenedor de acceso */
@@ -64,6 +70,9 @@
       border-radius: 10px;
       width: 320px;
       box-shadow: 0 0 15px white;
+      opacity: 0;
+      transform: translateY(40px);
+      animation: subir 1s ease-out forwards;
     }
 
     h1, #loginScreen h2 {
@@ -73,7 +82,6 @@
 
     h1 {
       font-size: 2.5em;
-      animation: subir 1s ease-out forwards;
     }
 
     #loginScreen h2 {
@@ -129,15 +137,35 @@
     const mainContent = document.getElementById('mainContent');
     const loginInput = document.getElementById('loginInput');
     const codigoInput = document.getElementById('codigo');
+    const bgVideo = document.getElementById('bgVideo');
 
     loginInput.addEventListener('keydown', function(e) {
       if (e.key === 'Enter') {
         const clave = this.value.trim();
 
         if (clave === 'abracadabra') {  // Cambia aquí tu clave secreta
-          loginScreen.style.display = 'none';
-          mainContent.style.display = 'flex';
-          codigoInput.focus();
+          // Animación de salida para login
+          loginScreen.style.transition = 'opacity 1s ease-out, transform 1s ease-out';
+          loginScreen.style.opacity = 0;
+          loginScreen.style.transform = 'translateY(-40px)';
+
+          // Mostrar y hacer fade-in al video de fondo
+          setTimeout(() => {
+            loginScreen.style.display = 'none';
+            bgVideo.style.opacity = 1;
+          }, 1000);
+
+          // Mostrar el contenido principal después de 2 segundos del video visible
+          setTimeout(() => {
+            mainContent.style.display = 'flex';
+            // Trigger animación entrada
+            requestAnimationFrame(() => {
+              mainContent.style.opacity = 1;
+              mainContent.style.transform = 'translateY(0)';
+              codigoInput.focus();
+            });
+          }, 3000);
+
         } else {
           alert('Clave incorrecta');
           this.value = '';
