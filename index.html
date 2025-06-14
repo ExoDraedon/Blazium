@@ -309,24 +309,29 @@ Suma 5: 50 + 150 = 200`;
       }, 2000); // duración igual a la transición de CSS
     }
 
-    codigoInput.addEventListener('keydown', function(e) {
-      if (e.key === 'Enter') {
-        const valor = this.value.trim().toLowerCase();
+codigoInput.addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') {
+    const valor = this.value.trim().toLowerCase();
 
-        if (["1/7/2025", "01/07/2025", "1-7-2025", "01-07-2025"].includes(valor)) {
-          animarNumeros(); // Solo animación
-        } else if (valor === "1221") {
-          mostrarEasterEggGif();  // Muestra el GIF
-        } else if (valor === "balatro") {
-          cambiarVideoFondo('balatro.mp4');  // Cambia el video de fondo con transición
-        } else if (redirecciones[valor]) {
-          window.location.href = redirecciones[valor];
-        } else {
-          alert("Ese destino no existe...");
-        }
-        this.value = '';
-      }
-    });
+    if (["1/7/2025", "01/07/2025", "1-7-2025", "01-07-2025"].includes(valor)) {
+      animarNumeros(); // Solo animación
+    } else if (valor === "1221") {
+      mostrarEasterEggGif();  // Muestra el GIF
+    } else if (valor === "balatro") {
+      bgVideo.src = "balatro.mp4";
+      bgVideo.load();
+      bgVideo.style.opacity = 1;
+    } else if (valor === "delta") {
+      bgVideo.src = "vid.mp4";
+      bgVideo.load();
+      bgVideo.style.opacity = 1;
+    } else if (redirecciones[valor]) {
+      window.location.href = redirecciones[valor];
+    } else {
+      alert("Ese destino no existe...");
+    }
+  }
+});
 
     // Activar música en el primer clic del usuario
     document.body.addEventListener('click', () => {
