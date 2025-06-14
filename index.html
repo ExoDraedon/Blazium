@@ -153,6 +153,16 @@ input {
       user-select: none;
       z-index: 10;
     }
+    // Musica de fondo test 1
+   <audio id="bgMusic" src="breaker.mp3" autoplay loop muted></audio>
+
+  document.body.addEventListener('click', () => {
+    const bgMusic = document.getElementById('bgMusic');
+    if (bgMusic.muted) {
+      bgMusic.muted = false;
+      bgMusic.play();
+    }
+  });
   </style>
 </head>
 <body>
@@ -279,16 +289,6 @@ Suma 5: 50 + 150 = 200`;
       } else {
         alert("Ese destino no existe...");
       }
-    }
-  });
-// Musica de fondo test 1
-   <audio id="bgMusic" src="breaker.mp3" autoplay loop muted></audio>
-
-  document.body.addEventListener('click', () => {
-    const bgMusic = document.getElementById('bgMusic');
-    if (bgMusic.muted) {
-      bgMusic.muted = false;
-      bgMusic.play();
     }
   });
 </script>
