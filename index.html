@@ -189,6 +189,8 @@
 
   <!-- Imagen GIF para el Easter Egg -->
   <img id="easterEggGif" src="easter-egg.gif" alt="Easter Egg" />
+   <!-- Aquí agregamos el audio -->
+  <audio id="bgMusic" src="breaker.mp3" autoplay loop muted></audio>
 
  <script>
   const loginScreen = document.getElementById('loginScreen');
@@ -222,13 +224,6 @@
     if (e.key === 'Enter') {
       const clave = this.value.trim();
       if (clave === 'abracadabra') {
-      // Iniciar audio al desbloquear la pantalla
-      const audio = new Audio('breaker.mp3');
-      audio.loop = true;
-      audio.volume = 0.5;
-      audio.play().catch(e => console.log('Error al reproducir audio:', e));
-        
-        // Resto del código para ocultar login y mostrar contenido
         loginScreen.style.transition = 'opacity 1s ease-out, transform 1s ease-out';
         loginScreen.style.opacity = 0;
         loginScreen.style.transform = 'translateY(-40px)';
