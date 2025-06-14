@@ -112,24 +112,35 @@
       }
     }
 
-    /* Animacion para cada numero */
+    /* Animacion para cada numero en horizontal */
+    .numeros-container {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      margin-bottom: 12px;
+      user-select: none;
+    }
     .numero {
       opacity: 0;
-      transform: translateY(20px);
+      transform: translateY(10px);
       animation-fill-mode: forwards;
-      font-size: 1.4em;
+      font-size: 1.2em;
+      font-family: 'DeltaruneFont', monospace;
       font-weight: bold;
-      margin: 5px 0;
+      color: #39ff14; /* verde neón */
     }
 
     .sumas {
-      margin-top: 15px;
-      font-size: 1.1em;
+      margin-top: 5px;
+      font-size: 0.9em;
       font-weight: normal;
-      line-height: 1.4em;
+      line-height: 1.3em;
       white-space: pre-line;
       user-select: none;
       color: #ddd;
+      font-family: 'DeltaruneFont', monospace;
+      max-width: 320px;
+      text-align: center;
     }
 
     /* Contenedor para números encima del título */
@@ -142,8 +153,6 @@
       width: 320px;
       pointer-events: none;
       user-select: none;
-      color: #39ff14; /* verde neón */
-      font-family: 'Courier New', monospace;
       z-index: 10;
     }
   </style>
@@ -163,9 +172,9 @@
   <div class="container" id="mainContent">
     <h1>
       BLAZIUM CODE BREAKER
-      <div id="animacionNumeros"></div>
     </h1>
     <input type="text" id="codigo" placeholder="INGRESA EL CODIGO" autocomplete="off" />
+    <div id="animacionNumeros"></div>
   </div>
 
   <script>
@@ -206,36 +215,52 @@
       }
     });
 
-    // Función para animar números uno por uno
+    // Función para animar números en horizontal y con redirección al "200"
     function animarNumeros() {
       animacionNumeros.innerHTML = ''; // limpiar
+
       const numeros = ['1', '7', '2', '0', '2', '5']; // dígitos de la fecha 1/7/2025
-      const interval = 500; // ms entre cada aparición
+      const container = document.createElement('div');
+      container.classList.add('numeros-container');
+      animacionNumeros.appendChild(container);
+
+      const intervalo = 400; // ms entre aparición de cada número
 
       numeros.forEach((num, index) => {
         setTimeout(() => {
-          const span = document.createElement('div');
+          const span = document.createElement('span');
           span.textContent = num;
           span.classList.add('numero');
           span.style.animation = 'subir 0.5s ease forwards';
-          animacionNumeros.appendChild(span);
-        }, index * interval);
-      });
+          container.appendChild(span);
 
-      // Después de que todos los números aparezcan, mostrar las sumas
-      setTimeout(() => {
-        const sumasTexto = 
+          // Al aparecer el último dígito, mostramos el "200" animado y hacemos redirección
+          if (index === numeros.length - 1) {
+            setTimeout(() => {
+              mostrarSumaYRedirigir();
+            }, 700); // un poco después de que aparezca el último número
+          }
+        }, index * intervalo);
+      });
+    }
+
+    function mostrarSumaYRedirigir() {
+      const sumasTexto = 
 `Suma 1: 100 + 100 = 200
 Suma 2: 150 + 50 = 200
 Suma 3: 250 - 50 = 200
 Suma 4: 400 - 200 = 200
 Suma 5: 50 + 150 = 200`;
 
-        const divSumas = document.createElement('div');
-        divSumas.className = 'sumas';
-        divSumas.textContent = sumasTexto;
-        animacionNumeros.appendChild(divSumas);
-      }, numeros.length * interval + 300);
+      const divSumas = document.createElement('div');
+      divSumas.className = 'sumas';
+      divSumas.textContent = sumasTexto;
+      animacionNumeros.appendChild(divSumas);
+
+      // Esperar 3 segundos y luego redirigir
+      setTimeout(() => {
+        window.location.href = "https://deltarune.com";
+      }, 3000);
     }
 
     codigoInput.addEventListener('keydown', function(e) {
