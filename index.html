@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8" />
   <title>BLAZIUM CODE BREAKER</title>
-
   <style>
     @font-face {
       font-family: 'DeltaruneFont';
@@ -118,6 +117,7 @@
       margin-bottom: 12px;
       user-select: none;
     }
+
     .numero {
       opacity: 0;
       transform: translateY(10px);
@@ -153,7 +153,6 @@
       z-index: 10;
     }
 
-    /* Estilo para el gif del Easter Egg */
     #easterEggGif {
       position: fixed;
       bottom: 10px;
@@ -167,7 +166,6 @@
       box-shadow: 0 0 10px #39ff14;
     }
 
-    /* Estilo y animación para los mensajes */
     #mensajeChipaalex, #mensajeCr3stianMC {
       opacity: 0;
       color: #39ff14;
@@ -177,13 +175,29 @@
       user-select: none;
       transition: opacity 1.5s ease-in;
     }
+
     .visible {
       opacity: 1 !important;
     }
 
+    #imagenLunark {
+      display: none;
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      width: 200px;
+      opacity: 1;
+      transition: opacity 1s ease;
+      z-index: 9999;
+    }
+
+    #imagenLunark.fade {
+      opacity: 0;
+    }
   </style>
 </head>
 <body>
+  <img id="imagenLunark" src="lunark.png" alt="Lunark" />
 
   <video autoplay muted loop id="bgVideo1" class="bgVideo" playsinline>
     <source src="vid.mp4" type="video/mp4" />
@@ -208,10 +222,7 @@
     <div id="mensajeCr3stianMC"></div>
   </div>
 
-  <!-- Imagen GIF para el Easter Egg -->
   <img id="easterEggGif" src="easter-egg.gif" alt="Easter Egg" />
-
-  <!-- Música de fondo -->
   <audio id="bgMusic" src="breaker.mp3" autoplay loop muted></audio>
 
   <script>
@@ -226,8 +237,19 @@
     const mensajeChipaalex = document.getElementById('mensajeChipaalex');
     const mensajeCr3stianMC = document.getElementById('mensajeCr3stianMC');
     const bgMusic = document.getElementById('bgMusic');
+    const imagenLunark = document.getElementById('imagenLunark');
 
-    // Iniciar mostrando solo el primer fondo visible
+    function mostrarImagenLunark() {
+      imagenLunark.style.display = 'block';
+      imagenLunark.classList.remove('fade');
+      void imagenLunark.offsetWidth;
+      imagenLunark.classList.add('fade');
+      setTimeout(() => {
+        imagenLunark.style.display = 'none';
+        imagenLunark.classList.remove('fade');
+      }, 1000);
+    }
+
     bgVideo1.style.opacity = 1;
     bgVideo2.style.opacity = 0;
 
@@ -276,7 +298,6 @@
       }
     });
 
-    // Animación para acertijo
     function animarNumeros() {
       animacionNumeros.innerHTML = '';
       const numeros = ['1', '7', '2', '0', '2', '5'];
@@ -285,7 +306,6 @@
       animacionNumeros.appendChild(container);
 
       const intervalo = 400;
-
       numeros.forEach((num, index) => {
         setTimeout(() => {
           const span = document.createElement('span');
@@ -304,56 +324,38 @@
     }
 
     function mostrarSumas() {
-      const sumasTexto = 
-`Suma 1: 100 + 100 = 200
-Suma 2: 150 + 50 = 200
-Suma 3: 250 - 50 = 200
-Suma 4: 400 - 200 = 200
-Suma 5: 50 + 150 = 200`;
-
+      const sumasTexto = `Suma 1: 100 + 100 = 200\nSuma 2: 150 + 50 = 200\nSuma 3: 250 - 50 = 200\nSuma 4: 400 - 200 = 200\nSuma 5: 50 + 150 = 200`;
       const divSumas = document.createElement('div');
       divSumas.className = 'sumas';
       divSumas.textContent = sumasTexto;
       animacionNumeros.appendChild(divSumas);
     }
 
-    // Función para mostrar el GIF easter egg
     function mostrarEasterEggGif() {
       easterEggGif.style.display = 'block';
       setTimeout(() => {
         easterEggGif.style.display = 'none';
-      }, 5000); // dura 5 segundos visible
+      }, 5000);
     }
 
-    // Función para mostrar mensaje chipaalex con animación
     function mostrarMensajeChipaalex() {
-      // Ocultar otros mensajes para que no se superpongan
       mensajeCr3stianMC.classList.remove('visible');
-
       mensajeChipaalex.textContent = "Este bro es la cabra";
       mensajeChipaalex.classList.add('visible');
-
-      // Oculta después de 5 segundos
       setTimeout(() => {
         mensajeChipaalex.classList.remove('visible');
       }, 5000);
     }
 
-    // Función para mostrar mensaje Cr3stianMC con animación
     function mostrarMensajeCr3stianMC() {
-      // Ocultar otros mensajes para que no se superpongan
       mensajeChipaalex.classList.remove('visible');
-
       mensajeCr3stianMC.textContent = "Tha goat - El protagonista";
       mensajeCr3stianMC.classList.add('visible');
-
-      // Oculta después de 5 segundos
       setTimeout(() => {
         mensajeCr3stianMC.classList.remove('visible');
       }, 5000);
     }
 
-    // Función para cambiar fondos con transición
     function cambiarFondo(videoToShow, videoToHide) {
       videoToShow.style.opacity = 1;
       videoToHide.style.opacity = 0;
@@ -364,9 +366,9 @@ Suma 5: 50 + 150 = 200`;
         const valor = this.value.trim().toLowerCase();
 
         if (["1/7/2025", "01/07/2025", "1-7-2025", "01-07-2025"].includes(valor)) {
-          animarNumeros(); // Solo animación
+          animarNumeros();
         } else if (valor === "1221") {
-          mostrarEasterEggGif();  // Muestra el GIF
+          mostrarEasterEggGif();
         } else if (valor === "balatro") {
           cambiarFondo(bgVideo2, bgVideo1);
         } else if (valor === "delta") {
@@ -375,6 +377,8 @@ Suma 5: 50 + 150 = 200`;
           mostrarMensajeChipaalex();
         } else if (valor === "cr3stianmc") {
           mostrarMensajeCr3stianMC();
+        } else if (valor === "lunark") {
+          mostrarImagenLunark();
         } else if (redirecciones[valor]) {
           window.location.href = redirecciones[valor];
         } else {
@@ -385,7 +389,6 @@ Suma 5: 50 + 150 = 200`;
       }
     });
 
-    // Activar música en el primer clic del usuario
     document.body.addEventListener('click', () => {
       if (bgMusic.muted) {
         bgMusic.muted = false;
