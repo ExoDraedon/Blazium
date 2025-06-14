@@ -167,8 +167,8 @@
       box-shadow: 0 0 10px #39ff14;
     }
 
-    /* Estilo y animación para el mensaje chipaalex */
-    #mensajeChipaalex {
+    /* Estilo y animación para los mensajes */
+    #mensajeChipaalex, #mensajeCr3stianMC {
       opacity: 0;
       color: #39ff14;
       font-family: 'DeltaruneFont', monospace;
@@ -177,8 +177,8 @@
       user-select: none;
       transition: opacity 1.5s ease-in;
     }
-    #mensajeChipaalex.visible {
-      opacity: 1;
+    .visible {
+      opacity: 1 !important;
     }
 
   </style>
@@ -205,6 +205,7 @@
     <input type="text" id="codigo" placeholder="INGRESA EL CODIGO" autocomplete="off" />
     <div id="animacionNumeros"></div>
     <div id="mensajeChipaalex"></div>
+    <div id="mensajeCr3stianMC"></div>
   </div>
 
   <!-- Imagen GIF para el Easter Egg -->
@@ -223,6 +224,7 @@
     const animacionNumeros = document.getElementById('animacionNumeros');
     const easterEggGif = document.getElementById('easterEggGif');
     const mensajeChipaalex = document.getElementById('mensajeChipaalex');
+    const mensajeCr3stianMC = document.getElementById('mensajeCr3stianMC');
     const bgMusic = document.getElementById('bgMusic');
 
     // Iniciar mostrando solo el primer fondo visible
@@ -325,12 +327,29 @@ Suma 5: 50 + 150 = 200`;
 
     // Función para mostrar mensaje chipaalex con animación
     function mostrarMensajeChipaalex() {
+      // Ocultar otros mensajes para que no se superpongan
+      mensajeCr3stianMC.classList.remove('visible');
+
       mensajeChipaalex.textContent = "Este bro es la cabra";
       mensajeChipaalex.classList.add('visible');
 
       // Oculta después de 5 segundos
       setTimeout(() => {
         mensajeChipaalex.classList.remove('visible');
+      }, 5000);
+    }
+
+    // Función para mostrar mensaje Cr3stianMC con animación
+    function mostrarMensajeCr3stianMC() {
+      // Ocultar otros mensajes para que no se superpongan
+      mensajeChipaalex.classList.remove('visible');
+
+      mensajeCr3stianMC.textContent = "Tha goat - El protagonista";
+      mensajeCr3stianMC.classList.add('visible');
+
+      // Oculta después de 5 segundos
+      setTimeout(() => {
+        mensajeCr3stianMC.classList.remove('visible');
       }, 5000);
     }
 
@@ -354,6 +373,8 @@ Suma 5: 50 + 150 = 200`;
           cambiarFondo(bgVideo1, bgVideo2);
         } else if (valor === "chipaalex") {
           mostrarMensajeChipaalex();
+        } else if (valor === "cr3stianmc") {
+          mostrarMensajeCr3stianMC();
         } else if (redirecciones[valor]) {
           window.location.href = redirecciones[valor];
         } else {
