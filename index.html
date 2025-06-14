@@ -29,6 +29,7 @@
     }
 
     video.bgVideo {
+      display: none;
       position: fixed;
       top: 0;
       left: 0;
@@ -37,8 +38,28 @@
       object-fit: cover;
       z-index: -1;
       opacity: 0;
-      transition: opacity 5s ease-in-out;
       pointer-events: none;
+    }
+
+    .bgVideo.mostrar {
+      display: block;
+    }
+
+    @keyframes fondoFadeIn {
+      0% {
+        opacity: 0;
+        filter: brightness(0.3) blur(20px);
+        transform: scale(1.1);
+      }
+      100% {
+        opacity: 1;
+        filter: brightness(1) blur(0);
+        transform: scale(1);
+      }
+    }
+
+    .bgAnimado {
+      animation: fondoFadeIn 3s ease-out forwards;
     }
 
     .container {
@@ -83,23 +104,9 @@
       position: relative;
     }
 
-@keyframes fondoFadeIn {
-  0% {
-    filter: brightness(0.2) blur(20px);
-    transform: scale(1.1);
-    opacity: 0;
-  }
-  100% {
-    filter: brightness(1) blur(0);
-    transform: scale(1);
-    opacity: 1;
-  }
-}
-
-.bgAnimado {
-  animation: fondoFadeIn 3s ease-out forwards;
-}
-
+    #loginScreen h2 {
+      font-size: 1.8em;
+      color: #ccc;
     }
 
     input {
@@ -137,7 +144,6 @@
       transform: translateY(10px);
       animation-fill-mode: forwards;
       font-size: 1.2em;
-      font-family: 'DeltaruneFont', monospace;
       font-weight: bold;
       color: #39ff14;
     }
@@ -145,12 +151,9 @@
     .sumas {
       margin-top: 5px;
       font-size: 0.9em;
-      font-weight: normal;
       line-height: 1.3em;
       white-space: pre-line;
-      user-select: none;
       color: #ddd;
-      font-family: 'DeltaruneFont', monospace;
       max-width: 320px;
       text-align: center;
     }
@@ -172,21 +175,18 @@
       bottom: 10px;
       right: 10px;
       width: 150px;
-      height: auto;
-      z-index: 9999;
       display: none;
       border: 2px solid #39ff14;
       border-radius: 8px;
       box-shadow: 0 0 10px #39ff14;
+      z-index: 9999;
     }
 
     #mensajeChipaalex, #mensajeCr3stianMC {
       opacity: 0;
       color: #39ff14;
-      font-family: 'DeltaruneFont', monospace;
       font-size: 1.2em;
       margin-top: 15px;
-      user-select: none;
       transition: opacity 1.5s ease-in;
     }
 
@@ -194,18 +194,17 @@
       opacity: 1 !important;
     }
 
-#imagenLunark {
-  display: none;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 450px; /* Puedes ajustar el tamaño aquí */
-  height: auto;
-  opacity: 1;
-  transition: opacity 10s ease;
-  z-index: 9999;
-}
+    #imagenLunark {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 450px;
+      opacity: 1;
+      transition: opacity 10s ease;
+      z-index: 9999;
+    }
 
     #imagenLunark.fade {
       opacity: 0;
@@ -217,12 +216,10 @@
 
   <video autoplay muted loop id="bgVideo1" class="bgVideo" playsinline>
     <source src="vid.mp4" type="video/mp4" />
-    Tu navegador no soporta video.
   </video>
 
   <video autoplay muted loop id="bgVideo2" class="bgVideo" playsinline>
     <source src="balatro.mp4" type="video/mp4" />
-    Tu navegador no soporta video.
   </video>
 
   <div id="loginScreen">
@@ -255,20 +252,6 @@
     const bgMusic = document.getElementById('bgMusic');
     const imagenLunark = document.getElementById('imagenLunark');
 
-    function mostrarImagenLunark() {
-      imagenLunark.style.display = 'block';
-      imagenLunark.classList.remove('fade');
-      void imagenLunark.offsetWidth;
-      imagenLunark.classList.add('fade');
-      setTimeout(() => {
-        imagenLunark.style.display = 'none';
-        imagenLunark.classList.remove('fade');
-      }, 1000);
-    }
-
-    bgVideo1.style.opacity = 1;
-    bgVideo2.style.opacity = 0;
-
     const redirecciones = {
       "tenna": "https://deltarune.com",
       "sir": "https://tusitio.com/sir.png",
@@ -296,11 +279,16 @@
           loginScreen.style.transition = 'opacity 1s ease-out, transform 1s ease-out';
           loginScreen.style.opacity = 0;
           loginScreen.style.transform = 'translateY(-40px)';
+
+          // Mostrar y animar el video de fondo
+          bgVideo1.classList.add('mostrar');
+          void bgVideo1.offsetWidth;
           bgVideo1.classList.add('bgAnimado');
+
           setTimeout(() => {
             loginScreen.style.display = 'none';
-            bgVideo1.style.opacity = 1;
           }, 1000);
+
           setTimeout(() => {
             mainContent.style.display = 'flex';
             requestAnimationFrame(() => {
@@ -342,10 +330,10 @@
     }
 
     function mostrarSumas() {
-      const sumasTexto = `Suma 1: 100 + 100 = 200\nSuma 2: 150 + 50 = 200\nSuma 3: 250 - 50 = 200\nSuma 4: 400 - 200 = 200\nSuma 5: 50 + 150 = 200`;
+      const texto = `Suma 1: 100 + 100 = 200\nSuma 2: 150 + 50 = 200\nSuma 3: 250 - 50 = 200\nSuma 4: 400 - 200 = 200\nSuma 5: 50 + 150 = 200`;
       const divSumas = document.createElement('div');
       divSumas.className = 'sumas';
-      divSumas.textContent = sumasTexto;
+      divSumas.textContent = texto;
       animacionNumeros.appendChild(divSumas);
     }
 
@@ -375,6 +363,7 @@
     }
 
     function cambiarFondo(videoToShow, videoToHide) {
+      videoToShow.classList.add('mostrar');
       videoToShow.style.opacity = 1;
       videoToHide.style.opacity = 0;
     }
@@ -396,7 +385,14 @@
         } else if (valor === "cr3stianmc") {
           mostrarMensajeCr3stianMC();
         } else if (valor === "lunark") {
-          mostrarImagenLunark();
+          imagenLunark.style.display = 'block';
+          imagenLunark.classList.remove('fade');
+          void imagenLunark.offsetWidth;
+          imagenLunark.classList.add('fade');
+          setTimeout(() => {
+            imagenLunark.style.display = 'none';
+            imagenLunark.classList.remove('fade');
+          }, 1000);
         } else if (redirecciones[valor]) {
           window.location.href = redirecciones[valor];
         } else {
