@@ -3,201 +3,203 @@
 <head>
   <meta charset="UTF-8" />
   <title>BLAZIUM CODE BREAKER</title>
-  <style>
-    @font-face {
-      font-family: 'DeltaruneFont';
-      src: url('deltarune.ttf') format('truetype');
-    }
-    html, body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      background-color: black;
-      font-family: 'DeltaruneFont', monospace;
-      color: white;
-      overflow: hidden;
-    }
-    body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      position: relative;
-      z-index: 0;
-    }
-    video.bgVideo {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      object-fit: cover;
-      z-index: -1;
+ <style>
+  @font-face {
+    font-family: 'DeltaruneFont';
+    src: url('deltarune.ttf') format('truetype');
+  }
+  html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background-color: black;
+    font-family: 'DeltaruneFont', monospace;
+    color: white;
+    overflow: hidden;
+  }
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    position: relative;
+    z-index: 0;
+  }
+  video.bgVideo {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    z-index: -1;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 1s ease, filter 1s ease;
+  }
+  .bgVideo.mostrar {
+    display: block;
+  }
+  @keyframes fondoFadeIn {
+    0% {
       opacity: 0;
-      pointer-events: none;
-      transition: opacity 1s ease, filter 1s ease;
+      filter: brightness(0.3) blur(20px);
+      transform: scale(1.1);
     }
-    .bgVideo.mostrar {
-      display: block;
-    }
-    @keyframes fondoFadeIn {
-      0% {
-        opacity: 0;
-        filter: brightness(0.3) blur(20px);
-        transform: scale(1.1);
-      }
-      100% {
-        opacity: 1;
-        filter: brightness(1) blur(0);
-        transform: scale(1);
-      }
-    }
-    @keyframes fondoTransicion {
-      0% {
-        opacity: 1;
-        filter: blur(10px);
-      }
-      100% {
-        opacity: 0;
-        filter: blur(0px);
-      }
-    }
-    .bgAnimado {
-      animation: fondoFadeIn 3s ease-out forwards;
-    }
-    .container {
-      display: none;
-      flex-direction: column;
-      align-items: center;
-      gap: 30px;
-      text-align: center;
-      padding: 20px;
-      z-index: 1;
-      width: 320px;
-      opacity: 0;
-      transform: translateY(40px);
-      transition: opacity 1s ease-out, transform 1s ease-out;
-      position: relative;
-    }
-    #loginScreen {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 25px;
-      text-align: center;
-      padding: 20px;
-      z-index: 2;
-      background-color: rgba(0,0,0,0.8);
-      border-radius: 10px;
-      width: 320px;
-      box-shadow: 0 0 15px white;
-      opacity: 0;
-      transform: translateY(40px);
-      animation: subir 1s ease-out forwards;
-    }
-    h1, #loginScreen h2 {
-      margin: 0;
-      user-select: none;
-    }
-    h1 {
-      font-size: 2.5em;
-      position: relative;
-    }
-    #loginScreen h2 {
-      font-size: 1.8em;
-      color: #ccc;
-    }
-    input {
-      width: 100%;
-      padding: 12px 15px;
-      font-size: 1.3em;
-      background-color: rgba(0, 0, 0, 0.6);
-      color: white;
-      border-radius: 5px;
-      outline: none;
-      font-family: 'DeltaruneFont', monospace;
-    }
-    input::placeholder {
-      color: #ccc;
-    }
-    @keyframes subir {
-      to {
-        transform: translateY(0);
-        opacity: 1;
-      }
-    }
-    .numeros-container {
-      display: flex;
-      gap: 8px;
-      justify-content: center;
-      margin-bottom: 12px;
-      user-select: none;
-    }
-    .numero {
-      opacity: 0;
-      transform: translateY(10px);
-      animation-fill-mode: forwards;
-      font-size: 1.2em;
-      font-weight: bold;
-      color: #39ff14;
-    }
-    .sumas {
-      margin-top: 5px;
-      font-size: 0.9em;
-      line-height: 1.3em;
-      white-space: pre-line;
-      color: #ddd;
-      max-width: 320px;
-      text-align: center;
-    }
-    #animacionNumeros {
-      position: absolute;
-      top: -120px;
-      left: 50%;
-      transform: translateX(-50%);
-      text-align: center;
-      width: 320px;
-      pointer-events: none;
-      user-select: none;
-      z-index: 10;
-    }
-    #easterEggGif {
-      position: fixed;
-      bottom: 10px;
-      right: 10px;
-      width: 150px;
-      display: none;
-      border: 2px solid #39ff14;
-      border-radius: 8px;
-      box-shadow: 0 0 10px #39ff14;
-      z-index: 9999;
-    }
-    #mensajeChipaalex, #mensajeCr3stianMC {
-      opacity: 0;
-      color: #39ff14;
-      font-size: 1.2em;
-      margin-top: 15px;
-      transition: opacity 1.5s ease-in;
-    }
-    .visible {
-      opacity: 1 !important;
-    }
-    #imagenLunark {
-      display: none;
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 450px;
+    100% {
       opacity: 1;
-      transition: opacity 10s ease;
-      z-index: 9999;
+      filter: brightness(1) blur(0);
+      transform: scale(1);
     }
-    #imagenLunark.fade {
+  }
+  @keyframes fondoTransicion {
+    0% {
+      opacity: 1;
+      filter: blur(10px);
+    }
+    100% {
       opacity: 0;
+      filter: blur(0px);
     }
-  </style>
+  }
+  .bgAnimado {
+    animation: fondoFadeIn 3s ease-out forwards;
+  }
+  .container {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    text-align: center;
+    padding: 20px;
+    z-index: 1;
+    width: 320px;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+    position: relative;
+  }
+  #loginScreen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+    text-align: center;
+    padding: 20px;
+    z-index: 2;
+    background-color: rgba(0,0,0,0.8);
+    border-radius: 0;
+    width: 320px;
+    border: 2px solid #39ff14;
+  }
+  h1, #loginScreen h2 {
+    margin: 0;
+    user-select: none;
+  }
+  h1 {
+    font-size: 2.5em;
+    position: relative;
+  }
+  #loginScreen h2 {
+    font-size: 1.8em;
+    color: #ccc;
+  }
+  #loginScreen input {
+    width: 100%;
+    padding: 12px 15px;
+    font-size: 1.3em;
+    background-color: #000;
+    color: #fff;
+    border: 2px solid #39ff14;
+    outline: none;
+    font-family: 'DeltaruneFont', monospace;
+    text-align: center;
+    letter-spacing: 2px;
+    caret-color: #39ff14;
+  }
+  #loginScreen input::placeholder {
+    color: #39ff14;
+    text-transform: uppercase;
+    opacity: 0.7;
+  }
+  @keyframes subir {
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  .numeros-container {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    margin-bottom: 12px;
+    user-select: none;
+  }
+  .numero {
+    opacity: 0;
+    transform: translateY(10px);
+    animation-fill-mode: forwards;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #39ff14;
+  }
+  .sumas {
+    margin-top: 5px;
+    font-size: 0.9em;
+    line-height: 1.3em;
+    white-space: pre-line;
+    color: #ddd;
+    max-width: 320px;
+    text-align: center;
+  }
+  #animacionNumeros {
+    position: absolute;
+    top: -120px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    width: 320px;
+    pointer-events: none;
+    user-select: none;
+    z-index: 10;
+  }
+  #easterEggGif {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    width: 150px;
+    display: none;
+    border: 2px solid #39ff14;
+    border-radius: 8px;
+    box-shadow: 0 0 10px #39ff14;
+    z-index: 9999;
+  }
+  #mensajeChipaalex, #mensajeCr3stianMC {
+    opacity: 0;
+    color: #39ff14;
+    font-size: 1.2em;
+    margin-top: 15px;
+    transition: opacity 1.5s ease-in;
+  }
+  .visible {
+    opacity: 1 !important;
+  }
+  #imagenLunark {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 450px;
+    opacity: 1;
+    transition: opacity 10s ease;
+    z-index: 9999;
+  }
+  #imagenLunark.fade {
+    opacity: 0;
+  }
+</style>
 </head>
 <body>
   <img id="imagenLunark" src="lunark.png" alt="Lunark" />
