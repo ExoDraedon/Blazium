@@ -91,34 +91,22 @@
       background-color: rgba(0,0,0,0.8);
       border-radius: 10px;
       width: 320px;
-      box-shadow: none;
+      box-shadow: 0 0 15px white;
       opacity: 0;
       transform: translateY(40px);
       animation: subir 1s ease-out forwards;
     }
-
-    /* Caja de texto estilo Undertale */
-    .textbox-container {
-      position: relative;
-      width: 100%;
-      padding: 8px;
-      background: black;
-      border: 2px solid white;
+    h1, #loginScreen h2 {
+      margin: 0;
+      user-select: none;
     }
-    .textbox-container::before {
-      content: "";
-      position: absolute;
-      top: -2px;
-      left: -2px;
-      width: calc(100% + 4px);
-      height: calc(100% + 4px);
-      background-image:
-        linear-gradient(to right, #fff 4px, transparent 4px),
-        linear-gradient(to bottom, #fff 4px, transparent 4px);
-      background-size: 16px 16px;
-      pointer-events: none;
-      opacity: 0.7;
-      z-index: 0;
+    h1 {
+      font-size: 2.5em;
+      position: relative;
+    }
+    #loginScreen h2 {
+      font-size: 1.8em;
+      color: #ccc;
     }
     input {
       width: 100%;
@@ -126,11 +114,9 @@
       font-size: 1.3em;
       background-color: rgba(0, 0, 0, 0.6);
       color: white;
-      border: none;
+      border-radius: 5px;
       outline: none;
       font-family: 'DeltaruneFont', monospace;
-      z-index: 1;
-      position: relative;
     }
     input::placeholder {
       color: #ccc;
@@ -214,8 +200,7 @@
   </style>
 </head>
 <body>
-
-  <!-- Recursos multimedia -->
+<body>
   <img id="imagenLunark" src="lunark.png" alt="Lunark" />
   <video autoplay muted loop id="bgVideo1" class="bgVideo" playsinline>
     <source src="vid.mp4" type="video/mp4" />
@@ -223,16 +208,10 @@
   <video autoplay muted loop id="bgVideo2" class="bgVideo" playsinline>
     <source src="balatro.mp4" type="video/mp4" />
   </video>
-
-  <!-- Pantalla de Login -->
   <div id="loginScreen">
     <h2>Ingresa la clave</h2>
-    <div class="textbox-container">
-      <input type="password" id="loginInput" placeholder="Clave secreta" autocomplete="off" />
-    </div>
+    <input type="password" id="loginInput" placeholder="Clave secreta" autocomplete="off" />
   </div>
-
-  <!-- Contenido Principal -->
   <div class="container" id="mainContent">
     <h1>BLAZIUM CODE BREAKER</h1>
     <input type="text" id="codigo" placeholder="INGRESA EL CODIGO" autocomplete="off" />
@@ -240,14 +219,11 @@
     <div id="mensajeChipaalex"></div>
     <div id="mensajeCr3stianMC"></div>
   </div>
-
-  <!-- Otros elementos -->
   <img id="easterEggGif" src="easter-egg.gif" alt="Easter Egg" />
 
-  <!-- Audios -->
+  <!-- Músicas -->
   <audio id="bgMusicInitial" src="back1.mp3" autoplay loop></audio>
   <audio id="bgMusicMain" src="breaker.mp3" loop></audio>
-  <audio id="soundEnter" src="enter.mp3"></audio>
 
   <script>
     const loginScreen = document.getElementById('loginScreen');
@@ -261,9 +237,9 @@
     const mensajeChipaalex = document.getElementById('mensajeChipaalex');
     const mensajeCr3stianMC = document.getElementById('mensajeCr3stianMC');
     const imagenLunark = document.getElementById('imagenLunark');
+
     const bgMusicInitial = document.getElementById('bgMusicInitial');
     const bgMusicMain = document.getElementById('bgMusicMain');
-    const soundEnter = document.getElementById('soundEnter');
 
     const redirecciones = {
       "tenna": "https://deltarune.com", 
@@ -303,37 +279,26 @@
       if (e.key === 'Enter') {
         const clave = this.value.trim();
         if (clave === 'blazium') {
-          // Reproducir sonido de confirmación
-          soundEnter.play();
-
-          // Ocultar pantalla de login
+          // Ocultar pantalla de login con animación
           loginScreen.style.transition = 'opacity 1s ease-out, transform 1s ease-out';
           loginScreen.style.opacity = 0;
           loginScreen.style.transform = 'translateY(-40px)';
 
-          // Fade-out de back1.mp3
-          let vol = 1;
-          const fadeOutInterval = setInterval(() => {
-            if (vol > 0) {
-              vol -= 0.05;
-              bgMusicInitial.volume = vol;
-            } else {
-              clearInterval(fadeOutInterval);
-              bgMusicInitial.pause();
-              bgMusicInitial.currentTime = 0;
+          // Detener back1.mp3 y empezar breaker.mp3 con fade-in
+          bgMusicInitial.pause();
+          bgMusicInitial.currentTime = 0;
 
-              // Iniciar música principal con fade-in
-              bgMusicMain.volume = 0;
-              bgMusicMain.play();
-              let fadeInVol = 0;
-              const fadeInInterval = setInterval(() => {
-                if (fadeInVol < 1) {
-                  fadeInVol += 0.05;
-                  bgMusicMain.volume = fadeInVol;
-                } else {
-                  clearInterval(fadeInInterval);
-                }
-              }, 50);
+          // Iniciar música principal con fade-in
+          bgMusicMain.volume = 0;
+          bgMusicMain.play();
+
+          let vol = 0;
+          const interval = setInterval(() => {
+            if (vol < 1) {
+              vol += 0.05;
+              bgMusicMain.volume = vol;
+            } else {
+              clearInterval(interval);
             }
           }, 50);
 
@@ -365,14 +330,14 @@
       animacionNumeros.innerHTML = '';
       const numeros = ['1', '7', '2', '0', '2', '5'];
       const container = document.createElement('div');
-      container.className = 'numeros-container';
+      container.classList.add('numeros-container');
       animacionNumeros.appendChild(container);
       const intervalo = 400;
       numeros.forEach((num, index) => {
         setTimeout(() => {
           const span = document.createElement('span');
           span.textContent = num;
-          span.className = 'numero';
+          span.classList.add('numero');
           span.style.animation = 'subir 0.5s ease forwards';
           container.appendChild(span);
           if (index === numeros.length - 1) {
@@ -385,7 +350,11 @@
     }
 
     function mostrarSumas() {
-      const texto = `Suma 1: 100 + 100 = 200\nSuma 2: 150 + 50 = 200\nSuma 3: 250 - 50 = 200\nSuma 4: 400 - 200 = 200\nSuma 5: 50 + 150 = 200`;
+      const texto = `Suma 1: 100 + 100 = 200
+Suma 2: 150 + 50 = 200
+Suma 3: 250 - 50 = 200
+Suma 4: 400 - 200 = 200
+Suma 5: 50 + 150 = 200`;
       const divSumas = document.createElement('div');
       divSumas.className = 'sumas';
       divSumas.textContent = texto;
@@ -417,18 +386,14 @@
       }, 5000);
     }
 
-    function mostrarImagenLunark() {
-      imagenLunark.style.display = 'block';
-      imagenLunark.classList.remove('fade');
-      void imagenLunark.offsetWidth;
-      imagenLunark.classList.add('fade');
-      setTimeout(() => {
-        imagenLunark.style.display = 'none';
-        imagenLunark.classList.remove('fade');
-      }, 1000);
+    function cambiarFondo(videoToShow, videoToHide) {
+      videoToShow.classList.add('mostrar');
+      void videoToShow.offsetWidth;
+      videoToShow.style.animation = 'fondoFadeIn 1.5s ease-out forwards';
+      videoToShow.style.opacity = 1;
+      videoToHide.style.opacity = 0;
     }
 
-    const codigoInput = document.getElementById('codigo');
     codigoInput.addEventListener('keydown', function(e) {
       if (e.key === 'Enter') {
         const valor = this.value.trim().toLowerCase();
@@ -445,7 +410,14 @@
         } else if (valor === "cr3stianmc") {
           mostrarMensajeCr3stianMC();
         } else if (valor === "lunark") {
-          mostrarImagenLunark();
+          imagenLunark.style.display = 'block';
+          imagenLunark.classList.remove('fade');
+          void imagenLunark.offsetWidth;
+          imagenLunark.classList.add('fade');
+          setTimeout(() => {
+            imagenLunark.style.display = 'none';
+            imagenLunark.classList.remove('fade');
+          }, 1000);
         } else if (redirecciones[valor]) {
           window.location.href = redirecciones[valor];
         } else {
