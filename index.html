@@ -219,7 +219,11 @@
     <div id="mensajeCr3stianMC"></div>
   </div>
   <img id="easterEggGif" src="easter-egg.gif" alt="Easter Egg" />
-  <audio id="bgMusic" src="breaker.mp3" autoplay loop muted></audio>
+
+  <!-- Músicas -->
+  <audio id="bgMusicInitial" src="back1.mp3" autoplay></audio>
+  <audio id="bgMusicMain" src="breaker.mp3" loop></audio>
+
   <script>
     const loginScreen = document.getElementById('loginScreen');
     const mainContent = document.getElementById('mainContent');
@@ -231,8 +235,11 @@
     const easterEggGif = document.getElementById('easterEggGif');
     const mensajeChipaalex = document.getElementById('mensajeChipaalex');
     const mensajeCr3stianMC = document.getElementById('mensajeCr3stianMC');
-    const bgMusic = document.getElementById('bgMusic');
     const imagenLunark = document.getElementById('imagenLunark');
+
+    const bgMusicInitial = document.getElementById('bgMusicInitial');
+    const bgMusicMain = document.getElementById('bgMusicMain');
+
     const redirecciones = {
       "tenna": "https://deltarune.com", 
       "sir": "https://tusitio.com/sir.png", 
@@ -254,17 +261,13 @@
     };
 
     function cambiarFondo(videoToShow, videoToHide) {
-      // Aplicamos animación al video que se va
       videoToHide.style.animation = 'fondoTransicion 1s ease-out forwards';
-
-      // Ocultamos el video antiguo después de la animación
       setTimeout(() => {
         videoToHide.classList.remove('mostrar');
         videoToHide.style.opacity = 0;
         videoToHide.style.animation = '';
       }, 1000);
 
-      // Mostramos el nuevo video y le aplicamos la animación de entrada
       videoToShow.classList.add('mostrar');
       void videoToShow.offsetWidth;
       videoToShow.style.animation = 'fondoFadeIn 1.5s ease-out forwards';
@@ -275,16 +278,39 @@
       if (e.key === 'Enter') {
         const clave = this.value.trim();
         if (clave === 'blazium') {
+          // Ocultar pantalla de login con animación
           loginScreen.style.transition = 'opacity 1s ease-out, transform 1s ease-out';
           loginScreen.style.opacity = 0;
           loginScreen.style.transform = 'translateY(-40px)';
-          // Mostrar y animar el video de fondo
+
+          // Mostrar video de fondo
           bgVideo1.classList.add('mostrar');
           void bgVideo1.offsetWidth;
           bgVideo1.classList.add('bgAnimado');
+
+          // Detener música inicial y reproducir la principal con fade-in
+          bgMusicInitial.pause();
+          bgMusicInitial.currentTime = 0;
+
+          setTimeout(() => {
+            bgMusicMain.volume = 0;
+            bgMusicMain.play();
+            // Efecto de fade-in de volumen
+            let vol = 0;
+            const interval = setInterval(() => {
+              if (vol < 1) {
+                vol += 0.05;
+                bgMusicMain.volume = vol;
+              } else {
+                clearInterval(interval);
+              }
+            }, 50);
+          }, 500);
+
           setTimeout(() => {
             loginScreen.style.display = 'none';
           }, 1000);
+
           setTimeout(() => {
             mainContent.style.display = 'flex';
             requestAnimationFrame(() => {
@@ -394,9 +420,11 @@ Suma 5: 50 + 150 = 200`;
     });
 
     document.body.addEventListener('click', () => {
-      if (bgMusic.muted) {
-        bgMusic.muted = false;
-        bgMusic.play();
+      if (bgMusicInitial.paused) {
+        bgMusicInitial.play();
+      }
+      if (bgMusicMain.paused) {
+        bgMusicMain.play();
       }
     });
   </script>
