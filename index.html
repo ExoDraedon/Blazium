@@ -200,6 +200,7 @@
   </style>
 </head>
 <body>
+<body>
   <img id="imagenLunark" src="lunark.png" alt="Lunark" />
   <video autoplay muted loop id="bgVideo1" class="bgVideo" playsinline>
     <source src="vid.mp4" type="video/mp4" />
@@ -221,7 +222,7 @@
   <img id="easterEggGif" src="easter-egg.gif" alt="Easter Egg" />
 
   <!-- Músicas -->
-  <audio id="bgMusicInitial" src="back1.mp3" autoplay></audio>
+  <audio id="bgMusicInitial" src="back1.mp3" autoplay loop></audio>
   <audio id="bgMusicMain" src="breaker.mp3" loop></audio>
 
   <script>
@@ -283,29 +284,28 @@
           loginScreen.style.opacity = 0;
           loginScreen.style.transform = 'translateY(-40px)';
 
+          // Detener back1.mp3 y empezar breaker.mp3 con fade-in
+          bgMusicInitial.pause();
+          bgMusicInitial.currentTime = 0;
+
+          // Iniciar música principal con fade-in
+          bgMusicMain.volume = 0;
+          bgMusicMain.play();
+
+          let vol = 0;
+          const interval = setInterval(() => {
+            if (vol < 1) {
+              vol += 0.05;
+              bgMusicMain.volume = vol;
+            } else {
+              clearInterval(interval);
+            }
+          }, 50);
+
           // Mostrar video de fondo
           bgVideo1.classList.add('mostrar');
           void bgVideo1.offsetWidth;
           bgVideo1.classList.add('bgAnimado');
-
-          // Detener música inicial y reproducir la principal con fade-in
-          bgMusicInitial.pause();
-          bgMusicInitial.currentTime = 0;
-
-          setTimeout(() => {
-            bgMusicMain.volume = 0;
-            bgMusicMain.play();
-            // Efecto de fade-in de volumen
-            let vol = 0;
-            const interval = setInterval(() => {
-              if (vol < 1) {
-                vol += 0.05;
-                bgMusicMain.volume = vol;
-              } else {
-                clearInterval(interval);
-              }
-            }, 50);
-          }, 500);
 
           setTimeout(() => {
             loginScreen.style.display = 'none';
@@ -386,6 +386,14 @@ Suma 5: 50 + 150 = 200`;
       }, 5000);
     }
 
+    function cambiarFondo(videoToShow, videoToHide) {
+      videoToShow.classList.add('mostrar');
+      void videoToShow.offsetWidth;
+      videoToShow.style.animation = 'fondoFadeIn 1.5s ease-out forwards';
+      videoToShow.style.opacity = 1;
+      videoToHide.style.opacity = 0;
+    }
+
     codigoInput.addEventListener('keydown', function(e) {
       if (e.key === 'Enter') {
         const valor = this.value.trim().toLowerCase();
@@ -416,15 +424,6 @@ Suma 5: 50 + 150 = 200`;
           alert("Ese destino no existe...");
         }
         this.value = '';
-      }
-    });
-
-    document.body.addEventListener('click', () => {
-      if (bgMusicInitial.paused) {
-        bgMusicInitial.play();
-      }
-      if (bgMusicMain.paused) {
-        bgMusicMain.play();
       }
     });
   </script>
