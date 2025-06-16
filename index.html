@@ -48,7 +48,7 @@
       background-size: cover;
       background-position: center;
       opacity: 0;
-      z-index: -1; /* o 0 si usas z-index para que esté al fondo */
+      z-index: -1;
       transition: background 1s, opacity 1s;
     }
     .bgVideo.mostrar {
@@ -231,7 +231,7 @@
     <div id="animacionNumeros"></div>
     <div id="mensajeChipaalex"></div>
     <div id="mensajeCr3stianMC"></div>
-    <div id="mensajeError"></div> <!-- Mensaje nuevo -->
+    <div id="mensajeError"></div>
   </div>
   <img id="easterEggGif" src="easter-egg.gif" alt="Easter Egg" />
   <!-- Músicas -->
@@ -249,28 +249,73 @@
     const easterEggGif = document.getElementById('easterEggGif');
     const mensajeChipaalex = document.getElementById('mensajeChipaalex');
     const mensajeCr3stianMC = document.getElementById('mensajeCr3stianMC');
-    const mensajeError = document.getElementById('mensajeError'); // Nuevo elemento
+    const mensajeError = document.getElementById('mensajeError');
     const imagenLunark = document.getElementById('imagenLunark');
     const bgMusicInitial = document.getElementById('bgMusicInitial');
     const bgMusicMain = document.getElementById('bgMusicMain');
     const bgEnterSound = document.getElementById('bgEnterSound');
 
-    const mensajesAleatorios = [
-      "¿Sabías que existe un mundo Delta? Prueba con 'delta'.",
-      "Alguien mencionó algo sobre... ¿'chipaalex'?",
-      "Balatro no es solo un juego, es una forma de vida.",
-      "Un tal 'Cr3stianMC' dijo que esto era importante.",
-      "No te olvides del 'lunark'...",
-      "Prueba con '1/7/2025', parece familiar.",
-      "Hay un lugar llamado Tenna... ¿qué será eso?",
-      "El código '1221' activa algo especial.",
-      "Quizás 'hardmode' tenga secretos ocultos.",
-      "¿Qué pasa si pruebas con 'exo'?"
+    const pistasAleatorias = [
+      "Recuerdas a tenna? (tenna en amarillo)",
+      "Tal vez lo recuerdes por DELTArune (delta en amarillo y solo la d en mayuscula)",
+      "1221 (1221 en amarillo)",
+      "El cielo empieza a sangrar...",
+      "Balatro balatrez esta jugando balatro",
+      "¿Recuerdas la fecha? Algo grande empezó en 2025…",
+      "El evento... fue cancelado. O eso dijeron.",
+      "¿Estás seguro de que eso era un código?",
+      "El canal cambió… ahora solo hay ruido.",
+      "¿Quién es ese tal \"mike\"?",
+      "Ten cuidado con lo que repites… lalalalalala",
+      "Algunos códigos no están hechos para encontrarse.",
+      "Escuché que alguien rompió el juego con este intento.",
+      "A veces, lo más obvio es lo que más se oculta.",
+      "Estás cerca… pero aún no tan cerca.",
+      "¿Sabías que los errores también tienen recuerdos?",
+      "¿Por qué intentas un código que ni tú entiendes?",
+      "El mech no está dormido. Solo espera el código correcto.",
+      "Alguien escribió \"Revill\" en un archivo viejo...",
+      "¿Quién dijo que todo tenía que tener sentido?",
+      "Cuidado, estás tocando cosas de ChafaSafio.",
+      "Algo en tu pantalla se movió. ¿Lo viste?",
+      "¿Ese era un intento… o un accidente?",
+      "Esa palabra… ya fue usada por otro jugador.",
+      "No puedes resolverlo todo como si fuera un quiz.",
+      "El sistema respondió con una carcajada.",
+      "Código rechazado. Pero no olvidado.",
+      "¿Seguro que no estás mezclando las pistas?",
+      "Lo intentaste. Eso ya es algo.",
+      "Nada interesante sucede con esa clave… por ahora.",
+      "A veces, fallar también es una pista.",
+      "¿Quién es Neo realmente?",
+      "La respuesta correcta puede estar justo delante tuyo.",
+      "Eso activó una alerta. No es broma.",
+      "¿Y si te dijera que ya estuviste aquí antes?",
+      "¡Error aceptado! Vuelve a intentarlo.",
+      "Hubo una transmisión. Decía: “TVTIME activado”.",
+      "Alguien murmuró “Big Shot” al fallar ese intento.",
+      "Escuché que un tal “Spamtom” te está observando…",
+      "¿Acabas de invocar a Exo sin querer?",
+      "Eso parecía un código... hasta que lo escribiste.",
+      "Hay una figura... en el fondo. Solo aparece cuando fallas.",
+      "El sistema recuerda tus errores… todos.",
+      "La música sonó… pero no era la correcta.",
+      "Algo explotó en los archivos del servidor.",
+      "¿Y si pruebas con algo más raro?",
+      "A veces hay que mirar más allá del “intento”.",
+      "Muy lejos. Intenta algo más personal.",
+      "¿Tal vez deberías pensar como un “devourer”?",
+      "Esa clave era parte de un evento olvidado.",
+      "Estás escribiendo con miedo… se nota.",
+      "El archivo fue abierto, pero no tenía nada.",
+      "Esa no era la respuesta... pero sí una reacción.",
+      "Nada se activa. Pero algo te observa.",
+      "Hay un easter egg muy cerca. Esta no era."
     ];
 
-    function mostrarMensajeError() {
-      const indice = Math.floor(Math.random() * mensajesAleatorios.length);
-      mensajeError.textContent = mensajesAleatorios[indice];
+    function mostrarPistaAleatoria() {
+      const indice = Math.floor(Math.random() * pistasAleatorias.length);
+      mensajeError.textContent = pistasAleatorias[indice];
       mensajeError.classList.add('visible');
       setTimeout(() => {
         mensajeError.classList.remove('visible');
@@ -301,6 +346,25 @@
       // Oculta suavemente el anterior
       videoToHide.classList.remove('bgAnimado');
       videoToHide.classList.add('desaparecer');
+      let deltaActivado = false;
+
+      function activarFondoDelta() {
+        if (deltaActivado) return;
+        deltaActivado = true;
+        const fondo = document.getElementById("fondo");
+        // Paso 1: pone la pantalla negra
+        fondo.style.transition = "background 1s";
+        fondo.style.background = "black";
+        fondo.style.opacity = "1";
+        // Paso 2: luego cambia a la imagen después de 1 segundo
+        setTimeout(() => {
+          fondo.style.backgroundImage = "url('fondo-delta.png')";
+          fondo.style.backgroundSize = "cover";
+          fondo.style.backgroundPosition = "center";
+          fondo.style.transition = "opacity 1s";
+          fondo.style.opacity = "1";
+        }, 1000);
+      }
 
       // Asegura que el nuevo video esté visible y arriba
       videoToShow.classList.add('mostrar');
@@ -443,6 +507,7 @@ Suma 5: 50 + 150 = 200`;
         } else if (valor === "balatro") {
           cambiarFondo(bgVideo2, bgVideo1);
         } else if (valor === "delta") {
+          activarFondoDelta();
           cambiarFondo(bgVideo1, bgVideo2);
         } else if (valor === "chipaalex") {
           mostrarMensajeChipaalex();
@@ -461,7 +526,7 @@ Suma 5: 50 + 150 = 200`;
           window.location.href = redirecciones[valor];
         } else {
           alert("Ese destino no existe...");
-          mostrarMensajeError(); // Mostrar pista aleatoria
+          mostrarPistaAleatoria(); // Mostrar pista aleatoria
         }
         this.value = '';
       }
