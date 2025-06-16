@@ -221,9 +221,8 @@
   <img id="easterEggGif" src="easter-egg.gif" alt="Easter Egg" />
 
   <!-- Músicas -->
-  <audio id="bgMusicInitial" src="back1.mp3" autoplay loop></audio>
+  <audio id="bgMusicInitial" src="back1.mp3" autoplay></audio>
   <audio id="bgMusicMain" src="breaker.mp3" loop></audio>
-  <audio id="bgEnterSound" src="enter.mp3"></audio>
 
   <script>
     const loginScreen = document.getElementById('loginScreen');
@@ -237,36 +236,42 @@
     const mensajeChipaalex = document.getElementById('mensajeChipaalex');
     const mensajeCr3stianMC = document.getElementById('mensajeCr3stianMC');
     const imagenLunark = document.getElementById('imagenLunark');
+
     const bgMusicInitial = document.getElementById('bgMusicInitial');
     const bgMusicMain = document.getElementById('bgMusicMain');
-    const bgEnterSound = document.getElementById('bgEnterSound');
 
     const redirecciones = {
-      "tenna": "https://deltarune.com",  
-      "sir": "https://tusitio.com/sir.png",  
-      "lalalalalala": "https://www.mediafire.com/file/oo8zq1z9q4g0qvm/historianeock_1_%25281%2529.wav/file",  
-      "exo": "https://tusitio.com/exo.png",  
-      "nameless": "https://deltarune.com",  
-      "2025": "https://tusitio.com/2025.png",  
-      "estonoesuncodigo": "https://tusitio.com/estonoesuncodigo.png",  
-      "weird": "https://deltarune.com",  
-      "chafasafio6en2025": "https://tusitio.com/chafa.png",  
-      "exomech": "https://deltarune.com",  
-      "ralsei": "https://deltarune.com",  
-      "quiz": "https://deltarune.com",  
-      "neo": "https://deltarune.com",  
-      "tvtime!!!!": "https://tusitio.com/tvtime.png",  
-      "hardmode": "https://tusitio.com/hardmode.png",  
-      "plantera": "https://tusitio.com/plantera.png",  
-      "revill": "https://tusitio.com/revill.png"  
+      "tenna": "https://deltarune.com", 
+      "sir": "https://tusitio.com/sir.png", 
+      "lalalalalala": "https://www.mediafire.com/file/oo8zq1z9q4g0qvm/historianeock_1_%25281%2529.wav/file", 
+      "exo": "https://tusitio.com/exo.png", 
+      "nameless": "https://tusitio.com/nameless.png", 
+      "2025": "https://tusitio.com/2025.png", 
+      "estonoesuncodigo": "https://tusitio.com/estonoesuncodigo.png", 
+      "weird": "https://deltarune.com", 
+      "chafasafio6en2025": "https://tusitio.com/chafa.png", 
+      "exomech": "https://deltarune.com", 
+      "ralsei": "https://deltarune.com", 
+      "quiz": "https://deltarune.com", 
+      "neo": "https://deltarune.com", 
+      "tvtime!!!!": "https://tusitio.com/tvtime.png", 
+      "hardmode": "https://tusitio.com/hardmode.png", 
+      "plantera": "https://tusitio.com/plantera.png", 
+      "revill": "https://tusitio.com/revill.png" 
     };
 
     function cambiarFondo(videoToShow, videoToHide) {
+      videoToHide.style.animation = 'fondoTransicion 1s ease-out forwards';
+      setTimeout(() => {
+        videoToHide.classList.remove('mostrar');
+        videoToHide.style.opacity = 0;
+        videoToHide.style.animation = '';
+      }, 1000);
+
       videoToShow.classList.add('mostrar');
       void videoToShow.offsetWidth;
       videoToShow.style.animation = 'fondoFadeIn 1.5s ease-out forwards';
       videoToShow.style.opacity = 1;
-      videoToHide.style.opacity = 0;
     }
 
     loginInput.addEventListener('keydown', function(e) {
@@ -277,43 +282,30 @@
           loginScreen.style.transition = 'opacity 1s ease-out, transform 1s ease-out';
           loginScreen.style.opacity = 0;
           loginScreen.style.transform = 'translateY(-40px)';
-          
-          // Detener back1.mp3 con fade-out
-          const initialVolume = bgMusicInitial.volume;
-          let vol = initialVolume;
-          const fadeOutInterval = setInterval(() => {
-            if (vol > 0.01) {
-              vol -= 0.05;
-              bgMusicInitial.volume = vol;
-            } else {
-              clearInterval(fadeOutInterval);
-              bgMusicInitial.pause();
-              bgMusicInitial.currentTime = 0;
-              bgMusicInitial.volume = initialVolume;
-            }
-          }, 50);
-
-          // Reproducir enter.mp3 sin fade-in
-          bgEnterSound.currentTime = 0;
-          bgEnterSound.play();
-
-          // Iniciar música principal breaker.mp3 con fade-in
-          bgMusicMain.volume = 0;
-          bgMusicMain.play();
-          let volMain = 0;
-          const fadeInInterval = setInterval(() => {
-            if (volMain < 1) {
-              volMain += 0.05;
-              bgMusicMain.volume = volMain;
-            } else {
-              clearInterval(fadeInInterval);
-            }
-          }, 50);
 
           // Mostrar video de fondo
           bgVideo1.classList.add('mostrar');
           void bgVideo1.offsetWidth;
           bgVideo1.classList.add('bgAnimado');
+
+          // Detener música inicial y reproducir la principal con fade-in
+          bgMusicInitial.pause();
+          bgMusicInitial.currentTime = 0;
+
+          setTimeout(() => {
+            bgMusicMain.volume = 0;
+            bgMusicMain.play();
+            // Efecto de fade-in de volumen
+            let vol = 0;
+            const interval = setInterval(() => {
+              if (vol < 1) {
+                vol += 0.05;
+                bgMusicMain.volume = vol;
+              } else {
+                clearInterval(interval);
+              }
+            }, 50);
+          }, 500);
 
           setTimeout(() => {
             loginScreen.style.display = 'none';
@@ -358,7 +350,11 @@
     }
 
     function mostrarSumas() {
-      const texto = `Suma 1: 100 + 100 = 200\nSuma 2: 150 + 50 = 200\nSuma 3: 250 - 50 = 200\nSuma 4: 400 - 200 = 200\nSuma 5: 50 + 150 = 200`;
+      const texto = `Suma 1: 100 + 100 = 200
+Suma 2: 150 + 50 = 200
+Suma 3: 250 - 50 = 200
+Suma 4: 400 - 200 = 200
+Suma 5: 50 + 150 = 200`;
       const divSumas = document.createElement('div');
       divSumas.className = 'sumas';
       divSumas.textContent = texto;
@@ -420,6 +416,15 @@
           alert("Ese destino no existe...");
         }
         this.value = '';
+      }
+    });
+
+    document.body.addEventListener('click', () => {
+      if (bgMusicInitial.paused) {
+        bgMusicInitial.play();
+      }
+      if (bgMusicMain.paused) {
+        bgMusicMain.play();
       }
     });
   </script>
