@@ -191,10 +191,11 @@
       color: #39ff14;
       font-size: 1.2em;
       margin-top: 15px;
-      transition: opacity 1.5s ease-in;
+      transition: opacity 0.5s ease-in, transform 0.5s ease-in;
     }
     .visible {
       opacity: 1 !important;
+      transform: translateY(0);
     }
     #imagenLunark {
       display: none;
@@ -209,9 +210,6 @@
     }
     #imagenLunark.fade {
       opacity: 0;
-    }
-    .codigoDestacado {
-      color: yellow;
     }
   </style>
 </head>
@@ -240,6 +238,8 @@
   <audio id="bgMusicInitial" src="back1.mp3" autoplay loop></audio>
   <audio id="bgMusicMain" src="breaker.mp3" loop></audio>
   <audio id="bgEnterSound" src="enter.mp3"></audio>
+  <audio id="tvTimeSound" src="tvtime.mp3"></audio> <!-- Nuevo sonido -->
+
   <script>
     const loginScreen = document.getElementById('loginScreen');
     const mainContent = document.getElementById('mainContent');
@@ -255,21 +255,37 @@
     const bgMusicInitial = document.getElementById('bgMusicInitial');
     const bgMusicMain = document.getElementById('bgMusicMain');
     const bgEnterSound = document.getElementById('bgEnterSound');
+    const tvTimeSound = document.getElementById('tvTimeSound'); // Nuevo
 
-    const codigosDestacados = ["tenna", "spamtom", "neo", "revill", "chafa", "exo", "ralsei"];
+    const redirecciones = {
+      "tenna": "https://deltarune.com", 
+      "sir": "https://tusitio.com/sir.png", 
+      "lalalalalala": "https://www.mediafire.com/file/oo8zq1z9q4g0qvm/historianeock_1_(1).wav/file", 
+      "exo": "https://tusitio.com/exo.png", 
+      "nameless": "https://deltarune.com", 
+      "2025": "https://tusitio.com/2025.png", 
+      "estonoesuncodigo": "https://tusitio.com/estonoesuncodigo.png", 
+      "weird": "https://deltarune.com", 
+      "chafasafio6en2025": "https://tusitio.com/chafa.png", 
+      "exomech": "https://deltarune.com", 
+      "ralsei": "https://deltarune.com", 
+      "quiz": "https://deltarune.com", 
+      "neo": "https://deltarune.com", 
+      "tvtime!!!!": "https://tusitio.com/tvtime.png", 
+      "hardmode": "https://tusitio.com/hardmode.png", 
+      "plantera": "https://tusitio.com/plantera.png", 
+      "revill": "https://tusitio.com/revill.png" 
+    };
 
     function cambiarFondo(videoToShow, videoToHide) {
-      // Oculta suavemente el anterior
       videoToHide.classList.remove('bgAnimado');
       videoToHide.classList.add('desaparecer');
 
-      // Asegura que el nuevo video esté visible y arriba
       videoToShow.classList.add('mostrar');
       videoToShow.classList.remove('desaparecer');
       void videoToShow.offsetWidth;
       videoToShow.classList.add('bgAnimado');
 
-      // Espera a que termine la animación de desaparición para ocultar completamente
       setTimeout(() => {
         videoToHide.classList.remove('mostrar');
         videoToHide.classList.remove('desaparecer');
@@ -281,11 +297,9 @@
       if (e.key === 'Enter') {
         const clave = this.value.trim();
         if (clave === 'blazium') {
-          // Ocultar pantalla de login con animación
           loginScreen.style.transition = 'opacity 1s ease-out, transform 1s ease-out';
           loginScreen.style.opacity = 0;
           loginScreen.style.transform = 'translateY(-40px)';
-          // Detener back1.mp3 con fade-out
           const initialVolume = bgMusicInitial.volume;
           let vol = initialVolume;
           const fadeOutInterval = setInterval(() => {
@@ -299,10 +313,8 @@
               bgMusicInitial.volume = initialVolume;
             }
           }, 50);
-          // Reproducir enter.mp3 sin fade-in
           bgEnterSound.currentTime = 0;
           bgEnterSound.play();
-          // Iniciar música principal breaker.mp3 con fade-in
           bgMusicMain.volume = 0;
           bgMusicMain.play();
           let volMain = 0;
@@ -314,7 +326,6 @@
               clearInterval(fadeInInterval);
             }
           }, 50);
-          // Mostrar video de fondo
           cambiarFondo(bgVideo1, bgVideo2);
           setTimeout(() => {
             loginScreen.style.display = 'none';
@@ -358,11 +369,7 @@
     }
 
     function mostrarSumas() {
-      const texto = `Suma 1: 100 + 100 = 200
-Suma 2: 150 + 50 = 200
-Suma 3: 250 - 50 = 200
-Suma 4: 400 - 200 = 200
-Suma 5: 50 + 150 = 200`;
+      const texto = `Suma 1: 100 + 100 = 200\nSuma 2: 150 + 50 = 200\nSuma 3: 250 - 50 = 200\nSuma 4: 400 - 200 = 200\nSuma 5: 50 + 150 = 200`;
       const divSumas = document.createElement('div');
       divSumas.className = 'sumas';
       divSumas.textContent = texto;
@@ -378,7 +385,7 @@ Suma 5: 50 + 150 = 200`;
 
     function mostrarMensajeChipaalex() {
       mensajeCr3stianMC.classList.remove('visible');
-      mensajeChipaalex.textContent = "chipaalex Este bro es la cabra";
+      mensajeChipaalex.textContent = 'chipaalex Este bro es la cabra';
       mensajeChipaalex.classList.add('visible');
       setTimeout(() => {
         mensajeChipaalex.classList.remove('visible');
@@ -387,34 +394,22 @@ Suma 5: 50 + 150 = 200`;
 
     function mostrarMensajeCr3stianMC() {
       mensajeChipaalex.classList.remove('visible');
-      mensajeCr3stianMC.textContent = "Cr3stianMC Tha goat - El protagonista";
+      mensajeCr3stianMC.textContent = 'Cr3stianMC Tha goat - El protagonista';
       mensajeCr3stianMC.classList.add('visible');
       setTimeout(() => {
         mensajeCr3stianMC.classList.remove('visible');
       }, 5000);
     }
 
-    const redirecciones = {
-      "tenna": "https://deltarune.com", 
-      "sir": "https://tusitio.com/sir.png", 
-      "lalalalalala": "https://www.mediafire.com/file/oo8zq1z9q4g0qvm/historianeock_1_(1).wav/file", 
-      "exo": "https://tusitio.com/exo.png", 
-      "nameless": "https://deltarune.com", 
-      "2025": "https://tusitio.com/2025.png", 
-      "estonoesuncodigo": "https://tusitio.com/estonoesuncodigo.png", 
-      "weird": "https://deltarune.com", 
-      "chafasafio6en2025": "https://tusitio.com/chafa.png", 
-      "exomech": "https://deltarune.com", 
-      "ralsei": "https://deltarune.com", 
-      "quiz": "https://deltarune.com", 
-      "neo": "https://deltarune.com", 
-      "tvtime!!!!": "https://tusitio.com/tvtime.png", 
-      "hardmode": "https://tusitio.com/hardmode.png", 
-      "plantera": "https://tusitio.com/plantera.png", 
-      "revill": "https://tusitio.com/revill.png" 
-    };
+    function mostrarPistaAleatoria(mensaje) {
+      mensajeCr3stianMC.textContent = mensaje;
+      mensajeCr3stianMC.classList.add('visible');
+      setTimeout(() => {
+        mensajeCr3stianMC.classList.remove('visible');
+      }, 3000);
+    }
 
-    const mensajesAleatorios = [
+    const pistas = [
       "Recuerdas a tenna? (tenna en amarillo)",
       "Tal vez lo recuerdes por DELTArune (delta en amarillo y solo la d en mayuscula)",
       "1221 (1221 en amarillo)",
@@ -424,7 +419,7 @@ Suma 5: 50 + 150 = 200`;
       "El evento... fue cancelado. O eso dijeron.",
       "¿Estás seguro de que eso era un código?",
       "El canal cambió… ahora solo hay ruido.",
-      "¿Quién es ese tal \"mike\"?",
+      "¿Quién es ese tal mike?",
       "Ten cuidado con lo que repites… lalalalalala",
       "Algunos códigos no están hechos para encontrarse.",
       "Escuché que alguien rompió el juego con este intento.",
@@ -433,7 +428,7 @@ Suma 5: 50 + 150 = 200`;
       "¿Sabías que los errores también tienen recuerdos?",
       "¿Por qué intentas un código que ni tú entiendes?",
       "El mech no está dormido. Solo espera el código correcto.",
-      "Alguien escribió \"Revill\" en un archivo viejo...",
+      "Alguien escribió Revill en un archivo viejo...",
       "¿Quién dijo que todo tenía que tener sentido?",
       "Cuidado, estás tocando cosas de ChafaSafio.",
       "Algo en tu pantalla se movió. ¿Lo viste?",
@@ -446,14 +441,14 @@ Suma 5: 50 + 150 = 200`;
       "Lo intentaste. Eso ya es algo.",
       "Nada interesante sucede con esa clave… por ahora.",
       "A veces, fallar también es una pista.",
-      "¿Quién es Neo realmente?",
+      "¿Quien es Neo realmente?",
       "La respuesta correcta puede estar justo delante tuyo.",
       "Eso activó una alerta. No es broma.",
       "¿Y si te dijera que ya estuviste aquí antes?",
       "¡Error aceptado! Vuelve a intentarlo.",
-      "Hubo una transmisión. Decía: “TVTIME activado”.",
-      "Alguien murmuró “Big Shot” al fallar ese intento.",
-      "Escuché que un tal “Spamtom” te está observando…",
+      "Hubo una transmisión. Decía: TVTIME activado.",
+      "Alguien murmuró Big Shot al fallar ese intento.",
+      "Escuché que un tal Spamtom te está observando…",
       "¿Acabas de invocar a Exo sin querer?",
       "Eso parecía un código... hasta que lo escribiste.",
       "Hay una figura... en el fondo. Solo aparece cuando fallas.",
@@ -461,9 +456,9 @@ Suma 5: 50 + 150 = 200`;
       "La música sonó… pero no era la correcta.",
       "Algo explotó en los archivos del servidor.",
       "¿Y si pruebas con algo más raro?",
-      "A veces hay que mirar más allá del “intento”.",
+      "A veces hay que mirar más allá del intento.",
       "Muy lejos. Intenta algo más personal.",
-      "¿Tal vez deberías pensar como un “devourer”?",
+      "¿Tal vez deberías pensar como un devourer?",
       "Esa clave era parte de un evento olvidado.",
       "Estás escribiendo con miedo… se nota.",
       "El archivo fue abierto, pero no tenía nada.",
@@ -473,18 +468,9 @@ Suma 5: 50 + 150 = 200`;
     ];
 
     function mostrarPistaAleatoria() {
-      const indice = Math.floor(Math.random() * mensajesAleatorios.length);
-      const mensaje = mensajesAleatorios[indice];
-      const partes = mensaje.split(" ");
-      let html = "";
-      for (let i = 0; i < partes.length; i++) {
-        if (codigosDestacados.includes(partes[i].toLowerCase())) {
-          html += `<span class="codigoDestacado">${partes[i]}</span> `;
-        } else {
-          html += `${partes[i]} `;
-        }
-      }
-      mensajeCr3stianMC.innerHTML = html;
+      const indice = Math.floor(Math.random() * pistas.length);
+      const mensaje = pistas[indice];
+      mensajeCr3stianMC.textContent = mensaje;
       mensajeCr3stianMC.classList.add('visible');
       setTimeout(() => {
         mensajeCr3stianMC.classList.remove('visible');
@@ -515,6 +501,9 @@ Suma 5: 50 + 150 = 200`;
             imagenLunark.style.display = 'none';
             imagenLunark.classList.remove('fade');
           }, 1000);
+        } else if (valor === "tvtime") {
+          tvTimeSound.currentTime = 0;
+          tvTimeSound.play();
         } else if (redirecciones[valor]) {
           window.location.href = redirecciones[valor];
         } else {
