@@ -38,6 +38,20 @@
       pointer-events: none;
       transition: opacity 1s ease, filter 1s ease;
     }
+    #fondo {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: none;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      z-index: -1; /* o 0 si usas z-index para que esté al fondo */
+      transition: background 1s, opacity 1s;
+     }
+
     .bgVideo.mostrar {
       display: block;
     }
@@ -200,6 +214,7 @@
   </style>
 </head>
 <body>
+  <div id="fondo"></div>
   <img id="imagenLunark" src="lunark.png" alt="Lunark" />
   <video autoplay muted loop id="bgVideo1" class="bgVideo" playsinline>
     <source src="vid.mp4" type="video/mp4" />
@@ -264,7 +279,33 @@ function cambiarFondo(videoToShow, videoToHide) {
   // Oculta suavemente el anterior
   videoToHide.classList.remove('bgAnimado');
   videoToHide.classList.add('desaparecer');
+  let deltaActivado = false;
+
+function activarFondoDelta() {
+  if (deltaActivado) return;
+  deltaActivado = true;
+
+  if (valor === "delta") {
+  activarFondoDelta();
+}
   
+
+  const fondo = document.getElementById("fondo");
+
+  // Paso 1: pone la pantalla negra
+  fondo.style.transition = "background 1s";
+  fondo.style.background = "black";
+  fondo.style.opacity = "1";
+
+  // Paso 2: luego cambia a la imagen después de 1 segundo
+  setTimeout(() => {
+    fondo.style.backgroundImage = "url('fondo-delta.png')"; // reemplaza con tu imagen
+    fondo.style.backgroundSize = "cover";
+    fondo.style.backgroundPosition = "center";
+    fondo.style.transition = "opacity 1s";
+    fondo.style.opacity = "1";
+  }, 1000);
+}
   // Asegura que el nuevo video esté visible y arriba
   videoToShow.classList.add('mostrar');
   videoToShow.classList.remove('desaparecer');
@@ -434,3 +475,7 @@ function cambiarFondo(videoToShow, videoToHide) {
   </script>
 </body>
 </html>
+
+if (valor === "delta") {
+  activarFondoDelta();
+}
