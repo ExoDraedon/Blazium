@@ -191,11 +191,10 @@
       color: #39ff14;
       font-size: 1.2em;
       margin-top: 15px;
-      transition: opacity 0.5s ease-in, transform 0.5s ease-in;
+      transition: opacity 1.5s ease-in;
     }
     .visible {
       opacity: 1 !important;
-      transform: translateY(0);
     }
     #imagenLunark {
       display: none;
@@ -211,21 +210,43 @@
     #imagenLunark.fade {
       opacity: 0;
     }
+
+    /* Nueva imagen femboys4ever */
+    #imagenFemboy {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 400px;
+      z-index: 9999;
+      border: 2px solid yellow;
+      box-shadow: 0 0 20px yellow;
+    }
   </style>
 </head>
 <body>
   <div id="fondo"></div>
-  <img id="imagenLunark" src="lunark.png" alt="Lunark" />
+
+  <!-- Imagenes -->
+  <img id="imagenLunark" src="imagenes/lunark.png" alt="Lunark" />
+  <img id="imagenFemboy" src="imagenes/fem.png" alt="Femboy" />
+
+  <!-- Videos -->
   <video autoplay muted loop id="bgVideo1" class="bgVideo" playsinline>
-    <source src="vid.mp4" type="video/mp4" />
+    <source src="fondos/vid.mp4" type="video/mp4" />
   </video>
   <video autoplay muted loop id="bgVideo2" class="bgVideo" playsinline>
-    <source src="balatro.mp4" type="video/mp4" />
+    <source src="fondos/balatro.mp4" type="video/mp4" />
   </video>
+
+  <!-- Pantalla Login -->
   <div id="loginScreen">
     <h2>Ingresa la clave</h2>
     <input type="password" id="loginInput" placeholder="Clave secreta" autocomplete="off" />
   </div>
+
+  <!-- Contenido Principal -->
   <div class="container" id="mainContent">
     <h1>BLAZIUM CODE BREAKER</h1>
     <input type="text" id="codigo" placeholder="INGRESA EL CODIGO" autocomplete="off" />
@@ -233,12 +254,16 @@
     <div id="mensajeChipaalex"></div>
     <div id="mensajeCr3stianMC"></div>
   </div>
-  <img id="easterEggGif" src="easter-egg.gif" alt="Easter Egg" />
-  <!-- Músicas -->
-  <audio id="bgMusicInitial" src="back1.mp3" autoplay loop></audio>
-  <audio id="bgMusicMain" src="breaker.mp3" loop></audio>
-  <audio id="bgEnterSound" src="enter.mp3"></audio>
-  <audio id="tvTimeSound" src="tvtime.mp3"></audio> <!-- Nuevo sonido -->
+
+  <!-- Easter Egg GIF -->
+  <img id="easterEggGif" src="imagenes/easter-egg.gif" alt="Easter Egg" />
+
+  <!-- Sonidos -->
+  <audio id="bgMusicInitial" src="sounds/back1.mp3" autoplay loop></audio>
+  <audio id="bgMusicMain" src="sounds/breaker.mp3" loop></audio>
+  <audio id="bgEnterSound" src="sounds/enter.mp3"></audio>
+  <audio id="tvTimeSound" src="sounds/tvtime.mp3"></audio>
+  <audio id="getOutSound" src="sounds/getout.mp3"></audio>
 
   <script>
     const loginScreen = document.getElementById('loginScreen');
@@ -252,40 +277,45 @@
     const mensajeChipaalex = document.getElementById('mensajeChipaalex');
     const mensajeCr3stianMC = document.getElementById('mensajeCr3stianMC');
     const imagenLunark = document.getElementById('imagenLunark');
+    const imagenFemboy = document.getElementById('imagenFemboy');
     const bgMusicInitial = document.getElementById('bgMusicInitial');
     const bgMusicMain = document.getElementById('bgMusicMain');
     const bgEnterSound = document.getElementById('bgEnterSound');
-    const tvTimeSound = document.getElementById('tvTimeSound'); // Nuevo
+    const tvTimeSound = document.getElementById('tvTimeSound');
+    const getOutSound = document.getElementById('getOutSound');
 
     const redirecciones = {
-      "tenna": "https://deltarune.com", 
-      "sir": "https://tusitio.com/sir.png", 
-      "lalalalalala": "https://www.mediafire.com/file/oo8zq1z9q4g0qvm/historianeock_1_(1).wav/file", 
-      "exo": "https://tusitio.com/exo.png", 
-      "nameless": "https://deltarune.com", 
-      "2025": "https://tusitio.com/2025.png", 
-      "estonoesuncodigo": "https://tusitio.com/estonoesuncodigo.png", 
-      "weird": "https://deltarune.com", 
-      "chafasafio6en2025": "https://tusitio.com/chafa.png", 
-      "exomech": "https://deltarune.com", 
-      "ralsei": "https://deltarune.com", 
-      "quiz": "https://deltarune.com", 
-      "neo": "https://deltarune.com", 
-      "tvtime!!!!": "https://tusitio.com/tvtime.png", 
-      "hardmode": "https://tusitio.com/hardmode.png", 
-      "plantera": "https://tusitio.com/plantera.png", 
-      "revill": "https://tusitio.com/revill.png" 
+      "tenna": "https://deltarune.com",   
+      "sir": "https://tusitio.com/sir.png",   
+      "lalalalalala": "https://www.mediafire.com/file/oo8zq1z9q4g0qvm/historianeock_1_(1).wav/file",   
+      "exo": "https://tusitio.com/exo.png",   
+      "nameless": "https://deltarune.com",   
+      "2025": "https://tusitio.com/2025.png",   
+      "estonoesuncodigo": "https://tusitio.com/estonoesuncodigo.png",   
+      "weird": "https://deltarune.com",   
+      "chafasafio6en2025": "https://tusitio.com/chafa.png",   
+      "exomech": "https://deltarune.com",   
+      "ralsei": "https://deltarune.com",   
+      "quiz": "https://deltarune.com",   
+      "neo": "https://deltarune.com",   
+      "tvtime!!!!": "https://tusitio.com/tvtime.png",   
+      "hardmode": "https://tusitio.com/hardmode.png",   
+      "plantera": "https://tusitio.com/plantera.png",   
+      "revill": "https://tusitio.com/revill.png"   
     };
 
     function cambiarFondo(videoToShow, videoToHide) {
+      // Oculta suavemente el anterior
       videoToHide.classList.remove('bgAnimado');
       videoToHide.classList.add('desaparecer');
 
+      // Asegura que el nuevo video esté visible y arriba
       videoToShow.classList.add('mostrar');
       videoToShow.classList.remove('desaparecer');
       void videoToShow.offsetWidth;
       videoToShow.classList.add('bgAnimado');
 
+      // Espera a que termine la animación de desaparición para ocultar completamente
       setTimeout(() => {
         videoToHide.classList.remove('mostrar');
         videoToHide.classList.remove('desaparecer');
@@ -297,9 +327,11 @@
       if (e.key === 'Enter') {
         const clave = this.value.trim();
         if (clave === 'blazium') {
+          // Ocultar pantalla de login con animación
           loginScreen.style.transition = 'opacity 1s ease-out, transform 1s ease-out';
           loginScreen.style.opacity = 0;
           loginScreen.style.transform = 'translateY(-40px)';
+          // Detener back1.mp3 con fade-out
           const initialVolume = bgMusicInitial.volume;
           let vol = initialVolume;
           const fadeOutInterval = setInterval(() => {
@@ -313,8 +345,10 @@
               bgMusicInitial.volume = initialVolume;
             }
           }, 50);
+          // Reproducir enter.mp3 sin fade-in
           bgEnterSound.currentTime = 0;
           bgEnterSound.play();
+          // Iniciar música principal breaker.mp3 con fade-in
           bgMusicMain.volume = 0;
           bgMusicMain.play();
           let volMain = 0;
@@ -326,6 +360,7 @@
               clearInterval(fadeInInterval);
             }
           }, 50);
+          // Mostrar video de fondo
           cambiarFondo(bgVideo1, bgVideo2);
           setTimeout(() => {
             loginScreen.style.display = 'none';
@@ -401,80 +436,20 @@
       }, 5000);
     }
 
-    function mostrarPistaAleatoria(mensaje) {
-      mensajeCr3stianMC.textContent = mensaje;
-      mensajeCr3stianMC.classList.add('visible');
+    function mostrarImagenFemboy() {
+      imagenFemboy.style.display = 'block';
+      imagenFemboy.classList.remove('fade');
+      void imagenFemboy.offsetWidth;
+      imagenFemboy.classList.add('fade');
       setTimeout(() => {
-        mensajeCr3stianMC.classList.remove('visible');
-      }, 3000);
+        imagenFemboy.style.display = 'none';
+        imagenFemboy.classList.remove('fade');
+      }, 5000);
     }
 
-    const pistas = [
-      "Recuerdas a tenna? (tenna en amarillo)",
-      "Tal vez lo recuerdes por DELTArune (delta en amarillo y solo la d en mayuscula)",
-      "1221 (1221 en amarillo)",
-      "El cielo empieza a sangrar...",
-      "Balatro balatrez esta jugando balatro",
-      "¿Recuerdas la fecha? Algo grande empezó en 2025…",
-      "El evento... fue cancelado. O eso dijeron.",
-      "¿Estás seguro de que eso era un código?",
-      "El canal cambió… ahora solo hay ruido.",
-      "¿Quién es ese tal mike?",
-      "Ten cuidado con lo que repites… lalalalalala",
-      "Algunos códigos no están hechos para encontrarse.",
-      "Escuché que alguien rompió el juego con este intento.",
-      "A veces, lo más obvio es lo que más se oculta.",
-      "Estás cerca… pero aún no tan cerca.",
-      "¿Sabías que los errores también tienen recuerdos?",
-      "¿Por qué intentas un código que ni tú entiendes?",
-      "El mech no está dormido. Solo espera el código correcto.",
-      "Alguien escribió Revill en un archivo viejo...",
-      "¿Quién dijo que todo tenía que tener sentido?",
-      "Cuidado, estás tocando cosas de ChafaSafio.",
-      "Algo en tu pantalla se movió. ¿Lo viste?",
-      "¿Ese era un intento… o un accidente?",
-      "Esa palabra… ya fue usada por otro jugador.",
-      "No puedes resolverlo todo como si fuera un quiz.",
-      "El sistema respondió con una carcajada.",
-      "Código rechazado. Pero no olvidado.",
-      "¿Seguro que no estás mezclando las pistas?",
-      "Lo intentaste. Eso ya es algo.",
-      "Nada interesante sucede con esa clave… por ahora.",
-      "A veces, fallar también es una pista.",
-      "¿Quien es Neo realmente?",
-      "La respuesta correcta puede estar justo delante tuyo.",
-      "Eso activó una alerta. No es broma.",
-      "¿Y si te dijera que ya estuviste aquí antes?",
-      "¡Error aceptado! Vuelve a intentarlo.",
-      "Hubo una transmisión. Decía: TVTIME activado.",
-      "Alguien murmuró Big Shot al fallar ese intento.",
-      "Escuché que un tal Spamtom te está observando…",
-      "¿Acabas de invocar a Exo sin querer?",
-      "Eso parecía un código... hasta que lo escribiste.",
-      "Hay una figura... en el fondo. Solo aparece cuando fallas.",
-      "El sistema recuerda tus errores… todos.",
-      "La música sonó… pero no era la correcta.",
-      "Algo explotó en los archivos del servidor.",
-      "¿Y si pruebas con algo más raro?",
-      "A veces hay que mirar más allá del intento.",
-      "Muy lejos. Intenta algo más personal.",
-      "¿Tal vez deberías pensar como un devourer?",
-      "Esa clave era parte de un evento olvidado.",
-      "Estás escribiendo con miedo… se nota.",
-      "El archivo fue abierto, pero no tenía nada.",
-      "Esa no era la respuesta... pero sí una reacción.",
-      "Nada se activa. Pero algo te observa.",
-      "Hay un easter egg muy cerca. Esta no era."
-    ];
-
-    function mostrarPistaAleatoria() {
-      const indice = Math.floor(Math.random() * pistas.length);
-      const mensaje = pistas[indice];
-      mensajeCr3stianMC.textContent = mensaje;
-      mensajeCr3stianMC.classList.add('visible');
-      setTimeout(() => {
-        mensajeCr3stianMC.classList.remove('visible');
-      }, 3000);
+    function ejecutarGetOutSound() {
+      getOutSound.currentTime = 0;
+      getOutSound.play();
     }
 
     codigoInput.addEventListener('keydown', function(e) {
@@ -501,13 +476,14 @@
             imagenLunark.style.display = 'none';
             imagenLunark.classList.remove('fade');
           }, 1000);
-        } else if (valor === "tvtime") {
-          tvTimeSound.currentTime = 0;
-          tvTimeSound.play();
+        } else if (valor === "femboys4ever") {
+          mostrarImagenFemboy();
+        } else if (valor === "hippopotomonstroesquipedaliofobia") {
+          ejecutarGetOutSound();
         } else if (redirecciones[valor]) {
           window.location.href = redirecciones[valor];
         } else {
-          mostrarPistaAleatoria();
+          alert("Ese destino no existe...");
         }
         this.value = '';
       }
