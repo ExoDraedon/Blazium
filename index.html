@@ -48,7 +48,7 @@
       background-size: cover;
       background-position: center;
       opacity: 0;
-      z-index: -1;
+      z-index: -1; /* o 0 si usas z-index para que esté al fondo */
       transition: background 1s, opacity 1s;
     }
     .bgVideo.mostrar {
@@ -102,9 +102,9 @@
       padding: 20px;
       z-index: 2;
       background-color: rgba(0,0,0,0.8);
-      border-radius: 0px;
+      border-radius: 10px;
       width: 320px;
-      box-shadow: 0 0 0px white;
+      box-shadow: 0 0 15px white;
       opacity: 0;
       transform: translateY(40px);
       animation: subir 1s ease-out forwards;
@@ -186,7 +186,7 @@
       box-shadow: 0 0 10px #39ff14;
       z-index: 9999;
     }
-    #mensajeChipaalex, #mensajeCr3stianMC {
+    #mensajeChipaalex, #mensajeCr3stianMC, #mensajeError {
       opacity: 0;
       color: #39ff14;
       font-size: 1.2em;
@@ -231,6 +231,7 @@
     <div id="animacionNumeros"></div>
     <div id="mensajeChipaalex"></div>
     <div id="mensajeCr3stianMC"></div>
+    <div id="mensajeError"></div> <!-- Mensaje nuevo -->
   </div>
   <img id="easterEggGif" src="easter-egg.gif" alt="Easter Egg" />
   <!-- Músicas -->
@@ -248,10 +249,34 @@
     const easterEggGif = document.getElementById('easterEggGif');
     const mensajeChipaalex = document.getElementById('mensajeChipaalex');
     const mensajeCr3stianMC = document.getElementById('mensajeCr3stianMC');
+    const mensajeError = document.getElementById('mensajeError'); // Nuevo elemento
     const imagenLunark = document.getElementById('imagenLunark');
     const bgMusicInitial = document.getElementById('bgMusicInitial');
     const bgMusicMain = document.getElementById('bgMusicMain');
     const bgEnterSound = document.getElementById('bgEnterSound');
+
+    const mensajesAleatorios = [
+      "¿Sabías que existe un mundo Delta? Prueba con 'delta'.",
+      "Alguien mencionó algo sobre... ¿'chipaalex'?",
+      "Balatro no es solo un juego, es una forma de vida.",
+      "Un tal 'Cr3stianMC' dijo que esto era importante.",
+      "No te olvides del 'lunark'...",
+      "Prueba con '1/7/2025', parece familiar.",
+      "Hay un lugar llamado Tenna... ¿qué será eso?",
+      "El código '1221' activa algo especial.",
+      "Quizás 'hardmode' tenga secretos ocultos.",
+      "¿Qué pasa si pruebas con 'exo'?"
+    ];
+
+    function mostrarMensajeError() {
+      const indice = Math.floor(Math.random() * mensajesAleatorios.length);
+      mensajeError.textContent = mensajesAleatorios[indice];
+      mensajeError.classList.add('visible');
+      setTimeout(() => {
+        mensajeError.classList.remove('visible');
+      }, 3000);
+    }
+
     const redirecciones = {
       "tenna": "https://deltarune.com",   
       "sir": "https://tusitio.com/sir.png",   
@@ -418,7 +443,7 @@ Suma 5: 50 + 150 = 200`;
         } else if (valor === "balatro") {
           cambiarFondo(bgVideo2, bgVideo1);
         } else if (valor === "delta") {
-          cambiarFondo(bgVideo1, bgVideo2); // Cambia al video vid.mp4
+          cambiarFondo(bgVideo1, bgVideo2);
         } else if (valor === "chipaalex") {
           mostrarMensajeChipaalex();
         } else if (valor === "cr3stianmc") {
@@ -436,6 +461,7 @@ Suma 5: 50 + 150 = 200`;
           window.location.href = redirecciones[valor];
         } else {
           alert("Ese destino no existe...");
+          mostrarMensajeError(); // Mostrar pista aleatoria
         }
         this.value = '';
       }
