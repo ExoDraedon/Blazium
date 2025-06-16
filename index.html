@@ -260,14 +260,25 @@
       "plantera": "https://tusitio.com/plantera.png",  
       "revill": "https://tusitio.com/revill.png"  
     };
+function cambiarFondo(videoToShow, videoToHide) {
+  // Oculta suavemente el anterior
+  videoToHide.classList.remove('bgAnimado');
+  videoToHide.classList.add('desaparecer');
+  
+  // Asegura que el nuevo video esté visible y arriba
+  videoToShow.classList.add('mostrar');
+  videoToShow.classList.remove('desaparecer');
+  void videoToShow.offsetWidth;
+  videoToShow.classList.add('bgAnimado');
 
-    function cambiarFondo(videoToShow, videoToHide) {
-      videoToShow.classList.add('mostrar');
-      void videoToShow.offsetWidth;
-      videoToShow.style.animation = 'fondoFadeIn 1.5s ease-out forwards';
-      videoToShow.style.opacity = 1;
-      videoToHide.style.opacity = 0;
-    }
+  // Espera a que termine la animación de desaparición para ocultar completamente
+  setTimeout(() => {
+    videoToHide.classList.remove('mostrar');
+    videoToHide.classList.remove('desaparecer');
+    videoToHide.style.opacity = 0;
+  }, 1500);
+}
+
 
     loginInput.addEventListener('keydown', function(e) {
       if (e.key === 'Enter') {
@@ -311,9 +322,7 @@
           }, 50);
 
           // Mostrar video de fondo
-          bgVideo1.classList.add('mostrar');
-          void bgVideo1.offsetWidth;
-          bgVideo1.classList.add('bgAnimado');
+         cambiarFondo(bgVideo1, bgVideo2);
 
           setTimeout(() => {
             loginScreen.style.display = 'none';
