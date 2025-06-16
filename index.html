@@ -186,7 +186,7 @@
       box-shadow: 0 0 10px #39ff14;
       z-index: 9999;
     }
-    #mensajeChipaalex, #mensajeCr3stianMC, #mensajeError {
+    #mensajeChipaalex, #mensajeCr3stianMC {
       opacity: 0;
       color: #39ff14;
       font-size: 1.2em;
@@ -210,6 +210,9 @@
     #imagenLunark.fade {
       opacity: 0;
     }
+    .codigoDestacado {
+      color: yellow;
+    }
   </style>
 </head>
 <body>
@@ -231,7 +234,6 @@
     <div id="animacionNumeros"></div>
     <div id="mensajeChipaalex"></div>
     <div id="mensajeCr3stianMC"></div>
-    <div id="mensajeError"></div>
   </div>
   <img id="easterEggGif" src="easter-egg.gif" alt="Easter Egg" />
   <!-- Músicas -->
@@ -249,122 +251,17 @@
     const easterEggGif = document.getElementById('easterEggGif');
     const mensajeChipaalex = document.getElementById('mensajeChipaalex');
     const mensajeCr3stianMC = document.getElementById('mensajeCr3stianMC');
-    const mensajeError = document.getElementById('mensajeError');
     const imagenLunark = document.getElementById('imagenLunark');
     const bgMusicInitial = document.getElementById('bgMusicInitial');
     const bgMusicMain = document.getElementById('bgMusicMain');
     const bgEnterSound = document.getElementById('bgEnterSound');
 
-    const pistasAleatorias = [
-      "Recuerdas a tenna? El a ti si",
-      "Tal vez lo recuerdes por Deltarune",
-      "1221 El cielo empiesza a sangrar",
-      "Oscuridad misma...",
-      "Balatro balatrez esta jugando balatro",
-      "¿Recuerdas la fecha? Algo grande empezieza en 2025…",
-      "El evento... fue cancelado. O eso dijeron.",
-      "¿Estas seguro de que eso era un código?",
-      "El canal cambio… ahora solo hay ruido.",
-      "Mike, Corta, Corta!"?",
-      "Ten cuidado con lo que repites… lalalalalala",
-      "Algunos codigos no están hechos para encontrarse.",
-      "Escuche que alguien rompio el juego con este intento.",
-      "A veces, lo mas obvio es lo que mas se oculta.",
-      "Estas cerca… pero aún no tan cerca.",
-      "¿Sabias que los errores tambien tienen recuerdos?",
-      "¿Por que intentas un codigo que ni tú entiendes?",
-      "El mech no está dormido.",
-      "Alguien escribio \"Revill\",
-      "¿Quien dijo que todo tenia que tener sentido?",
-      "Cuidado, estás tocando cosas de ChafaSafio.",
-      "Algo en tu pantalla se movio. ¿Lo viste?",
-      "¿Ese era un intento… o un accidente?",
-      "Esa palabra… ya fue usada por otro ente.",
-      "No puedes resolverlo todo como si fuera un quiz.",
-      "El sistema respondio con una carcajada.",
-      "Codigo rechazado. Pero no olvidado.",
-      "¿Seguro que no estás mezclando las pistas?",
-      "Lo intentaste. Eso ya es algo.",
-      "Nada interesante sucede con esa clave… por ahora.",
-      "A veces, fallar tambien es una pista.",
-      "¿Que es el Neo realmente?",
-      "La respuesta correcta puede estar justo delante tuyo.",
-      "Eso activo una alerta. No es broma.",
-      "¿Y si te dijera que ya estuviste aqui antes?",
-      "¡Error aceptado! Vuelve a intentarlo.",
-      "Recuerdo a un carismatico presentador, siempre deica ITS TV TIME”.",
-      "Esta es tu gran oportunidad de ser un Big Shot.",
-      "Escuché que un tal “Spamtom” te esta observando…",
-      "¿Acabas de invocar a Sir Exo sin querer?",
-      "Eso parecía un código... hasta que lo escribiste.",
-      "Hay una figura... en el fondo. Solo aparece cuando fallas.",
-      "El sistema recuerda tus errores… todos.",
-      "La musica sono… pero no era la correcta.",
-      "Algo exploto en los archivos del servidor.",
-      "¿Y si pruebas con algo más raro?",
-      "A veces hay que mirar más alla del “intento”.",
-      "Muy lejos. Intenta algo mas personal.",
-      "¿Tal vez deberias ver al cosmos y pensar como “devorarlo”?",
-      "Esa clave era parte de un evento olvidado.",
-      "Estás escribiendo con miedo… se nota.",
-      "El archivo fue abierto, pero no tenia nada.",
-      "Esa no era la respuesta... pero sí una reaccion.",
-      "Nada se activa. Pero algo te observa.",
-      "Hay un easter egg muy cerca. Esta no era."
-    ];
-
-    function mostrarPistaAleatoria() {
-      const indice = Math.floor(Math.random() * pistasAleatorias.length);
-      mensajeError.textContent = pistasAleatorias[indice];
-      mensajeError.classList.add('visible');
-      setTimeout(() => {
-        mensajeError.classList.remove('visible');
-      }, 3000);
-    }
-
-    const redirecciones = {
-      "tenna": "https://deltarune.com",   
-      "sir": "https://tusitio.com/sir.png",   
-      "lalalalalala": "https://www.mediafire.com/file/oo8zq1z9q4g0qvm/historianeock_1_%25281%2529.wav/file",   
-      "exo": "https://tusitio.com/exo.png",   
-      "nameless": "https://deltarune.com",   
-      "2025": "https://tusitio.com/2025.png",   
-      "estonoesuncodigo": "https://tusitio.com/estonoesuncodigo.png",   
-      "weird": "https://deltarune.com",   
-      "chafasafio6en2025": "https://tusitio.com/chafa.png",   
-      "exomech": "https://deltarune.com",   
-      "ralsei": "https://deltarune.com",   
-      "quiz": "https://deltarune.com",   
-      "neo": "https://deltarune.com",   
-      "tvtime!!!!": "https://tusitio.com/tvtime.png",   
-      "hardmode": "https://tusitio.com/hardmode.png",   
-      "plantera": "https://tusitio.com/plantera.png",   
-      "revill": "https://tusitio.com/revill.png"   
-    };
+    const codigosDestacados = ["tenna", "spamtom", "neo", "revill", "chafa", "exo", "ralsei"];
 
     function cambiarFondo(videoToShow, videoToHide) {
       // Oculta suavemente el anterior
       videoToHide.classList.remove('bgAnimado');
       videoToHide.classList.add('desaparecer');
-      let deltaActivado = false;
-
-      function activarFondoDelta() {
-        if (deltaActivado) return;
-        deltaActivado = true;
-        const fondo = document.getElementById("fondo");
-        // Paso 1: pone la pantalla negra
-        fondo.style.transition = "background 1s";
-        fondo.style.background = "black";
-        fondo.style.opacity = "1";
-        // Paso 2: luego cambia a la imagen después de 1 segundo
-        setTimeout(() => {
-          fondo.style.backgroundImage = "url('fondo-delta.png')";
-          fondo.style.backgroundSize = "cover";
-          fondo.style.backgroundPosition = "center";
-          fondo.style.transition = "opacity 1s";
-          fondo.style.opacity = "1";
-        }, 1000);
-      }
 
       // Asegura que el nuevo video esté visible y arriba
       videoToShow.classList.add('mostrar');
@@ -497,6 +394,103 @@ Suma 5: 50 + 150 = 200`;
       }, 5000);
     }
 
+    const redirecciones = {
+      "tenna": "https://deltarune.com", 
+      "sir": "https://tusitio.com/sir.png", 
+      "lalalalalala": "https://www.mediafire.com/file/oo8zq1z9q4g0qvm/historianeock_1_(1).wav/file", 
+      "exo": "https://tusitio.com/exo.png", 
+      "nameless": "https://deltarune.com", 
+      "2025": "https://tusitio.com/2025.png", 
+      "estonoesuncodigo": "https://tusitio.com/estonoesuncodigo.png", 
+      "weird": "https://deltarune.com", 
+      "chafasafio6en2025": "https://tusitio.com/chafa.png", 
+      "exomech": "https://deltarune.com", 
+      "ralsei": "https://deltarune.com", 
+      "quiz": "https://deltarune.com", 
+      "neo": "https://deltarune.com", 
+      "tvtime!!!!": "https://tusitio.com/tvtime.png", 
+      "hardmode": "https://tusitio.com/hardmode.png", 
+      "plantera": "https://tusitio.com/plantera.png", 
+      "revill": "https://tusitio.com/revill.png" 
+    };
+
+    const mensajesAleatorios = [
+      "Recuerdas a tenna? (tenna en amarillo)",
+      "Tal vez lo recuerdes por DELTArune (delta en amarillo y solo la d en mayuscula)",
+      "1221 (1221 en amarillo)",
+      "El cielo empieza a sangrar...",
+      "Balatro balatrez esta jugando balatro",
+      "¿Recuerdas la fecha? Algo grande empezó en 2025…",
+      "El evento... fue cancelado. O eso dijeron.",
+      "¿Estás seguro de que eso era un código?",
+      "El canal cambió… ahora solo hay ruido.",
+      "¿Quién es ese tal \"mike\"?",
+      "Ten cuidado con lo que repites… lalalalalala",
+      "Algunos códigos no están hechos para encontrarse.",
+      "Escuché que alguien rompió el juego con este intento.",
+      "A veces, lo más obvio es lo que más se oculta.",
+      "Estás cerca… pero aún no tan cerca.",
+      "¿Sabías que los errores también tienen recuerdos?",
+      "¿Por qué intentas un código que ni tú entiendes?",
+      "El mech no está dormido. Solo espera el código correcto.",
+      "Alguien escribió \"Revill\" en un archivo viejo...",
+      "¿Quién dijo que todo tenía que tener sentido?",
+      "Cuidado, estás tocando cosas de ChafaSafio.",
+      "Algo en tu pantalla se movió. ¿Lo viste?",
+      "¿Ese era un intento… o un accidente?",
+      "Esa palabra… ya fue usada por otro jugador.",
+      "No puedes resolverlo todo como si fuera un quiz.",
+      "El sistema respondió con una carcajada.",
+      "Código rechazado. Pero no olvidado.",
+      "¿Seguro que no estás mezclando las pistas?",
+      "Lo intentaste. Eso ya es algo.",
+      "Nada interesante sucede con esa clave… por ahora.",
+      "A veces, fallar también es una pista.",
+      "¿Quién es Neo realmente?",
+      "La respuesta correcta puede estar justo delante tuyo.",
+      "Eso activó una alerta. No es broma.",
+      "¿Y si te dijera que ya estuviste aquí antes?",
+      "¡Error aceptado! Vuelve a intentarlo.",
+      "Hubo una transmisión. Decía: “TVTIME activado”.",
+      "Alguien murmuró “Big Shot” al fallar ese intento.",
+      "Escuché que un tal “Spamtom” te está observando…",
+      "¿Acabas de invocar a Exo sin querer?",
+      "Eso parecía un código... hasta que lo escribiste.",
+      "Hay una figura... en el fondo. Solo aparece cuando fallas.",
+      "El sistema recuerda tus errores… todos.",
+      "La música sonó… pero no era la correcta.",
+      "Algo explotó en los archivos del servidor.",
+      "¿Y si pruebas con algo más raro?",
+      "A veces hay que mirar más allá del “intento”.",
+      "Muy lejos. Intenta algo más personal.",
+      "¿Tal vez deberías pensar como un “devourer”?",
+      "Esa clave era parte de un evento olvidado.",
+      "Estás escribiendo con miedo… se nota.",
+      "El archivo fue abierto, pero no tenía nada.",
+      "Esa no era la respuesta... pero sí una reacción.",
+      "Nada se activa. Pero algo te observa.",
+      "Hay un easter egg muy cerca. Esta no era."
+    ];
+
+    function mostrarPistaAleatoria() {
+      const indice = Math.floor(Math.random() * mensajesAleatorios.length);
+      const mensaje = mensajesAleatorios[indice];
+      const partes = mensaje.split(" ");
+      let html = "";
+      for (let i = 0; i < partes.length; i++) {
+        if (codigosDestacados.includes(partes[i].toLowerCase())) {
+          html += `<span class="codigoDestacado">${partes[i]}</span> `;
+        } else {
+          html += `${partes[i]} `;
+        }
+      }
+      mensajeCr3stianMC.innerHTML = html;
+      mensajeCr3stianMC.classList.add('visible');
+      setTimeout(() => {
+        mensajeCr3stianMC.classList.remove('visible');
+      }, 3000);
+    }
+
     codigoInput.addEventListener('keydown', function(e) {
       if (e.key === 'Enter') {
         const valor = this.value.trim().toLowerCase();
@@ -507,7 +501,6 @@ Suma 5: 50 + 150 = 200`;
         } else if (valor === "balatro") {
           cambiarFondo(bgVideo2, bgVideo1);
         } else if (valor === "delta") {
-          activarFondoDelta();
           cambiarFondo(bgVideo1, bgVideo2);
         } else if (valor === "chipaalex") {
           mostrarMensajeChipaalex();
@@ -525,8 +518,7 @@ Suma 5: 50 + 150 = 200`;
         } else if (redirecciones[valor]) {
           window.location.href = redirecciones[valor];
         } else {
-          alert("Ese destino no existe...");
-          mostrarPistaAleatoria(); // Mostrar pista aleatoria
+          mostrarPistaAleatoria();
         }
         this.value = '';
       }
