@@ -38,10 +38,6 @@
       pointer-events: none;
       transition: opacity 1s ease, filter 1s ease;
     }
-    .bgVideo.mostrar {
-      display: block;
-      opacity: 1;
-    }
     #fondo {
       position: fixed;
       top: 0;
@@ -55,9 +51,30 @@
       z-index: -1;
       transition: background 1s, opacity 1s;
     }
+    .bgVideo.mostrar {
+      display: block;
+    }
     @keyframes fondoFadeIn {
-      0% { opacity: 0; filter: brightness(0.3) blur(20px); transform: scale(1.1); }
-      100% { opacity: 1; filter: brightness(1) blur(0); transform: scale(1); }
+      0% {
+        opacity: 0;
+        filter: brightness(0.3) blur(20px);
+        transform: scale(1.1);
+      }
+      100% {
+        opacity: 1;
+        filter: brightness(1) blur(0);
+        transform: scale(1);
+      }
+    }
+    @keyframes fondoTransicion {
+      0% {
+        opacity: 1;
+        filter: blur(10px);
+      }
+      100% {
+        opacity: 0;
+        filter: blur(0px);
+      }
     }
     .bgAnimado {
       animation: fondoFadeIn 3s ease-out forwards;
@@ -96,8 +113,14 @@
       margin: 0;
       user-select: none;
     }
-    h1 { font-size: 2.5em; position: relative; }
-    #loginScreen h2 { font-size: 1.8em; color: #ccc; }
+    h1 {
+      font-size: 2.5em;
+      position: relative;
+    }
+    #loginScreen h2 {
+      font-size: 1.8em;
+      color: #ccc;
+    }
     input {
       width: 100%;
       padding: 12px 15px;
@@ -108,7 +131,9 @@
       outline: none;
       font-family: 'DeltaruneFont', monospace;
     }
-    input::placeholder { color: #ccc; }
+    input::placeholder {
+      color: #ccc;
+    }
     @keyframes subir {
       to {
         transform: translateY(0);
@@ -208,15 +233,17 @@
     <div id="mensajeCr3stianMC"></div>
   </div>
   <img id="easterEggGif" src="easter-egg.gif" alt="Easter Egg" />
+  <!-- Músicas -->
   <audio id="bgMusicInitial" src="back1.mp3" autoplay loop></audio>
   <audio id="bgMusicMain" src="breaker.mp3" loop></audio>
   <audio id="bgEnterSound" src="enter.mp3"></audio>
-
   <script>
-    const loginInput = document.getElementById('loginInput');
     const loginScreen = document.getElementById('loginScreen');
     const mainContent = document.getElementById('mainContent');
+    const loginInput = document.getElementById('loginInput');
     const codigoInput = document.getElementById('codigo');
+    const bgVideo1 = document.getElementById('bgVideo1');
+    const bgVideo2 = document.getElementById('bgVideo2');
     const animacionNumeros = document.getElementById('animacionNumeros');
     const easterEggGif = document.getElementById('easterEggGif');
     const mensajeChipaalex = document.getElementById('mensajeChipaalex');
@@ -225,91 +252,180 @@
     const bgMusicInitial = document.getElementById('bgMusicInitial');
     const bgMusicMain = document.getElementById('bgMusicMain');
     const bgEnterSound = document.getElementById('bgEnterSound');
-    const fondo = document.getElementById('fondo');
-    const bgVideo1 = document.getElementById('bgVideo1');
-    const bgVideo2 = document.getElementById('bgVideo2');
-
     const redirecciones = {
-      "tenna": "https://deltarune.com",
-      "sir": "https://tusitio.com/sir.png",
-      "lalalalalala": "https://www.mediafire.com/file/oo8zq1z9q4g0qvm/historianeock_1_%25281%2529.wav/file",
-      "exo": "https://tusitio.com/exo.png",
-      "nameless": "https://deltarune.com",
-      "2025": "https://tusitio.com/2025.png",
-      "estonoesuncodigo": "https://tusitio.com/estonoesuncodigo.png",
-      "weird": "https://deltarune.com",
-      "chafasafio6en2025": "https://tusitio.com/chafa.png",
-      "exomech": "https://deltarune.com",
-      "ralsei": "https://deltarune.com",
-      "quiz": "https://deltarune.com",
-      "neo": "https://deltarune.com",
-      "tvtime!!!!": "https://tusitio.com/tvtime.png",
-      "hardmode": "https://tusitio.com/hardmode.png",
-      "plantera": "https://tusitio.com/plantera.png",
-      "revill": "https://tusitio.com/revill.png"
+      "tenna": "https://deltarune.com",   
+      "sir": "https://tusitio.com/sir.png",   
+      "lalalalalala": "https://www.mediafire.com/file/oo8zq1z9q4g0qvm/historianeock_1_%25281%2529.wav/file",   
+      "exo": "https://tusitio.com/exo.png",   
+      "nameless": "https://deltarune.com",   
+      "2025": "https://tusitio.com/2025.png",   
+      "estonoesuncodigo": "https://tusitio.com/estonoesuncodigo.png",   
+      "weird": "https://deltarune.com",   
+      "chafasafio6en2025": "https://tusitio.com/chafa.png",   
+      "exomech": "https://deltarune.com",   
+      "ralsei": "https://deltarune.com",   
+      "quiz": "https://deltarune.com",   
+      "neo": "https://deltarune.com",   
+      "tvtime!!!!": "https://tusitio.com/tvtime.png",   
+      "hardmode": "https://tusitio.com/hardmode.png",   
+      "plantera": "https://tusitio.com/plantera.png",   
+      "revill": "https://tusitio.com/revill.png"   
     };
 
     function cambiarFondo(videoToShow, videoToHide) {
-      videoToShow.classList.add('mostrar', 'bgAnimado');
-      videoToHide.classList.remove('mostrar', 'bgAnimado');
-      videoToHide.style.opacity = 0;
-    }
+      // Oculta suavemente el anterior
+      videoToHide.classList.remove('bgAnimado');
+      videoToHide.classList.add('desaparecer');
+      let deltaActivado = false;
 
-    function activarFondoDelta() {
-      fondo.style.transition = "background 1s";
-      fondo.style.background = "black";
-      fondo.style.opacity = "1";
-      setTimeout(() => {
-        fondo.style.backgroundImage = "url('fondo-delta.png')";
-        fondo.style.backgroundSize = "cover";
-        fondo.style.backgroundPosition = "center";
-        fondo.style.transition = "opacity 1s";
+      function activarFondoDelta() {
+        if (deltaActivado) return;
+        deltaActivado = true;
+        const fondo = document.getElementById("fondo");
+        // Paso 1: pone la pantalla negra
+        fondo.style.transition = "background 1s";
+        fondo.style.background = "black";
         fondo.style.opacity = "1";
-      }, 1000);
+        // Paso 2: luego cambia a la imagen después de 1 segundo
+        setTimeout(() => {
+          fondo.style.backgroundImage = "url('fondo-delta.png')";
+          fondo.style.backgroundSize = "cover";
+          fondo.style.backgroundPosition = "center";
+          fondo.style.transition = "opacity 1s";
+          fondo.style.opacity = "1";
+        }, 1000);
+      }
+
+      // Asegura que el nuevo video esté visible y arriba
+      videoToShow.classList.add('mostrar');
+      videoToShow.classList.remove('desaparecer');
+      void videoToShow.offsetWidth;
+      videoToShow.classList.add('bgAnimado');
+
+      // Espera a que termine la animación de desaparición para ocultar completamente
+      setTimeout(() => {
+        videoToHide.classList.remove('mostrar');
+        videoToHide.classList.remove('desaparecer');
+        videoToHide.style.opacity = 0;
+      }, 1500);
     }
 
     loginInput.addEventListener('keydown', function(e) {
       if (e.key === 'Enter') {
-        if (this.value.trim() === 'blazium') {
+        const clave = this.value.trim();
+        if (clave === 'blazium') {
+          // Ocultar pantalla de login con animación
+          loginScreen.style.transition = 'opacity 1s ease-out, transform 1s ease-out';
           loginScreen.style.opacity = 0;
           loginScreen.style.transform = 'translateY(-40px)';
-          const fadeOut = setInterval(() => {
-            if (bgMusicInitial.volume > 0.05) {
-              bgMusicInitial.volume -= 0.05;
+          // Detener back1.mp3 con fade-out
+          const initialVolume = bgMusicInitial.volume;
+          let vol = initialVolume;
+          const fadeOutInterval = setInterval(() => {
+            if (vol > 0.01) {
+              vol -= 0.05;
+              bgMusicInitial.volume = vol;
             } else {
-              clearInterval(fadeOut);
+              clearInterval(fadeOutInterval);
               bgMusicInitial.pause();
               bgMusicInitial.currentTime = 0;
-              bgMusicInitial.volume = 1;
+              bgMusicInitial.volume = initialVolume;
             }
           }, 50);
+          // Reproducir enter.mp3 sin fade-in
           bgEnterSound.currentTime = 0;
           bgEnterSound.play();
+          // Iniciar música principal breaker.mp3 con fade-in
           bgMusicMain.volume = 0;
           bgMusicMain.play();
-          const fadeIn = setInterval(() => {
-            if (bgMusicMain.volume < 1) {
-              bgMusicMain.volume += 0.05;
+          let volMain = 0;
+          const fadeInInterval = setInterval(() => {
+            if (volMain < 1) {
+              volMain += 0.05;
+              bgMusicMain.volume = volMain;
             } else {
-              clearInterval(fadeIn);
+              clearInterval(fadeInInterval);
             }
           }, 50);
+          // Mostrar video de fondo
           cambiarFondo(bgVideo1, bgVideo2);
           setTimeout(() => {
             loginScreen.style.display = 'none';
+          }, 1000);
+          setTimeout(() => {
             mainContent.style.display = 'flex';
             requestAnimationFrame(() => {
               mainContent.style.opacity = 1;
               mainContent.style.transform = 'translateY(0)';
               codigoInput.focus();
             });
-          }, 1000);
+          }, 3000);
         } else {
           alert('Clave incorrecta');
           this.value = '';
         }
       }
     });
+
+    function animarNumeros() {
+      animacionNumeros.innerHTML = '';
+      const numeros = ['1', '7', '2', '0', '2', '5'];
+      const container = document.createElement('div');
+      container.classList.add('numeros-container');
+      animacionNumeros.appendChild(container);
+      const intervalo = 400;
+      numeros.forEach((num, index) => {
+        setTimeout(() => {
+          const span = document.createElement('span');
+          span.textContent = num;
+          span.classList.add('numero');
+          span.style.animation = 'subir 0.5s ease forwards';
+          container.appendChild(span);
+          if (index === numeros.length - 1) {
+            setTimeout(() => {
+              mostrarSumas();
+            }, 700);
+          }
+        }, index * intervalo);
+      });
+    }
+
+    function mostrarSumas() {
+      const texto = `Suma 1: 100 + 100 = 200
+Suma 2: 150 + 50 = 200
+Suma 3: 250 - 50 = 200
+Suma 4: 400 - 200 = 200
+Suma 5: 50 + 150 = 200`;
+      const divSumas = document.createElement('div');
+      divSumas.className = 'sumas';
+      divSumas.textContent = texto;
+      animacionNumeros.appendChild(divSumas);
+    }
+
+    function mostrarEasterEggGif() {
+      easterEggGif.style.display = 'block';
+      setTimeout(() => {
+        easterEggGif.style.display = 'none';
+      }, 5000);
+    }
+
+    function mostrarMensajeChipaalex() {
+      mensajeCr3stianMC.classList.remove('visible');
+      mensajeChipaalex.textContent = "chipaalex Este bro es la cabra";
+      mensajeChipaalex.classList.add('visible');
+      setTimeout(() => {
+        mensajeChipaalex.classList.remove('visible');
+      }, 5000);
+    }
+
+    function mostrarMensajeCr3stianMC() {
+      mensajeChipaalex.classList.remove('visible');
+      mensajeCr3stianMC.textContent = "Cr3stianMC Tha goat - El protagonista";
+      mensajeCr3stianMC.classList.add('visible');
+      setTimeout(() => {
+        mensajeCr3stianMC.classList.remove('visible');
+      }, 5000);
+    }
 
     codigoInput.addEventListener('keydown', function(e) {
       if (e.key === 'Enter') {
@@ -322,6 +438,7 @@
           cambiarFondo(bgVideo2, bgVideo1);
         } else if (valor === "delta") {
           activarFondoDelta();
+          cambiarFondo(bgVideo1, bgVideo2);
         } else if (valor === "chipaalex") {
           mostrarMensajeChipaalex();
         } else if (valor === "cr3stianmc") {
@@ -343,54 +460,6 @@
         this.value = '';
       }
     });
-
-    function animarNumeros() {
-      animacionNumeros.innerHTML = '';
-      const numeros = ['1', '7', '2', '0', '2', '5'];
-      const container = document.createElement('div');
-      container.classList.add('numeros-container');
-      animacionNumeros.appendChild(container);
-      const intervalo = 400;
-      numeros.forEach((num, i) => {
-        setTimeout(() => {
-          const span = document.createElement('span');
-          span.textContent = num;
-          span.classList.add('numero');
-          span.style.animation = 'subir 0.5s ease forwards';
-          container.appendChild(span);
-          if (i === numeros.length - 1) {
-            setTimeout(mostrarSumas, 700);
-          }
-        }, i * intervalo);
-      });
-    }
-
-    function mostrarSumas() {
-      const texto = `Suma 1: 100 + 100 = 200\nSuma 2: 150 + 50 = 200\nSuma 3: 250 - 50 = 200\nSuma 4: 400 - 200 = 200\nSuma 5: 50 + 150 = 200`;
-      const div = document.createElement('div');
-      div.className = 'sumas';
-      div.textContent = texto;
-      animacionNumeros.appendChild(div);
-    }
-
-    function mostrarEasterEggGif() {
-      easterEggGif.style.display = 'block';
-      setTimeout(() => { easterEggGif.style.display = 'none'; }, 5000);
-    }
-
-    function mostrarMensajeChipaalex() {
-      mensajeCr3stianMC.classList.remove('visible');
-      mensajeChipaalex.textContent = "chipaalex Este bro es la cabra";
-      mensajeChipaalex.classList.add('visible');
-      setTimeout(() => mensajeChipaalex.classList.remove('visible'), 5000);
-    }
-
-    function mostrarMensajeCr3stianMC() {
-      mensajeChipaalex.classList.remove('visible');
-      mensajeCr3stianMC.textContent = "Cr3stianMC Tha goat - El protagonista";
-      mensajeCr3stianMC.classList.add('visible');
-      setTimeout(() => mensajeCr3stianMC.classList.remove('visible'), 5000);
-    }
   </script>
 </body>
 </html>
