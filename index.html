@@ -102,9 +102,9 @@
       padding: 20px;
       z-index: 2;
       background-color: rgba(0,0,0,0.8);
-      border-radius: 10px;
+      border-radius: 0px;
       width: 320px;
-      box-shadow: 0 0 15px white;
+      box-shadow: 0 0 0px white;
       opacity: 0;
       transform: translateY(40px);
       animation: subir 1s ease-out forwards;
@@ -276,25 +276,6 @@
       // Oculta suavemente el anterior
       videoToHide.classList.remove('bgAnimado');
       videoToHide.classList.add('desaparecer');
-      let deltaActivado = false;
-
-      function activarFondoDelta() {
-        if (deltaActivado) return;
-        deltaActivado = true;
-        const fondo = document.getElementById("fondo");
-        // Paso 1: pone la pantalla negra
-        fondo.style.transition = "background 1s";
-        fondo.style.background = "black";
-        fondo.style.opacity = "1";
-        // Paso 2: luego cambia a la imagen después de 1 segundo
-        setTimeout(() => {
-          fondo.style.backgroundImage = "url('fondo-delta.png')";
-          fondo.style.backgroundSize = "cover";
-          fondo.style.backgroundPosition = "center";
-          fondo.style.transition = "opacity 1s";
-          fondo.style.opacity = "1";
-        }, 1000);
-      }
 
       // Asegura que el nuevo video esté visible y arriba
       videoToShow.classList.add('mostrar');
@@ -437,8 +418,7 @@ Suma 5: 50 + 150 = 200`;
         } else if (valor === "balatro") {
           cambiarFondo(bgVideo2, bgVideo1);
         } else if (valor === "delta") {
-          activarFondoDelta();
-          cambiarFondo(bgVideo1, bgVideo2);
+          cambiarFondo(bgVideo1, bgVideo2); // Cambia al video vid.mp4
         } else if (valor === "chipaalex") {
           mostrarMensajeChipaalex();
         } else if (valor === "cr3stianmc") {
