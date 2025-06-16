@@ -200,7 +200,6 @@
   </style>
 </head>
 <body>
-<body>
   <img id="imagenLunark" src="lunark.png" alt="Lunark" />
   <video autoplay muted loop id="bgVideo1" class="bgVideo" playsinline>
     <source src="vid.mp4" type="video/mp4" />
@@ -237,7 +236,6 @@
     const mensajeChipaalex = document.getElementById('mensajeChipaalex');
     const mensajeCr3stianMC = document.getElementById('mensajeCr3stianMC');
     const imagenLunark = document.getElementById('imagenLunark');
-
     const bgMusicInitial = document.getElementById('bgMusicInitial');
     const bgMusicMain = document.getElementById('bgMusicMain');
 
@@ -262,6 +260,17 @@
     };
 
     function cambiarFondo(videoToShow, videoToHide) {
+      // Reiniciar y reproducir el video principal
+      if (videoToShow !== videoToHide) {
+        videoToShow.currentTime = 0;
+        videoToShow.play();
+      }
+
+      // Detener y resetear el otro video
+      videoToHide.pause();
+      videoToHide.currentTime = 0;
+
+      // Ocultar el video anterior con animación
       videoToHide.style.animation = 'fondoTransicion 1s ease-out forwards';
       setTimeout(() => {
         videoToHide.classList.remove('mostrar');
@@ -269,6 +278,7 @@
         videoToHide.style.animation = '';
       }, 1000);
 
+      // Mostrar el nuevo video con animación de aparición
       videoToShow.classList.add('mostrar');
       void videoToShow.offsetWidth;
       videoToShow.style.animation = 'fondoFadeIn 1.5s ease-out forwards';
@@ -279,19 +289,13 @@
       if (e.key === 'Enter') {
         const clave = this.value.trim();
         if (clave === 'blazium') {
-          // Ocultar pantalla de login con animación
           loginScreen.style.transition = 'opacity 1s ease-out, transform 1s ease-out';
           loginScreen.style.opacity = 0;
           loginScreen.style.transform = 'translateY(-40px)';
-
-          // Detener back1.mp3 y empezar breaker.mp3 con fade-in
           bgMusicInitial.pause();
           bgMusicInitial.currentTime = 0;
-
-          // Iniciar música principal con fade-in
           bgMusicMain.volume = 0;
           bgMusicMain.play();
-
           let vol = 0;
           const interval = setInterval(() => {
             if (vol < 1) {
@@ -301,16 +305,12 @@
               clearInterval(interval);
             }
           }, 50);
-
-          // Mostrar video de fondo
           bgVideo1.classList.add('mostrar');
           void bgVideo1.offsetWidth;
           bgVideo1.classList.add('bgAnimado');
-
           setTimeout(() => {
             loginScreen.style.display = 'none';
           }, 1000);
-
           setTimeout(() => {
             mainContent.style.display = 'flex';
             requestAnimationFrame(() => {
@@ -350,11 +350,7 @@
     }
 
     function mostrarSumas() {
-      const texto = `Suma 1: 100 + 100 = 200
-Suma 2: 150 + 50 = 200
-Suma 3: 250 - 50 = 200
-Suma 4: 400 - 200 = 200
-Suma 5: 50 + 150 = 200`;
+      const texto = `Suma 1: 100 + 100 = 200\nSuma 2: 150 + 50 = 200\nSuma 3: 250 - 50 = 200\nSuma 4: 400 - 200 = 200\nSuma 5: 50 + 150 = 200`;
       const divSumas = document.createElement('div');
       divSumas.className = 'sumas';
       divSumas.textContent = texto;
@@ -384,14 +380,6 @@ Suma 5: 50 + 150 = 200`;
       setTimeout(() => {
         mensajeCr3stianMC.classList.remove('visible');
       }, 5000);
-    }
-
-    function cambiarFondo(videoToShow, videoToHide) {
-      videoToShow.classList.add('mostrar');
-      void videoToShow.offsetWidth;
-      videoToShow.style.animation = 'fondoFadeIn 1.5s ease-out forwards';
-      videoToShow.style.opacity = 1;
-      videoToHide.style.opacity = 0;
     }
 
     codigoInput.addEventListener('keydown', function(e) {
