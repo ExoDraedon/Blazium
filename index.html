@@ -213,6 +213,7 @@
   </style>
 </head>
 <body>
+  <img id="imagenFem" src="imagenes/fem.png" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 450px; opacity: 1; transition: opacity 5s ease;" alt="Fem">
   <div id="fondo"></div>
   <img id="imagenLunark" src="imagenes/lunark.png" alt="Lunark" />
   <video autoplay muted loop id="bgVideo1" class="bgVideo" playsinline>
@@ -237,6 +238,8 @@
   <audio id="bgMusicInitial" src="sounds/back1.mp3" autoplay loop></audio>
   <audio id="bgMusicMain" src="sounds/breaker.mp3" loop></audio>
   <audio id="bgEnterSound" src="sounds/enter.mp3"></audio>
+  <audio id="getoutSound" src="sounds/getout.mp3"></audio>
+ <audio id="tvtimeSound" src="sounds/tvtime.mp3"></audio>
   <script>
     const loginScreen = document.getElementById('loginScreen');
     const mainContent = document.getElementById('mainContent');
