@@ -191,11 +191,10 @@
       color: #39ff14;
       font-size: 1.2em;
       margin-top: 15px;
-      transition: opacity 0.5s ease-in, transform 0.5s ease-in;
+      transition: opacity 1.5s ease-in;
     }
     .visible {
       opacity: 1 !important;
-      transform: translateY(0);
     }
     #imagenLunark {
       display: none;
@@ -215,12 +214,12 @@
 </head>
 <body>
   <div id="fondo"></div>
-  <img id="imagenLunark" src="lunark.png" alt="Lunark" />
+  <img id="imagenLunark" src="imagenes/lunark.png" alt="Lunark" />
   <video autoplay muted loop id="bgVideo1" class="bgVideo" playsinline>
-    <source src="vid.mp4" type="video/mp4" />
+    <source src="fondos/vid.mp4" type="video/mp4" />
   </video>
   <video autoplay muted loop id="bgVideo2" class="bgVideo" playsinline>
-    <source src="balatro.mp4" type="video/mp4" />
+    <source src="fondos/balatro.mp4" type="video/mp4" />
   </video>
   <div id="loginScreen">
     <h2>Ingresa la clave</h2>
@@ -235,11 +234,9 @@
   </div>
   <img id="easterEggGif" src="easter-egg.gif" alt="Easter Egg" />
   <!-- Músicas -->
-  <audio id="bgMusicInitial" src="back1.mp3" autoplay loop></audio>
-  <audio id="bgMusicMain" src="breaker.mp3" loop></audio>
-  <audio id="bgEnterSound" src="enter.mp3"></audio>
-  <audio id="tvTimeSound" src="tvtime.mp3"></audio> <!-- Nuevo sonido -->
-
+  <audio id="bgMusicInitial" src="sounds/back1.mp3" autoplay loop></audio>
+  <audio id="bgMusicMain" src="sounds/breaker.mp3" loop></audio>
+  <audio id="bgEnterSound" src="sounds/enter.mp3"></audio>
   <script>
     const loginScreen = document.getElementById('loginScreen');
     const mainContent = document.getElementById('mainContent');
@@ -255,37 +252,39 @@
     const bgMusicInitial = document.getElementById('bgMusicInitial');
     const bgMusicMain = document.getElementById('bgMusicMain');
     const bgEnterSound = document.getElementById('bgEnterSound');
-    const tvTimeSound = document.getElementById('tvTimeSound'); // Nuevo
 
     const redirecciones = {
-      "tenna": "https://deltarune.com", 
-      "sir": "https://tusitio.com/sir.png", 
-      "lalalalalala": "https://www.mediafire.com/file/oo8zq1z9q4g0qvm/historianeock_1_(1).wav/file", 
-      "exo": "https://tusitio.com/exo.png", 
-      "nameless": "https://deltarune.com", 
-      "2025": "https://tusitio.com/2025.png", 
-      "estonoesuncodigo": "https://tusitio.com/estonoesuncodigo.png", 
-      "weird": "https://deltarune.com", 
-      "chafasafio6en2025": "https://tusitio.com/chafa.png", 
-      "exomech": "https://deltarune.com", 
-      "ralsei": "https://deltarune.com", 
-      "quiz": "https://deltarune.com", 
-      "neo": "https://deltarune.com", 
-      "tvtime!!!!": "https://tusitio.com/tvtime.png", 
-      "hardmode": "https://tusitio.com/hardmode.png", 
-      "plantera": "https://tusitio.com/plantera.png", 
-      "revill": "https://tusitio.com/revill.png" 
+      "tenna": "https://deltarune.com",   
+      "sir": "https://tusitio.com/sir.png",   
+      "lalalalalala": "https://www.mediafire.com/file/oo8zq1z9q4g0qvm/historianeock_1_(1).wav/file",   
+      "exo": "https://tusitio.com/exo.png",   
+      "nameless": "https://deltarune.com",   
+      "2025": "https://tusitio.com/2025.png",   
+      "estonoesuncodigo": "https://tusitio.com/estonoesuncodigo.png",   
+      "weird": "https://deltarune.com",   
+      "chafasafio6en2025": "https://tusitio.com/chafa.png",   
+      "exomech": "https://deltarune.com",   
+      "ralsei": "https://deltarune.com",   
+      "quiz": "https://deltarune.com",   
+      "neo": "https://deltarune.com",   
+      "tvtime!!!!": "https://tusitio.com/tvtime.png",   
+      "hardmode": "https://tusitio.com/hardmode.png",   
+      "plantera": "https://tusitio.com/plantera.png",   
+      "revill": "https://tusitio.com/revill.png"   
     };
 
     function cambiarFondo(videoToShow, videoToHide) {
+      // Oculta suavemente el anterior
       videoToHide.classList.remove('bgAnimado');
       videoToHide.classList.add('desaparecer');
 
+      // Asegura que el nuevo video esté visible y arriba
       videoToShow.classList.add('mostrar');
       videoToShow.classList.remove('desaparecer');
       void videoToShow.offsetWidth;
       videoToShow.classList.add('bgAnimado');
 
+      // Espera a que termine la animación de desaparición para ocultar completamente
       setTimeout(() => {
         videoToHide.classList.remove('mostrar');
         videoToHide.classList.remove('desaparecer');
@@ -297,9 +296,11 @@
       if (e.key === 'Enter') {
         const clave = this.value.trim();
         if (clave === 'blazium') {
+          // Ocultar pantalla de login con animación
           loginScreen.style.transition = 'opacity 1s ease-out, transform 1s ease-out';
           loginScreen.style.opacity = 0;
           loginScreen.style.transform = 'translateY(-40px)';
+          // Detener back1.mp3 con fade-out
           const initialVolume = bgMusicInitial.volume;
           let vol = initialVolume;
           const fadeOutInterval = setInterval(() => {
@@ -313,8 +314,10 @@
               bgMusicInitial.volume = initialVolume;
             }
           }, 50);
+          // Reproducir enter.mp3 sin fade-in
           bgEnterSound.currentTime = 0;
           bgEnterSound.play();
+          // Iniciar música principal breaker.mp3 con fade-in
           bgMusicMain.volume = 0;
           bgMusicMain.play();
           let volMain = 0;
@@ -326,6 +329,7 @@
               clearInterval(fadeInInterval);
             }
           }, 50);
+          // Mostrar video de fondo
           cambiarFondo(bgVideo1, bgVideo2);
           setTimeout(() => {
             loginScreen.style.display = 'none';
@@ -369,7 +373,11 @@
     }
 
     function mostrarSumas() {
-      const texto = `Suma 1: 100 + 100 = 200\nSuma 2: 150 + 50 = 200\nSuma 3: 250 - 50 = 200\nSuma 4: 400 - 200 = 200\nSuma 5: 50 + 150 = 200`;
+      const texto = `Suma 1: 100 + 100 = 200
+Suma 2: 150 + 50 = 200
+Suma 3: 250 - 50 = 200
+Suma 4: 400 - 200 = 200
+Suma 5: 50 + 150 = 200`;
       const divSumas = document.createElement('div');
       divSumas.className = 'sumas';
       divSumas.textContent = texto;
@@ -385,7 +393,7 @@
 
     function mostrarMensajeChipaalex() {
       mensajeCr3stianMC.classList.remove('visible');
-      mensajeChipaalex.textContent = 'chipaalex Este bro es la cabra';
+      mensajeChipaalex.textContent = "chipaalex Este bro es la cabra";
       mensajeChipaalex.classList.add('visible');
       setTimeout(() => {
         mensajeChipaalex.classList.remove('visible');
@@ -394,15 +402,16 @@
 
     function mostrarMensajeCr3stianMC() {
       mensajeChipaalex.classList.remove('visible');
-      mensajeCr3stianMC.textContent = 'Cr3stianMC Tha goat - El protagonista';
+      mensajeCr3stianMC.textContent = "Cr3stianMC Tha goat - El protagonista";
       mensajeCr3stianMC.classList.add('visible');
       setTimeout(() => {
         mensajeCr3stianMC.classList.remove('visible');
       }, 5000);
     }
 
-    function mostrarPistaAleatoria(mensaje) {
-      mensajeCr3stianMC.textContent = mensaje;
+    function mostrarPistaAleatoria() {
+      const indice = Math.floor(Math.random() * pistas.length);
+      mensajeCr3stianMC.textContent = pistas[indice];
       mensajeCr3stianMC.classList.add('visible');
       setTimeout(() => {
         mensajeCr3stianMC.classList.remove('visible');
@@ -467,16 +476,6 @@
       "Hay un easter egg muy cerca. Esta no era."
     ];
 
-    function mostrarPistaAleatoria() {
-      const indice = Math.floor(Math.random() * pistas.length);
-      const mensaje = pistas[indice];
-      mensajeCr3stianMC.textContent = mensaje;
-      mensajeCr3stianMC.classList.add('visible');
-      setTimeout(() => {
-        mensajeCr3stianMC.classList.remove('visible');
-      }, 3000);
-    }
-
     codigoInput.addEventListener('keydown', function(e) {
       if (e.key === 'Enter') {
         const valor = this.value.trim().toLowerCase();
@@ -501,9 +500,6 @@
             imagenLunark.style.display = 'none';
             imagenLunark.classList.remove('fade');
           }, 1000);
-        } else if (valor === "tvtime") {
-          tvTimeSound.currentTime = 0;
-          tvTimeSound.play();
         } else if (redirecciones[valor]) {
           window.location.href = redirecciones[valor];
         } else {
