@@ -222,7 +222,6 @@
         opacity: 1;
         transition: opacity 5s ease;
       }
-      /* Estilos nuevos para Joker, Ford y End */
       #jokerImage {
         display: none;
         position: fixed;
@@ -286,6 +285,16 @@
         border-radius: 10px;
         font-size: 1.5em;
         z-index: 10000;
+      }
+      .scrollableText {
+        max-height: 300px;
+        overflow-y: scroll;
+        padding: 10px;
+        background-color: rgba(0, 0, 0, 0.8);
+        border-radius: 10px;
+        color: white;
+        font-family: 'DeltaruneFont', monospace;
+        font-size: 1.1em;
       }
     </style>
   </head>
@@ -576,8 +585,12 @@
             mostrarEasterEggGif();
           } else if (valor === "balatro") {
             cambiarFondo(bgVideo2, bgVideo1);
+            // Add exit animation for balatro
+            bgVideo1.classList.add('desaparecer');
           } else if (valor === "delta") {
             cambiarFondo(bgVideo1, bgVideo2);
+            // Add exit animation for delta
+            bgVideo2.classList.add('desaparecer');
           } else if (valor === "chipaalex") {
             mostrarMensajeChipaalex();
           } else if (valor === "cr3stianmc") {
@@ -591,6 +604,27 @@
               imagenLunark.style.display = 'none';
               imagenLunark.classList.remove('fade');
             }, 1000);
+          } else if (valor === "nameless") {
+            // Create scrollable text for nameless code
+            const textContainer = document.createElement('div');
+            textContainer.classList.add('scrollableText');
+            textContainer.textContent = "Este es un acertijo que debes resolver...\n" +
+              "Si encuentras el código correcto, podrá desvelar lo que está oculto...\n" +
+              "Pistas: el código está relacionado con un personaje misterioso...\n" +
+              "Piensa, ¿quién podría ser?\n\n" +
+              "Usa tu conocimiento de los personajes para hallar la respuesta correcta.\n" +
+              "Recuerda... la clave está en las palabras.\n";
+            document.body.appendChild(textContainer);
+          } else if (valor === "neo") {
+            // Acertijo para resolver el código de Neo
+            alert("Para resolver el código de Neo:\n\n" +
+              "Este es un personaje que en el juego... no tiene nombre.\n" +
+              "En cada respuesta, escucha atentamente su voz... y descubre su verdadero propósito.\n" +
+              "Su enigma se encuentra en el lugar menos esperado.");
+          } else if (valor === "spamton") {
+            alert("El acertijo de Spamton...\n" +
+              "La respuesta está en los números. Busca el patrón entre las palabras y los símbolos...\n" +
+              "Solo aquellos que miran más allá de lo visible pueden encontrar la verdad.");
           } else if (redirecciones[valor]) {
             window.location.href = redirecciones[valor];
           } else {
