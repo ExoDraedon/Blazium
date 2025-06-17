@@ -210,10 +210,22 @@
       #imagenLunark.fade {
         opacity: 0;
       }
+      #imagenFem {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        object-fit: cover;
+        z-index: 9999;
+        opacity: 1;
+        transition: opacity 5s ease;
+      }
     </style>
   </head>
   <body>
-    <img id="imagenFem" src="imagenes/fem.png" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 450px; opacity: 1; transition: opacity 5s ease;" alt="Fem">
+    <img id="imagenFem" src="imagenes/fem.png" alt="Fem">
     <div id="fondo"></div>
     <img id="imagenLunark" src="imagenes/lunark.png" alt="Lunark" />
     <video autoplay muted loop id="bgVideo1" class="bgVideo" playsinline>
@@ -240,6 +252,7 @@
     <audio id="bgEnterSound" src="sounds/enter.mp3"></audio>
     <audio id="getoutSound" src="sounds/getout.mp3"></audio>
     <audio id="tvtimeSound" src="sounds/tvtime.mp3"></audio>
+    <audio id="boomSound" src="sounds/boom.mp3"></audio>
     <script>
       const loginScreen = document.getElementById('loginScreen');
       const mainContent = document.getElementById('mainContent');
@@ -258,6 +271,7 @@
       const bgEnterSound = document.getElementById('bgEnterSound');
       const getoutSound = document.getElementById('getoutSound');
       const tvtimeSound = document.getElementById('tvtimeSound');
+      const boomSound = document.getElementById('boomSound');
 
       const redirecciones = {
         "tenna": "https://deltarune.com",   
@@ -477,12 +491,14 @@
           const valor = this.value.trim().toLowerCase();
           if (valor === "femboys4ever") {
             imagenFem.style.display = 'block';
+            boomSound.currentTime = 0;
+            boomSound.play();
             setTimeout(() => {
               imagenFem.style.opacity = 0;
             }, 0);
             setTimeout(() => {
               imagenFem.style.display = 'none';
-            }, 5000);
+            }, 8000);  // La imagen permanece visible por 8 segundos
           } else if (valor === "hippopotomonstroesquipedaliofobia") {
             getoutSound.currentTime = 0;
             getoutSound.play();
