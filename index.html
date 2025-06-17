@@ -250,7 +250,7 @@
   </div>
   <img id="easterEggGif" src="easter-egg.gif" alt="Easter Egg" />
 
-  <!-- Músicas -->
+  <!-- Sonidos -->
   <audio id="bgMusicInitial" src="back1.mp3" autoplay loop></audio>
   <audio id="bgMusicMain" src="breaker.mp3" loop></audio>
   <audio id="bgEnterSound" src="enter.mp3"></audio>
@@ -276,6 +276,8 @@
     const tvTimeSound = document.getElementById('tvTimeSound');
     const getOutSound = document.getElementById('getOutSound');
 
+    let pistaTimeout = null;
+
     const redirecciones = {
       "tenna": "https://deltarune.com",  
       "sir": "https://tusitio.com/sir.png",  
@@ -295,8 +297,6 @@
       "plantera": "https://tusitio.com/plantera.png",  
       "revill": "https://tusitio.com/revill.png" 
     };
-
-    let pistaTimeout = null;
 
     const frasesError = [
       "¿Recuerdas la fecha? Algo grande empezó en 2025…",
