@@ -1,4 +1,4 @@
-ee<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
@@ -290,7 +290,6 @@ ee<!DOCTYPE html>
   </head>
   <body>
     <img id="imagenFem" src="imagenes/fem.png" alt="Fem">
-    <img id="imagenOjo" src="imagenes/fem.png" alt="Ojo">
     <div id="fondo"></div>
     <img id="imagenLunark" src="imagenes/lunark.png" alt="Lunark" />
     <video autoplay muted loop id="bgVideo1" class="bgVideo" playsinline>
@@ -332,7 +331,6 @@ ee<!DOCTYPE html>
       const mensajeCr3stianMC = document.getElementById('mensajeCr3stianMC');
       const imagenLunark = document.getElementById('imagenLunark');
       const imagenFem = document.getElementById('imagenFem');
-      const imagenOjo = document.getElementById('imagenOjo');
       const bgMusicInitial = document.getElementById('bgMusicInitial');
       const bgMusicMain = document.getElementById('bgMusicMain');
       const bgEnterSound = document.getElementById('bgEnterSound');
@@ -340,29 +338,27 @@ ee<!DOCTYPE html>
       const tvtimeSound = document.getElementById('tvtimeSound');
       const gasterSound = document.getElementById('gasterSound');
       const boomSound = document.getElementById('boomSound');
-
       const redirecciones = {
-        "tenna": "https://deltarune.com",
-        "oscuridadmisma": "https://www.mediafire.com/file/xw6zeadskg9589e/NAMELESS.txt/file", 
-        "sir": "https://www.mediafire.com/folder/hh07080tlx5te/code",   
-        "lalalalalala": "https://www.mediafire.com/file/oo8zq1z9q4g0qvm/historianeock_1_(1).wav/file",   
-        "exo": "https://tusitio.com/exo.png",   
-        "2025": "https://tusitio.com/2025.png",   
-        "estonoesuncodigo": "https://tusitio.com/estonoesuncodigo.png",   
-        "se mi sagrado": "https://www.mediafire.com/file/0s8jcr9z1a2sjok/SIR.txt/file",   
-        "chafasafio6en2025": "https://tusitio.com/chafa.png",   
-        "exomech": "https://deltarune.com",   
-        "ralsei": "https://deltarune.com",   
-        "quiz": "https://www.mediafire.com/file/8dluqi2deqanfd3/QUIZZ.txt/file",   
-        "neo": "https://app.mediafire.com/folder/a3qf34fitcot4",   
-        "tvtime!!!!": "https://tusitio.com/tvtime.png",   
-        "hardmode": "https://tusitio.com/hardmode.png",
-        "¿¿¿¿¿?????": "https://i.pinimg.com/736x/c0/7e/7b/c07e7b0706d3d9a98c64c67af7050bab.jpg",
-        "reberb": "https://www.mediafire.com/folder/rss3jc61k60yx/sound",   
-        "plantera": "https://tusitio.com/plantera.png",   
-        "revill": "https://tusitio.com/revill.png"   
+        "tenna": "https://deltarune.com", 
+        "oscuridadmisma": "https://www.mediafire.com/file/xw6zeadskg9589e/NAMELESS.txt/file",  
+        "sir": "https://www.mediafire.com/folder/hh07080tlx5te/code",    
+        "lalalalalala": "https://www.mediafire.com/file/oo8zq1z9q4g0qvm/historianeock_1_(1).wav/file",    
+        "exo": "https://tusitio.com/exo.png",    
+        "2025": "https://tusitio.com/2025.png",    
+        "estonoesuncodigo": "https://tusitio.com/estonoesuncodigo.png",    
+        "se mi sagrado": "https://www.mediafire.com/file/0s8jcr9z1a2sjok/SIR.txt/file",    
+        "chafasafio6en2025": "https://tusitio.com/chafa.png",    
+        "exomech": "https://deltarune.com",    
+        "ralsei": "https://deltarune.com",    
+        "quiz": "https://www.mediafire.com/file/8dluqi2deqanfd3/QUIZZ.txt/file",    
+        "neo": "https://app.mediafire.com/folder/a3qf34fitcot4",    
+        "tvtime!!!!": "https://tusitio.com/tvtime.png",    
+        "hardmode": "https://tusitio.com/hardmode.png", 
+        "¿¿¿¿¿?????": "https://i.pinimg.com/736x/c0/7e/7b/c07e7b0706d3d9a98c64c67af7050bab.jpg", 
+        "reberb": "https://www.mediafire.com/folder/rss3jc61k60yx/sound",    
+        "plantera": "https://tusitio.com/plantera.png",    
+        "revill": "https://tusitio.com/revill.png"    
       };
-
       function cambiarFondo(videoToShow, videoToHide) {
         videoToHide.classList.remove('bgAnimado');
         videoToHide.classList.add('desaparecer');
@@ -376,7 +372,6 @@ ee<!DOCTYPE html>
           videoToHide.style.opacity = 0;
         }, 1500);
       }
-
       loginInput.addEventListener('keydown', function(e) {
         if (e.key === 'Enter') {
           const clave = this.value.trim();
@@ -428,7 +423,6 @@ ee<!DOCTYPE html>
           }
         }
       });
-
       function animarNumeros() {
         animacionNumeros.innerHTML = '';
         const numeros = ['1', '7', '2', '0', '2', '5'];
@@ -451,7 +445,6 @@ ee<!DOCTYPE html>
           }, index * intervalo);
         });
       }
-
       function mostrarSumas() {
         const texto = `Suma 1: 100 + 100 = 200
   Suma 2: 150 + 50 = 200
@@ -463,14 +456,12 @@ ee<!DOCTYPE html>
         divSumas.textContent = texto;
         animacionNumeros.appendChild(divSumas);
       }
-
       function mostrarEasterEggGif() {
         easterEggGif.style.display = 'block';
         setTimeout(() => {
           easterEggGif.style.display = 'none';
         }, 5000);
       }
-
       function mostrarMensajeChipaalex() {
         mensajeCr3stianMC.classList.remove('visible');
         mensajeChipaalex.textContent = "chipaalex Este bro es la cabra";
@@ -479,7 +470,6 @@ ee<!DOCTYPE html>
           mensajeChipaalex.classList.remove('visible');
         }, 5000);
       }
-
       function mostrarMensajeCr3stianMC() {
         mensajeChipaalex.classList.remove('visible');
         mensajeCr3stianMC.textContent = "Cr3stianMC Tha goat - El protagonista";
@@ -488,7 +478,6 @@ ee<!DOCTYPE html>
           mensajeCr3stianMC.classList.remove('visible');
         }, 5000);
       }
-
       function mostrarPistaAleatoria() {
         const indice = Math.floor(Math.random() * pistas.length);
         mensajeCr3stianMC.textContent = pistas[indice];
@@ -497,7 +486,6 @@ ee<!DOCTYPE html>
           mensajeCr3stianMC.classList.remove('visible');
         }, 3000);
       }
-
       const pistas = [
         "Recuerdas a tenna? (tenna en amarillo)",
         "Tal vez lo recuerdes por DELTArune (delta en amarillo y solo la d en mayuscula)",
@@ -521,7 +509,7 @@ ee<!DOCTYPE html>
         "¿Quién dijo que todo tenía que tener sentido?",
         "Cuidado, estás tocando cosas de ChafaSafio.",
         "Algo en tu pantalla se movió. ¿Lo viste?",
-        "¿Ese era un intento… o un accidente?",
+        "Ese era un intento… o un accidente.",
         "Esa palabra… ya fue usada por otro jugador.",
         "No puedes resolverlo todo como si fuera un quiz.",
         "El sistema respondió con una carcajada.",
@@ -555,7 +543,6 @@ ee<!DOCTYPE html>
         "Nada se activa. Pero algo te observa.",
         "Hay un easter egg muy cerca. Esta no era."
       ];
-
       codigoInput.addEventListener('keydown', function(e) {
         if (e.key === 'Enter') {
           const valor = this.value.trim().toLowerCase();
@@ -572,7 +559,7 @@ ee<!DOCTYPE html>
           } else if (valor === "gaster") {
             gasterSound.currentTime = 0;
             gasterSound.play();
-            } else if (valor === "hippopotomonstroesquipedaliofobia") {
+          } else if (valor === "hippopotomonstroesquipedaliofobia") {
             getoutSound.currentTime = 0;
             getoutSound.play();
           } else if (valor === "tvtime") {
