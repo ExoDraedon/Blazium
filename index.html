@@ -140,41 +140,6 @@
           opacity: 1;
         }
       }
-      .numeros-container {
-        display: flex;
-        gap: 8px;
-        justify-content: center;
-        margin-bottom: 12px;
-        user-select: none;
-      }
-      .numero {
-        opacity: 0;
-        transform: translateY(10px);
-        animation-fill-mode: forwards;
-        font-size: 1.2em;
-        font-weight: bold;
-        color: #39ff14;
-      }
-      .sumas {
-        margin-top: 5px;
-        font-size: 0.9em;
-        line-height: 1.3em;
-        white-space: pre-line;
-        color: #ddd;
-        max-width: 320px;
-        text-align: center;
-      }
-      #animacionNumeros {
-        position: absolute;
-        top: -120px;
-        left: 50%;
-        transform: translateX(-50%);
-        text-align: center;
-        width: 320px;
-        pointer-events: none;
-        user-select: none;
-        z-index: 10;
-      }
       #easterEggGif {
         position: fixed;
         bottom: 10px;
@@ -246,22 +211,6 @@
       #jokerMessage span {
         color: yellow;
       }
-      #fordText {
-        display: none;
-        position: fixed;
-        top: 10%;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 80%;
-        max-height: 70%;
-        overflow-y: auto;
-        background-color: rgba(0, 0, 0, 0.7);
-        color: white;
-        padding: 20px;
-        border-radius: 10px;
-        z-index: 10000;
-        font-size: 1.2em;
-      }
       #volverButton {
         display: block;
         margin-top: 20px;
@@ -273,35 +222,29 @@
         font-size: 1.2em;
         color: black;
       }
-      #endMessage {
-        display: none;
-        position: fixed;
-        top: 20%;
-        left: 50%;
-        transform: translateX(-50%);
-        background-color: rgba(255, 0, 0, 0.7);
-        color: white;
-        padding: 20px;
-        border-radius: 10px;
-        font-size: 1.5em;
-        z-index: 10000;
-      }
     </style>
   </head>
   <body>
+    <!-- Imágenes -->
     <img id="imagenFem" src="imagenes/fem.png" alt="Fem">
     <div id="fondo"></div>
     <img id="imagenLunark" src="imagenes/lunark.png" alt="Lunark" />
+
+    <!-- Videos de fondo -->
     <video autoplay muted loop id="bgVideo1" class="bgVideo" playsinline>
       <source src="fondos/vid.mp4" type="video/mp4" />
     </video>
     <video autoplay muted loop id="bgVideo2" class="bgVideo" playsinline>
       <source src="fondos/balatro.mp4" type="video/mp4" />
     </video>
+
+    <!-- Pantalla de login -->
     <div id="loginScreen">
       <h2>Ingresa la clave</h2>
       <input type="password" id="loginInput" placeholder="Clave secreta" autocomplete="off" />
     </div>
+
+    <!-- Contenido principal -->
     <div class="container" id="mainContent">
       <h1>BLAZIUM CODE BREAKER</h1>
       <input type="text" id="codigo" placeholder="INGRESA EL CODIGO" autocomplete="off" />
@@ -309,8 +252,11 @@
       <div id="mensajeChipaalex"></div>
       <div id="mensajeCr3stianMC"></div>
     </div>
+
+    <!-- Easter Egg -->
     <img id="easterEggGif" src="easter-egg.gif" alt="Easter Egg" />
-    <!-- Músicas -->
+
+    <!-- Audios -->
     <audio id="bgMusicInitial" src="sounds/back1.mp3" autoplay loop></audio>
     <audio id="bgMusicMain" src="sounds/breaker.mp3" loop></audio>
     <audio id="bgEnterSound" src="sounds/enter.mp3"></audio>
@@ -319,10 +265,10 @@
     <audio id="gasterSound" src="sounds/gaster.mp3"></audio>
     <audio id="boomSound" src="sounds/boom.mp3"></audio>
 
-    <!-- Carga primero los datos -->
+    <!-- Scripts -->
     <script src="codes.js"></script>
-    <!-- Luego carga la lógica -->
     <script>
+      // Elementos del DOM
       const loginScreen = document.getElementById('loginScreen');
       const mainContent = document.getElementById('mainContent');
       const loginInput = document.getElementById('loginInput');
@@ -377,8 +323,10 @@
                 bgMusicInitial.volume = initialVolume;
               }
             }, 50);
+
             bgEnterSound.currentTime = 0;
             bgEnterSound.play();
+
             bgMusicMain.volume = 0;
             bgMusicMain.play();
             let volMain = 0;
@@ -390,10 +338,13 @@
                 clearInterval(fadeInInterval);
               }
             }, 50);
+
             cambiarFondo(bgVideo1, bgVideo2);
+
             setTimeout(() => {
               loginScreen.style.display = 'none';
             }, 1000);
+
             setTimeout(() => {
               mainContent.style.display = 'flex';
               requestAnimationFrame(() => {
@@ -433,11 +384,7 @@
       }
 
       function mostrarSumas() {
-        const texto = `Suma 1: 100 + 100 = 200
-  Suma 2: 150 + 50 = 200
-  Suma 3: 250 - 50 = 200
-  Suma 4: 400 - 200 = 200
-  Suma 5: 50 + 150 = 200`;
+        const texto = `Suma 1: 100 + 100 = 200\nSuma 2: 150 + 50 = 200\nSuma 3: 250 - 50 = 200\nSuma 4: 400 - 200 = 200\nSuma 5: 50 + 150 = 200`;
         const divSumas = document.createElement('div');
         divSumas.className = 'sumas';
         divSumas.textContent = texto;
@@ -449,33 +396,6 @@
         setTimeout(() => {
           easterEggGif.style.display = 'none';
         }, 5000);
-      }
-
-      function mostrarMensajeChipaalex() {
-        mensajeCr3stianMC.classList.remove('visible');
-        mensajeChipaalex.textContent = "chipaalex Este bro es la cabra";
-        mensajeChipaalex.classList.add('visible');
-        setTimeout(() => {
-          mensajeChipaalex.classList.remove('visible');
-        }, 5000);
-      }
-
-      function mostrarMensajeCr3stianMC() {
-        mensajeChipaalex.classList.remove('visible');
-        mensajeCr3stianMC.textContent = "Cr3stianMC Tha goat - El protagonista";
-        mensajeCr3stianMC.classList.add('visible');
-        setTimeout(() => {
-          mensajeCr3stianMC.classList.remove('visible');
-        }, 5000);
-      }
-
-      function mostrarPistaAleatoria() {
-        const indice = Math.floor(Math.random() * pistas.length);
-        mensajeCr3stianMC.textContent = pistas[indice];
-        mensajeCr3stianMC.classList.add('visible');
-        setTimeout(() => {
-          mensajeCr3stianMC.classList.remove('visible');
-        }, 3000);
       }
 
       codigoInput.addEventListener('keydown', function(e) {
@@ -490,7 +410,7 @@
             }, 0);
             setTimeout(() => {
               imagenFem.style.display = 'none';
-            }, 8000);  // La imagen permanece visible por 8 segundos
+            }, 8000);
           } else if (valor === "gaster") {
             gasterSound.currentTime = 0;
             gasterSound.play();
