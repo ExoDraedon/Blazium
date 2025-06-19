@@ -52,16 +52,6 @@ function mostrarMensajeChipaalex() {
     mensajeChipaalex.classList.remove('visible');
   }, 5000);
 }
-
-function mostrarMensajeCr3stianMC() {
-  mensajeChipaalex.classList.remove('visible');
-  mensajeCr3stianMC.textContent = "Cr3stianMC Tha goat - El protagonista";
-  mensajeCr3stianMC.classList.add('visible');
-  setTimeout(() => {
-    mensajeCr3stianMC.classList.remove('visible');
-  }, 5000);
-}
-
 function mostrarPistaAleatoria() {
   const indice = Math.floor(Math.random() * pistas.length);
   mensajeCr3stianMC.textContent = pistas[indice];
