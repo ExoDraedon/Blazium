@@ -41,45 +41,44 @@ const pistas = [
   "¿Sabías que los errores también tienen recuerdos?",
   "¿Por qué intentas un código que ni tú entiendes?",
   "El mech no está dormido. Solo espera el código correcto.",
-  "Alguien escribió Revill en un archivo viejo...",
-  "¿Quién dijo que todo tenía que tener sentido?",
-  "Cuidado, estás tocando cosas de ChafaSafio.",
-  "Algo en tu pantalla se movió. ¿Lo viste?",
-  "¿Ese era un intento… o un accidente?",
-  "Esa palabra… ya fue usada por otro jugador.",
-  "No puedes resolverlo todo como si fuera un quiz.",
-  "El sistema respondió con una carcajada.",
-  "Código rechazado. Pero no olvidado.",
-  "¿Seguro que no estás mezclando las pistas?",
-  "Lo intentaste. Eso ya es algo.",
-  "Nada interesante sucede con esa clave… por ahora.",
-  "A veces, fallar también es una pista.",
-  "¿Quien es Neo realmente?",
-  "La respuesta correcta puede estar justo delante tuyo.",
-  "Eso activó una alerta. No es broma.",
-  "¿Y si te dijera que ya estuviste aquí antes?",
-  "¡Error aceptado! Vuelve a intentarlo.",
-  "Hubo una transmisión. Decía: TVTIME activado.",
-  "Alguien murmuró Big Shot al fallar ese intento.",
-  "Escuché que un tal Spamtom te está observando…",
-  "¿Acabas de invocar a Exo sin querer?",
-  "Eso parecía un código... hasta que lo escribiste.",
-  "Hay una figura... en el fondo. Solo aparece cuando fallas.",
-  "El sistema recuerda tus errores… todos.",
-  "La música sonó… pero no era la correcta.",
-  "Algo explotó en los archivos del servidor.",
-  "¿Y si pruebas con algo más raro?",
-  "A veces hay que mirar más allá del intento.",
-  "Muy lejos. Intenta algo más personal.",
-  "¿Tal vez deberías pensar como un devourer?",
-  "Esa clave era parte de un evento olvidado.",
-  "Estás escribiendo con miedo… se nota.",
-  "El archivo fue abierto, pero no tenía nada.",
-  "Esa no era la respuesta... pero sí una reacción.",
-  "Nada se activa. Pero algo te observa.",
-  "Hay un easter egg muy cerca. Esta no era."
+  "Alguien escribió Revill en un archivo viejo..."
 ];
 
-// Exportamos como variables globales
+function mostrarMensajeChipaalex() {
+  mensajeCr3stianMC.classList.remove('visible');
+  mensajeChipaalex.textContent = "chipaalex Este bro es la cabra";
+  mensajeChipaalex.classList.add('visible');
+  setTimeout(() => {
+    mensajeChipaalex.classList.remove('visible');
+  }, 5000);
+}
+
+function mostrarMensajeCr3stianMC() {
+  mensajeChipaalex.classList.remove('visible');
+  mensajeCr3stianMC.textContent = "Cr3stianMC Tha goat - El protagonista";
+  mensajeCr3stianMC.classList.add('visible');
+  setTimeout(() => {
+    mensajeCr3stianMC.classList.remove('visible');
+  }, 5000);
+}
+
+function mostrarPistaAleatoria() {
+  const indice = Math.floor(Math.random() * pistas.length);
+  mensajeCr3stianMC.textContent = pistas[indice];
+  mensajeCr3stianMC.classList.add('visible');
+  setTimeout(() => {
+    mensajeCr3stianMC.classList.remove('visible');
+  }, 3000);
+}
+
 window.redirecciones = redirecciones;
 window.pistas = pistas;
+window.mostrarMensajeChipaalex = mostrarMensajeChipaalex;
+window.mostrarMensajeCr3stianMC = mostrarMensajeCr3stianMC;
+window.mostrarPistaAleatoria = mostrarPistaAleatoria;
+window.animarNumeros = animarNumeros;
+window.mostrarEasterEggGif = mostrarEasterEggGif;
+window.cambiarFondo = cambiarFondo;
+    </script>
+  </body>
+</html>
