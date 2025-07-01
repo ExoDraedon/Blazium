@@ -18,7 +18,7 @@ const redirecciones = {
   "hardmode": "https://tusitio.com/hardmode.png", 
   "¿¿¿¿¿?????": "https://i.pinimg.com/736x/c0/7e/7b/c07e7b0706d3d9a98c64c67af7050bab.jpg", 
   "reberb": "https://www.mediafire.com/folder/rss3jc61k60yx/sound",    
-  "plantera": "https://tusitio.com/plantera.png",    
+  "3301": "https://www.mediafire.com/view/hd8zuipptkivzdv/Captura_de_pantalla_2025-07-01_011112.png/file",    
   "revill": "https://tusitio.com/revill.png"    
 };
 
