@@ -19,7 +19,7 @@ const redirecciones = {
   "¿¿¿¿¿?????": "https://i.pinimg.com/736x/c0/7e/7b/c07e7b0706d3d9a98c64c67af7050bab.jpg", 
   "reberb": "https://www.mediafire.com/folder/rss3jc61k60yx/sound",    
   "plantera": "https://tusitio.com/plantera.png",    
-  "revill": "https://tusitio.com/revill.png"    
+  "1.895.196.528": "https://tusitio.com/revill.png"    
 };
 
 const pistas = [
