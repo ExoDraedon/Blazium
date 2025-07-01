@@ -22,10 +22,10 @@ const redirecciones = {
 
 const pistas = [
   "Recuerdas a tenna?",
-  "Tal vez lo recuerdes por DELTArune (delta en amarillo y solo la d en mayuscula)",
+  "Tal vez lo recuerdes por DELTArune (delta en amarillo y solo la d en mayúscula)",
   "1221 (1221 en amarillo)",
   "El cielo empieza a sangrar...",
-  "Balatro balatrez esta jugando balatro",
+  "Balatro balatrez está jugando balatro",
   "¿Recuerdas la fecha? Algo grande empezó en 2025…",
   "El evento... fue cancelado. O eso dijeron.",
   "¿Estás seguro de que eso era un código?",
@@ -52,7 +52,7 @@ const pistas = [
   "Lo intentaste. Eso ya es algo.",
   "Nada interesante sucede con esa clave… por ahora.",
   "A veces, fallar también es una pista.",
-  "¿Quien es Neo realmente?",
+  "¿Quién es Neo realmente?",
   "La respuesta correcta puede estar justo delante tuyo.",
   "Eso activó una alerta. No es broma.",
   "¿Y si te dijera que ya estuviste aquí antes?",
@@ -75,7 +75,18 @@ const pistas = [
   "El archivo fue abierto, pero no tenía nada.",
   "Esa no era la respuesta... pero sí una reacción.",
   "Nada se activa. Pero algo te observa.",
-  "Hay un easter egg muy cerca. Esta no era."
+  "Hay un easter egg muy cerca. Esta no era.",
+  // NUEVAS 10
+  "Tus dedos escriben antes de que pienses… peligroso.",
+  "Ese código tenía sentido en otra línea temporal.",
+  "Los errores también son puertas.",
+  "Recuerda mirar los nombres, no solo los archivos.",
+  "Las ruinas de 3301 guardan secretos que olvidaste.",
+  "No necesitas más pistas. Solo valor.",
+  "El eco de tus intentos llega muy lejos.",
+  "Repite el nombre en voz alta. Tal vez funcione.",
+  "Alguien más ya intentó eso… y no volvió.",
+  "No abras ese archivo. No todavía."
 ];
 
 function mostrarMensajeChipaalex() {
@@ -95,6 +106,11 @@ function mostrarMensajeCr3stianMC() {
     mensajeCr3stianMC.classList.remove('visible');
   }, 5000);
 }
+
+// Si estás usando estos mensajes, asegúrate de que los elementos existen
+// Si no los usas, puedes comentar estas líneas:
+const mensajeChipaalex = document.getElementById("mensajeChipaalex");
+const mensajeCr3stianMC = document.getElementById("mensajeCr3stianMC");
 
 window.redirecciones = redirecciones;
 window.pistas = pistas;
