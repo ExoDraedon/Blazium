@@ -17,7 +17,6 @@ const redirecciones = {
   "reberb": "https://app.mediafire.com/folder/a3qf34fitcot4",    
   "3301": "https://www.mediafire.com/view/hd8zuipptkivzdv/Captura_de_pantalla_2025-07-01_011112.png/file",
   "e4y4e4s": "https://www.mediafire.com/view/p0h2tmvujcli715/333333333.png/file",
-  "N30": "https://www.mediafire.com/view/mesxqxnwijozmbp/neo.png/file",
   "revill": "https://tusitio.com/revill.png"    
 };
 
