@@ -2,30 +2,32 @@
 
 const redirecciones = {
   "tenna": "https://deltarune.com", 
-  "oscuridadmisma": "https://www.mediafire.com/file/xw6zeadskg9589e/NAMELESS.txt/file",      
+  "oscuridadmisma": "https://www.mediafire.com/file/xw6zeadskg9589e/NAMELESS.txt/file",  
+  "sir": "https://www.mediafire.com/folder/hh07080tlx5te/code",    
   "lalalalalala": "https://www.mediafire.com/file/oo8zq1z9q4g0qvm/historianeock_1_(1).wav/file",    
-  "chaos": "https://www.mediafire.com/view/0x2k6dq9khc5ji5/rare1.png/file",    
-  "2025": "https://discord.gg/RyvGAWYP",
+  "exo": "https://tusitio.com/exo.png",    
+  "2025": "https://tusitio.com/2025.png",    
   "estonoesuncodigo": "https://tusitio.com/estonoesuncodigo.png",    
   "se mi sagrado": "https://www.mediafire.com/file/0s8jcr9z1a2sjok/SIR.txt/file",    
   "chafasafio6en2025": "https://tusitio.com/chafa.png",    
   "exomech": "https://deltarune.com",    
   "ralsei": "https://deltarune.com",    
   "quiz": "https://www.mediafire.com/file/8dluqi2deqanfd3/QUIZZ.txt/file",    
-  "5": "https://www.mediafire.com/view/2j9q6y8bzwakqug/image.png/file", 
+  "neo": "https://app.mediafire.com/folder/a3qf34fitcot4",    
+  "tvtime!!!!": "https://tusitio.com/tvtime.png",    
+  "hardmode": "https://tusitio.com/hardmode.png", 
   "¿¿¿¿¿?????": "https://i.pinimg.com/736x/c0/7e/7b/c07e7b0706d3d9a98c64c67af7050bab.jpg", 
-  "reberb": "https://app.mediafire.com/folder/a3qf34fitcot4",    
-  "3301": "https://www.mediafire.com/view/hd8zuipptkivzdv/Captura_de_pantalla_2025-07-01_011112.png/file",
-  "e4y4e4s": "https://www.mediafire.com/view/p0h2tmvujcli715/333333333.png/file",
+  "reberb": "https://www.mediafire.com/folder/rss3jc61k60yx/sound",    
+  "plantera": "https://tusitio.com/plantera.png",    
   "revill": "https://tusitio.com/revill.png"    
 };
 
 const pistas = [
-  "Recuerdas a tenna?",
-  "Tal vez lo recuerdes por DELTArune (delta en amarillo y solo la d en mayúscula)",
+  "Recuerdas a tenna? (tenna en amarillo)",
+  "Tal vez lo recuerdes por DELTArune (delta en amarillo y solo la d en mayuscula)",
   "1221 (1221 en amarillo)",
   "El cielo empieza a sangrar...",
-  "Balatro balatrez está jugando balatro",
+  "Balatro balatrez esta jugando balatro",
   "¿Recuerdas la fecha? Algo grande empezó en 2025…",
   "El evento... fue cancelado. O eso dijeron.",
   "¿Estás seguro de que eso era un código?",
@@ -52,7 +54,7 @@ const pistas = [
   "Lo intentaste. Eso ya es algo.",
   "Nada interesante sucede con esa clave… por ahora.",
   "A veces, fallar también es una pista.",
-  "¿Quién es Neo realmente?",
+  "¿Quien es Neo realmente?",
   "La respuesta correcta puede estar justo delante tuyo.",
   "Eso activó una alerta. No es broma.",
   "¿Y si te dijera que ya estuviste aquí antes?",
@@ -75,19 +77,28 @@ const pistas = [
   "El archivo fue abierto, pero no tenía nada.",
   "Esa no era la respuesta... pero sí una reacción.",
   "Nada se activa. Pero algo te observa.",
-  "Hay un easter egg muy cerca. Esta no era.",
-  "Tus dedos escriben antes de que pienses… peligroso.",
-  "Ese código tenía sentido en otra línea temporal.",
-  "Los errores también son puertas.",
-  "Recuerda mirar los nombres, no solo los archivos.",
-  "Las ruinas de 3301 guardan secretos que olvidaste.",
-  "No necesitas más pistas. Solo valor.",
-  "El eco de tus intentos llega muy lejos.",
-  "Repite el nombre en voz alta. Tal vez funcione.",
-  "Alguien más ya intentó eso… y no volvió.",
-  "No abras ese archivo. No todavía."
+  "Hay un easter egg muy cerca. Esta no era."
 ];
 
-// Exportar a global para que otros scripts lo usen
+function mostrarMensajeChipaalex() {
+  mensajeCr3stianMC.classList.remove('visible');
+  mensajeChipaalex.textContent = "chipaalex Este bro es la cabra";
+  mensajeChipaalex.classList.add('visible');
+  setTimeout(() => {
+    mensajeChipaalex.classList.remove('visible');
+  }, 5000);
+}
+
+function mostrarMensajeCr3stianMC() {
+  mensajeChipaalex.classList.remove('visible');
+  mensajeCr3stianMC.textContent = "Cr3stianMC Tha goat - El protagonista";
+  mensajeCr3stianMC.classList.add('visible');
+  setTimeout(() => {
+    mensajeCr3stianMC.classList.remove('visible');
+  }, 5000);
+}
+
 window.redirecciones = redirecciones;
 window.pistas = pistas;
+window.mostrarMensajeChipaalex = mostrarMensajeChipaalex;
+window.mostrarMensajeCr3stianMC = mostrarMensajeCr3stianMC;
