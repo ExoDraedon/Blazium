@@ -15,7 +15,7 @@ const redirecciones = {
   "quiz": "https://www.mediafire.com/file/8dluqi2deqanfd3/QUIZZ.txt/file",    
   "neo": "https://app.mediafire.com/folder/a3qf34fitcot4",    
   "tvtime!!!!": "https://tusitio.com/tvtime.png",    
-  "hardmode": "https://tusitio.com/hardmode.png", 
+  "5": "https://www.mediafire.com/view/2j9q6y8bzwakqug/image.png/file", 
   "¿¿¿¿¿?????": "https://i.pinimg.com/736x/c0/7e/7b/c07e7b0706d3d9a98c64c67af7050bab.jpg", 
   "reberb": "https://www.mediafire.com/folder/rss3jc61k60yx/sound",    
   "3301": "https://www.mediafire.com/view/hd8zuipptkivzdv/Captura_de_pantalla_2025-07-01_011112.png/file",    
