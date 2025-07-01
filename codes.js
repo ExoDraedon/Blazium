@@ -2,8 +2,7 @@
 
 const redirecciones = {
   "tenna": "https://deltarune.com", 
-  "oscuridadmisma": "https://www.mediafire.com/file/xw6zeadskg9589e/NAMELESS.txt/file",  
-  "sir": "https://www.mediafire.com/folder/hh07080tlx5te/code",    
+  "oscuridadmisma": "https://www.mediafire.com/file/xw6zeadskg9589e/NAMELESS.txt/file",      
   "lalalalalala": "https://www.mediafire.com/file/oo8zq1z9q4g0qvm/historianeock_1_(1).wav/file",    
   "chaos": "https://www.mediafire.com/view/0x2k6dq9khc5ji5/rare1.png/file",    
   "2025": "https://tusitio.com/2025.png",    
@@ -12,9 +11,8 @@ const redirecciones = {
   "chafasafio6en2025": "https://tusitio.com/chafa.png",    
   "exomech": "https://deltarune.com",    
   "ralsei": "https://deltarune.com",    
-  "quiz": "https://www.mediafire.com/file/8dluqi2deqanfd3/QUIZZ.txt/file",    
-  "neoX": "https://www.mediafire.com/view/xkxo39bej9nqxdq/neo.png/file",    
-  "tvtime!!!!": "https://tusitio.com/tvtime.png",    
+  "quiz": "https://www.mediafire.com/file/8dluqi2deqanfd3/QUIZZ.txt/file",  
+  "tv": "https://www.mediafire.com/view/xkxo39bej9nqxdq/neo.png/file",    
   "5": "https://www.mediafire.com/view/2j9q6y8bzwakqug/image.png/file", 
   "¿¿¿¿¿?????": "https://i.pinimg.com/736x/c0/7e/7b/c07e7b0706d3d9a98c64c67af7050bab.jpg", 
   "reberb": "https://app.mediafire.com/folder/a3qf34fitcot4",    
