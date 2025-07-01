@@ -5,7 +5,7 @@ const redirecciones = {
   "oscuridadmisma": "https://www.mediafire.com/file/xw6zeadskg9589e/NAMELESS.txt/file",  
   "sir": "https://www.mediafire.com/folder/hh07080tlx5te/code",    
   "lalalalalala": "https://www.mediafire.com/file/oo8zq1z9q4g0qvm/historianeock_1_(1).wav/file",    
-  "exo": "https://tusitio.com/exo.png",    
+  "chaos": "https://www.mediafire.com/view/0x2k6dq9khc5ji5/rare1.png/file",    
   "2025": "https://tusitio.com/2025.png",    
   "estonoesuncodigo": "https://tusitio.com/estonoesuncodigo.png",    
   "se mi sagrado": "https://www.mediafire.com/file/0s8jcr9z1a2sjok/SIR.txt/file",    
