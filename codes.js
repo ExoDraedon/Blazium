@@ -3,7 +3,7 @@
 const redirecciones = {
   "tenna": "https://deltarune.com", 
   "oscuridadmisma": "https://www.mediafire.com/file/xw6zeadskg9589e/NAMELESS.txt/file",  
-  "sir": "https://www.mediafire.com/folder/hh07080tlx5te/code",    
+  "sir": "https://www.mediafire.com/view/p0h2tmvujcli715/333333333.png/file",    
   "lalalalalala": "https://www.mediafire.com/file/oo8zq1z9q4g0qvm/historianeock_1_(1).wav/file",    
   "exo": "https://tusitio.com/exo.png",    
   "2025": "https://tusitio.com/2025.png",    
@@ -13,7 +13,7 @@ const redirecciones = {
   "exomech": "https://deltarune.com",    
   "ralsei": "https://deltarune.com",    
   "quiz": "https://www.mediafire.com/file/8dluqi2deqanfd3/QUIZZ.txt/file",    
-  "neo": "https://app.mediafire.com/folder/a3qf34fitcot4",    
+  "neo": "https://www.mediafire.com/view/mesxqxnwijozmbp/neo.png/file",    
   "tvtime!!!!": "https://tusitio.com/tvtime.png",    
   "hardmode": "https://tusitio.com/hardmode.png", 
   "¿¿¿¿¿?????": "https://i.pinimg.com/736x/c0/7e/7b/c07e7b0706d3d9a98c64c67af7050bab.jpg", 
