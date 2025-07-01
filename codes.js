@@ -5,7 +5,7 @@ const redirecciones = {
   "oscuridadmisma": "https://www.mediafire.com/file/xw6zeadskg9589e/NAMELESS.txt/file",      
   "lalalalalala": "https://www.mediafire.com/file/oo8zq1z9q4g0qvm/historianeock_1_(1).wav/file",    
   "chaos": "https://www.mediafire.com/view/0x2k6dq9khc5ji5/rare1.png/file",    
-  "2025": "https://www.mediafire.com/view/xkxo39bej9nqxdq/neo.png/file",
+  "2025": "https://discord.gg/RyvGAWYP",
   "estonoesuncodigo": "https://tusitio.com/estonoesuncodigo.png",    
   "se mi sagrado": "https://www.mediafire.com/file/0s8jcr9z1a2sjok/SIR.txt/file",    
   "chafasafio6en2025": "https://tusitio.com/chafa.png",    
@@ -17,11 +17,12 @@ const redirecciones = {
   "reberb": "https://app.mediafire.com/folder/a3qf34fitcot4",    
   "3301": "https://www.mediafire.com/view/hd8zuipptkivzdv/Captura_de_pantalla_2025-07-01_011112.png/file",
   "e4y4e4s": "https://www.mediafire.com/view/p0h2tmvujcli715/333333333.png/file",
+  "N30": "https://www.mediafire.com/view/mesxqxnwijozmbp/neo.png/file"
   "revill": "https://tusitio.com/revill.png"    
 };
 
 const pistas = [
-  "Recuerdas a tenna? (tenna en amarillo)",
+  "Recuerdas a tenna?",
   "Tal vez lo recuerdes por DELTArune (delta en amarillo y solo la d en mayuscula)",
   "1221 (1221 en amarillo)",
   "El cielo empieza a sangrar...",
