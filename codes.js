@@ -76,7 +76,6 @@ const pistas = [
   "Esa no era la respuesta... pero sí una reacción.",
   "Nada se activa. Pero algo te observa.",
   "Hay un easter egg muy cerca. Esta no era.",
-  // NUEVAS 10
   "Tus dedos escriben antes de que pienses… peligroso.",
   "Ese código tenía sentido en otra línea temporal.",
   "Los errores también son puertas.",
@@ -89,30 +88,6 @@ const pistas = [
   "No abras ese archivo. No todavía."
 ];
 
-function mostrarMensajeChipaalex() {
-  mensajeCr3stianMC.classList.remove('visible');
-  mensajeChipaalex.textContent = "chipaalex Este bro es la cabra";
-  mensajeChipaalex.classList.add('visible');
-  setTimeout(() => {
-    mensajeChipaalex.classList.remove('visible');
-  }, 5000);
-}
-
-function mostrarMensajeCr3stianMC() {
-  mensajeChipaalex.classList.remove('visible');
-  mensajeCr3stianMC.textContent = "Cr3stianMC Tha goat - El protagonista";
-  mensajeCr3stianMC.classList.add('visible');
-  setTimeout(() => {
-    mensajeCr3stianMC.classList.remove('visible');
-  }, 5000);
-}
-
-// Si estás usando estos mensajes, asegúrate de que los elementos existen
-// Si no los usas, puedes comentar estas líneas:
-const mensajeChipaalex = document.getElementById("mensajeChipaalex");
-const mensajeCr3stianMC = document.getElementById("mensajeCr3stianMC");
-
+// Exportar a global para que otros scripts lo usen
 window.redirecciones = redirecciones;
 window.pistas = pistas;
-window.mostrarMensajeChipaalex = mostrarMensajeChipaalex;
-window.mostrarMensajeCr3stianMC = mostrarMensajeCr3stianMC;
