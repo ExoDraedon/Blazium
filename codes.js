@@ -13,13 +13,13 @@ const redirecciones = {
   "exomech": "https://deltarune.com",    
   "ralsei": "https://deltarune.com",    
   "quiz": "https://www.mediafire.com/file/8dluqi2deqanfd3/QUIZZ.txt/file",    
-  "neo": "https://www.mediafire.com/view/xkxo39bej9nqxdq/neo.png/file",    
+  "neoX": "https://www.mediafire.com/view/xkxo39bej9nqxdq/neo.png/file",    
   "tvtime!!!!": "https://tusitio.com/tvtime.png",    
   "5": "https://www.mediafire.com/view/2j9q6y8bzwakqug/image.png/file", 
   "¿¿¿¿¿?????": "https://i.pinimg.com/736x/c0/7e/7b/c07e7b0706d3d9a98c64c67af7050bab.jpg", 
   "reberb": "https://app.mediafire.com/folder/a3qf34fitcot4",    
   "3301": "https://www.mediafire.com/view/hd8zuipptkivzdv/Captura_de_pantalla_2025-07-01_011112.png/file",
-  "illuminati": "https://www.mediafire.com/view/p0h2tmvujcli715/333333333.png/file",
+  "e4y4e4s": "https://www.mediafire.com/view/p0h2tmvujcli715/333333333.png/file",
   "revill": "https://tusitio.com/revill.png"    
 };
 
